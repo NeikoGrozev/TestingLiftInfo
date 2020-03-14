@@ -4,6 +4,8 @@
     {
         public const string SystemName = "TestingLiftInfo";
 
+        public const string Logo = "Testing Lift Info";
+
         public const string AdministratorRoleName = "Administrator";
     }
 }

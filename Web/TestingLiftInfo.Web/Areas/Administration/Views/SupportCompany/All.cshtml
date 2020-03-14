@@ -1,0 +1,13 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies.GetAllCompanyViewModel
+@{
+    this.ViewData["Title"] = "Поддържащи фирми";
+}
+
+<h2>@this.ViewData["Title"]</h2>
+<div>
+    <a class="btn btn-danger" asp-area="Administration" asp-controller="SupportCompany" asp-action="Create">Добави</a>
+</div>
+@foreach (var setting in this.Model.SupportCompanies)
+{
+    <div>@*@setting.Id:*@ @setting.Name</div>
+}

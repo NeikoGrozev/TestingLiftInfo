@@ -1,0 +1,11 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies.CreateSupportCompanyViewModel
+
+<h2>Поддържащи фирми</h2>
+
+<form asp-area="Administration" asp-controller="SupportCompany" asp-action="Create" method="post">
+    <div>
+        <label for="name">Поддържаща фирма: </label>
+        <input asp-for="Name" type="text" id="name" />
+        <button type="submit" class="btn btn-dark">Добави</button>
+    </div>
+</form>

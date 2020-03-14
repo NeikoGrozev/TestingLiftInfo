@@ -2,12 +2,13 @@
 {
     using System.Diagnostics;
 
-    using TestingLiftInfo.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+
+    using TestingLiftInfo.Web.ViewModels;
 
     public class HomeController : BaseController
     {
+        [HttpGet("/")]
         public IActionResult Index()
         {
             return this.View();

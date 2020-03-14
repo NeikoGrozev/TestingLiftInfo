@@ -21,7 +21,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TestingLiftInfo.Data.Common\TestingLiftInfo.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\TestingLiftInfo.Data.Models\TestingLiftInfo.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\TestingLiftInfo.Web.Infrastructure\TestingLiftInfo.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Web\TestingLiftInfo.Web.ViewModels\TestingLiftInfo.Web.ViewModels.csproj" />
     <ProjectReference Include="..\TestingLiftInfo.Services.Mapping\TestingLiftInfo.Services.Mapping.csproj" />
+    <ProjectReference Include="..\TestingLiftInfo.Services.Messaging\TestingLiftInfo.Services.Messaging.csproj" />
   </ItemGroup>
 
 </Project>
