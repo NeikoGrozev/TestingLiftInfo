@@ -2,6 +2,14 @@
 {
     using System.Reflection;
 
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+
     using TestingLiftInfo.Data;
     using TestingLiftInfo.Data.Common;
     using TestingLiftInfo.Data.Common.Repositories;
@@ -12,14 +20,6 @@
     using TestingLiftInfo.Services.Mapping;
     using TestingLiftInfo.Services.Messaging;
     using TestingLiftInfo.Web.ViewModels;
-
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
 
     public class Startup
     {
@@ -61,6 +61,7 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICityService, CityService>();
             services.AddTransient<ISupportCompanyService, SupportCompanyService>();
+            services.AddTransient<IManufacturerService, ManufacturerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

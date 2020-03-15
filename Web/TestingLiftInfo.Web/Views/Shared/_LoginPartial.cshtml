@@ -15,6 +15,10 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Manufacturer" asp-action="All" title="Manufacturers">Производители</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="Administration" asp-controller="SupportCompany" asp-action="All" title="SupportCompany">Фирми</a>
                 </li>
 
@@ -22,7 +26,6 @@
                     <a class="nav-link text-dark" asp-area="Administration" asp-controller="City" asp-action="All" title="City">Градове</a>
                 </li>
             }
-
 
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
