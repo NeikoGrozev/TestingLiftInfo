@@ -13,7 +13,7 @@
             if (dbContext.Users.Count() == 1 && !dbContext.UserRoles.Any())
             {
                 var admin = dbContext.Roles.FirstOrDefault(x => x.Name == "Administrator");
-                var user = dbContext.Users.FirstOrDefault(x => x.Email == "admin@gmail.bg");
+                var user = dbContext.Users.FirstOrDefault(x => x.Email == "admin@gmail.com");
 
                 await dbContext.UserRoles.AddAsync(new IdentityUserRole<string> { UserId = user.Id, RoleId = admin.Id });
             }

@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using TestingLiftInfo.Data.Models;
-
-namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
+﻿namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
+    using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.UI.Services;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.WebUtilities;
+    using Microsoft.Extensions.Logging;
+
+    using TestingLiftInfo.Data.Models;
+
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -47,7 +49,9 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            public string UserName { get; set; }
+            [StringLength(25, ErrorMessage = "{0}-мът трябва да бъде дълг, най-малко {2} и максимум {1} символа.", MinimumLength = 5)]
+            [Display(Name = "Username")]
+            public string Name { get; set; }
 
             [Required]
             [EmailAddress]
@@ -55,14 +59,14 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(20, ErrorMessage = "{0}та трябва да бъде дълга, най-малко {2} и максимум {1} символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Парола")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Потвърди парола")]
+            [Compare("Password", ErrorMessage = "Паролите не си съвпадат!")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -78,7 +82,7 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser {Name = Input.Name, UserName = Input.Email, Email = Input.Email};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -3,7 +3,7 @@ namespace TestingLiftInfo.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
 
     using TestingLiftInfo.Data.Common.Models;
@@ -17,6 +17,9 @@ namespace TestingLiftInfo.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
+
+        [Required]
+        public string Name { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
