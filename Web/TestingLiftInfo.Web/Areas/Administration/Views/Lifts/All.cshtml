@@ -1,0 +1,15 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.Lifts.GetAllLiftViewModel
+
+@{
+    this.ViewData["Title"] = "Асансьори";
+}
+
+<h2>@this.ViewData["Title"]</h2>
+<div>
+    <a class="btn btn-danger" asp-area="Administration" asp-controller="Lifts" asp-action="Create">Добави</a>
+</div>
+@foreach (var setting in this.Model.Lifts)
+{
+    <div>@*@setting.Id:*@ @setting.RegistrationNumber</div>
+}
+

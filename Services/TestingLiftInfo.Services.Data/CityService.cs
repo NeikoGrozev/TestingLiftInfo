@@ -19,12 +19,11 @@
             this.repo = repo;
         }
 
-        public GetAllCityViewModel GetAllCity()
+        public ICollection<City> GetAllCity()
         {
             var cities = this.repo.All().OrderBy(x => x.Name).ToList();
-            var viewModel = new GetAllCityViewModel { Cities = cities };
 
-            return viewModel;
+            return cities;
         }
     }
 }

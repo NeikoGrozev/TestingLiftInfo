@@ -47,8 +47,9 @@
         public IActionResult All()
         {
             var cities = this.cityService.GetAllCity();
+            var viewModel = new GetAllCityViewModel { Cities = cities };
 
-            return this.View(cities);
+            return this.View(viewModel);
         }
     }
 }

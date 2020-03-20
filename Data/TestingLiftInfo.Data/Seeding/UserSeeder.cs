@@ -5,13 +5,25 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
+    using TestingLiftInfo.Data.Models;
 
     internal class UserSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Users.Count() == 1 && !dbContext.UserRoles.Any())
+            if (!dbContext.Users.Any() && !dbContext.UserRoles.Any())
             {
+                var userAdmin = new ApplicationUser
+                {
+                    Name = "admin",
+                    UserName = "admin@gmail.com",
+                    Email = "admin@gmail.com",
+                };
+
+                var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                await userManager.CreateAsync(userAdmin, "123456");
+
                 var admin = dbContext.Roles.FirstOrDefault(x => x.Name == "Administrator");
                 var user = dbContext.Users.FirstOrDefault(x => x.Email == "admin@gmail.com");
 

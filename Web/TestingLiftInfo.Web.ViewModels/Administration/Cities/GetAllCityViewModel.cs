@@ -6,6 +6,6 @@
 
     public class GetAllCityViewModel
     {
-        public IEnumerable<City> Cities { get; set; }
+        public ICollection<City> Cities { get; set; }
     }
 }

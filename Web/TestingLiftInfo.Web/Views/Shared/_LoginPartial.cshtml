@@ -16,6 +16,10 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Асансьори"><font size="5">Асансьори</font></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="Administration" asp-controller="Manufacturer" asp-action="All" title="Производители"><font size="5">Производители</font></a>
             </li>
 
@@ -29,7 +33,7 @@
         }
 
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><font size="5" style="color:chartreuse; font-style:italic">Здравей, @user.Result.Name @*@(this.User.Identity.Name)*@</font></a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Потребител"><font size="5" style="color:chartreuse; font-style:italic">Здравей, @user.Result.Name @*@(this.User.Identity.Name)*@</font></a>
         </li>
 
         <li class="nav-item">

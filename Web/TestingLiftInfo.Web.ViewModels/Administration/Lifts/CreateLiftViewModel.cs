@@ -1,0 +1,37 @@
+﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
+
+    using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Data.Models.Enumerations;
+    using TestingLiftInfo.Web.ViewModels.Administration.Cities;
+
+    public class CreateLiftViewModel
+    {
+        public LiftType LiftType { get; set; }
+
+        [Required]
+        public int NumberOfStops { get; set; }
+
+        [Required]
+        public int Capacity { get; set; }
+
+        [Required]
+        public DoorType DoorType { get; set; }
+
+        [Required]
+        public string RegistrationNumber { get; set; }
+
+        public ICollection<Manufacturer> Manufacturers { get; set; }
+
+        public ICollection<City> Cities { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        public ICollection<SupportCompany> SupportCompanies { get; set; }
+    }
+}

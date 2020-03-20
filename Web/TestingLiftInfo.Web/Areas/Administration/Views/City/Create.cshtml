@@ -1,11 +1,11 @@
 ﻿@model TestingLiftInfo.Web.ViewModels.Administration.Cities.CreateCityViewModel
 
-<h1>TEST</h1> 
+<h2>Добави нов град</h2> 
 
 <form asp-area="Administration" asp-controller="City" asp-action="Create" method="post">
-    <div >
-        <label for="name">Град: </label>
-        <input asp-for="Name" type="text" id="name"/>
-        <button type="submit" class="btn btn-dark">Добави</button>
+    <div class="text-center" style="margin-top:100px">
+        <label for="name" style="font-size:larger">Град: </label>
+        <input class="form-control-sm" asp-for="Name" type="text" id="name" size="25" />
+        <button type="submit" class="btn btn-success btn-sm">Добави</button>
     </div>
 </form>

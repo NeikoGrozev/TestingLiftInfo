@@ -4,7 +4,7 @@
     this.ViewData["Title"] = "Производители";
 }
 
-<h2>@this.ViewData["Title"]</h2>
+<h3>@this.ViewData["Title"]</h3>
 
 <div>
     <a style="float:right" class="btn btn-success mb-3" asp-area="Administration" asp-controller="Manufacturer" asp-action="Create">Добави</a>
@@ -22,12 +22,12 @@
         @{var list = Model.Manufacturers.Select(x => x.Name).ToList();}
         @for (int i = 0; i < Model.Manufacturers.Count(); i++)
         {
-            <tr class="table-primary border-light">
-                <td class="border border-light">@(i + 1)</td>
-                <td class="border border-light ">@list[i]</td>
-                <td class="border border-light">@(i + 1)</td>
+        <tr class="text-dark border-light" style="background-color:honeydew">
+            <td class="border border-light" style="width:50px; text-align:center">@(i + 1)</td>
+            <td class="border border-light" style="width:800px">@list[i]</td>
+            <td class="border border-light">@(i + 1)</td>
 
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

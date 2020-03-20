@@ -10,6 +10,6 @@
 
     public interface ICityService
     {
-        GetAllCityViewModel GetAllCity();
+        ICollection<City> GetAllCity();
     }
 }
