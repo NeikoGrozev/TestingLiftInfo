@@ -1,19 +1,17 @@
 ﻿@using TestingLiftInfo.Data.Models.Enumerations
 @model TestingLiftInfo.Web.ViewModels.Administration.Lifts.CreateLiftViewModel
-
+@{var cities = Model.Cities.ToList();}
 <h3>Добави асансьор</h3>
 
-<form asp-area="Administration" asp-controller="Lifts" asp-action="Create" method="post">
-    @*<div>
-            <label for="name">Град: </label>
-            <input asp-for="Cities.Cities" type="text" id="name" />
-            <button type="submit" class="btn btn-dark">Добави</button>
-        </div>*@
-
-
-    <div class="form-group justify-content-center">
+<form asp-area="Administration" asp-controller="Lifts" asp-action="Create" method="post" onsubmit="return submitResult();">
+   
+    <div class="form-group" style="margin-top:20px">
         <div>
-            <label asp-for="LiftType" for="type" style="font-size:18px">Вид на прегледа</label>
+            <label asp-for="RegistrationNumber" for="registrationNumber" style="font-size:18px">Регистрационен номер   <strong>777АС</strong></label>
+            <input asp-for="RegistrationNumber" type="number" id="registrationNumber" class="form-control-sm" min="0" />
+        </div>
+        <div>
+            <label asp-for="LiftType" for="type" style="font-size:18px">Вид на асансьорът</label>
             <select asp-for="LiftType" id="type" class="form-control-sm border-dark" asp-items="Html.GetEnumSelectList<LiftType>()"></select>
         </div>
         <div>
@@ -21,18 +19,48 @@
             <input asp-for="NumberOfStops" type="number" id="numberOfStops" class="form-control-sm" min="2" max="100"/>
         </div>
         <div>
-            <label for="name" style="font-size:18px">Град</label>
-            <select id="name" class="form-control-sm border-dark" name="Name">
+            <label for="capacity" style="font-size:18px">Товароподемност</label>
+            <input asp-for="Capacity" type="number" id="capacity" class="form-control-sm" min="100" max="5000" />
+            <a>кг.</a>
+        </div>
+        <div>
+            <label asp-for="DoorType" for="type" style="font-size:18px">Тип врати</label>
+            <select asp-for="DoorType" id="type" class="form-control-sm border-dark" asp-items="Html.GetEnumSelectList<DoorType>()"></select>
+        </div>
+        <div>
+            <label for="manufacturer" style="font-size:18px">Производител</label>
+            <select id="manufacturer" class="form-control-sm border-dark" name="manufacturer">
+                @foreach (var item in Model.Manufacturers)
+                {
+                    <option value="@item.Name">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label for="city" style="font-size:18px">Град</label>
+            <select id="city" class="form-control-sm border-dark" name="city">
                 @foreach (var item in Model.Cities)
                 {
                     <option value="@item.Name">@item.Name</option>
                 }
             </select>
         </div>
-    </div>
+        <div>
+            <label asp-for="Address" for="address" style="font-size:18px">Адрес</label>
+            <input asp-for="Address" type="text" id="address" class="form-control-sm" />
+        </div>
+    </div>    
 
-
-
-    <button type="submit" class="btn btn-dark">Добави</button>
+    <button type="submit" class="btn btn-success">✙ Добави</button>
 
 </form>
+
+<script>
+function submitResult() {
+   if ( confirm("Сигурни ли сте, че искате да регистрирате съоръжението?") == false ) {
+      return false ;
+   } else {
+      return true ;
+   }
+}
+</script>

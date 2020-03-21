@@ -9,6 +9,7 @@
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
+    using TestingLiftInfo.Web.ViewModels.Administration.Manufacturer;
 
     public class ManufacturerController : AdministrationController
     {
@@ -46,7 +47,9 @@
         {
             var manufacturers = this.service.GEtAllManufacturers();
 
-            return this.View(manufacturers);
+            var viewModel = new GetAllManufacturerViewModel { Manufacturers = manufacturers };
+
+            return this.View(viewModel);
         }
     }
 }

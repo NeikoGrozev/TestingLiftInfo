@@ -11,6 +11,7 @@
 
     public class CreateLiftViewModel
     {
+        [Required]
         public LiftType LiftType { get; set; }
 
         [Required]
@@ -25,13 +26,16 @@
         [Required]
         public string RegistrationNumber { get; set; }
 
+        [Required]
         public ICollection<Manufacturer> Manufacturers { get; set; }
 
+        [Required]
         public ICollection<City> Cities { get; set; }
 
         [Required]
         public string Address { get; set; }
 
+        [Required]
         public ICollection<SupportCompany> SupportCompanies { get; set; }
     }
 }

@@ -5,50 +5,49 @@
 @inject UserManager<ApplicationUser> UserManager
 @{var user = this.UserManager.FindByEmailAsync(this.User.Identity.Name); }
 
-<ul class="navbar-nav">
-    @if (this.SignInManager.IsSignedIn(this.User))
-    {
-        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+    <ul class="navbar-nav">
+        @if (this.SignInManager.IsSignedIn(this.User))
         {
+            if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin"><font size="4" face="Comic sans MS">Admin</font></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Асансьори"><font size="4" face="Comic sans MS">Асансьори</font></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <font size="4" face="Comic sans MS">Администрация</font>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="City" asp-action="All" title="Градове"><font size="4" face="Comic sans MS">Градове</font></a>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="All" title="Производители"><font size="4" face="Comic sans MS">Производители</font></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="SupportCompany" asp-action="All" title="Поддържащи фирми"><font size="4" face="Comic sans MS">Поддържащи фирми</font></a>
+                    </div>
+                </li>
+            }
 
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin"><font size="5">Admin</font></a>
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Потребител"><font size="4" style="color:chartreuse; font-style:italic" face="Comic sans MS">Здравей, @user.Result.Name @*@(this.User.Identity.Name)*@</font></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Асансьори"><font size="5">Асансьори</font></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Manufacturer" asp-action="All" title="Производители"><font size="5">Производители</font></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Administration" asp-controller="SupportCompany" asp-action="All" title="Поддържащи фирми"><font size="5">Фирми</font></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Administration" asp-controller="City" asp-action="All" title="Градове"><font size="5">Градове</font></a>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                    <button type="submit" class="nav-link btn btn-link text-dark"><font size="4" face="Comic sans MS">Изход</font></button>
+                </form>
             </li>
         }
-
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Потребител"><font size="5" style="color:chartreuse; font-style:italic">Здравей, @user.Result.Name @*@(this.User.Identity.Name)*@</font></a>
-        </li>
-
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                <button type="submit" class="nav-link btn btn-link text-dark"><font size="5">Изход</font></button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" style="font-size:larger">Регистрация</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" style="font-size:larger">Вход</a>
-        </li>
-    }
-</ul>
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" style="font-size:larger">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" style="font-size:larger">Вход</a>
+            </li>
+        }
+    </ul>

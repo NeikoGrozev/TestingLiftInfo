@@ -18,12 +18,11 @@
             this.repository = repository;
         }
 
-        public GetAllManufacturerViewModel GEtAllManufacturers()
+        public ICollection<Manufacturer> GEtAllManufacturers()
         {
             var manufacturers = this.repository.All().OrderBy(x => x.Name).ToList();
-            var viewModel = new GetAllManufacturerViewModel { Manufacturers = manufacturers };
 
-            return viewModel;
+            return manufacturers;
         }
     }
 }
