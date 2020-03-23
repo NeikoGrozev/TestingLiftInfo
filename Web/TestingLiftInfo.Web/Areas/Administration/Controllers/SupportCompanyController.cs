@@ -10,6 +10,7 @@
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
+    using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
     public class SupportCompanyController : AdministrationController
     {
@@ -46,8 +47,9 @@
         public IActionResult All()
         {
             var companies = this.service.GetAllCompanies();
+            var viewModel = new GetAllCompanyViewModel { SupportCompanies = companies };
 
-            return this.View(companies);
+            return this.View(viewModel);
         }
     }
 }

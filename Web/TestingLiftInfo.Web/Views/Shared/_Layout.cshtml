@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-xl navbar-light bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-xl navbar-light bg-primary border-bottom shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.Logo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -27,9 +27,9 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>*@
+                        <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><font size="4" face="Comic sans MS">Начало</font></a>
+                            </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
                         </li>
@@ -41,17 +41,27 @@
             </div>
         </nav>
     </header>
-    
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
     </div>
-    
+
     <footer class="border-top footer text-primary">
-        <div class="container" style="color:black">
-            &copy; @DateTime.Now.Year - @GlobalConstants.Logo - <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:black">Privacy</a>
+        <div class="container row" style="color:black">
+            <div class="col-md-4" style="margin-left:20px">
+                &copy; @DateTime.Now.Year - @GlobalConstants.Logo @*<a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:cornflowerblue">Privacy</a>*@
+            </div>
+            <div class="col-md-6 text-center">
+                Полезни връзки:
+                <a href="https://www.damtn.government.bg/" title="Държавна агенция за метрологичен и технически надзор">ДАМТН</a>
+                <a>  |  </a>
+                <a href="https://www.damtn.government.bg/za-nas/normativna-uredba/balgarsko-zakonodatelstvo/dejstvashto/zakoni/" title="Закони">ЗАКОНИ</a>
+                <a>  |  </a>
+                <a href="https://www.damtn.government.bg/za-nas/normativna-uredba/balgarsko-zakonodatelstvo/dejstvashto/naredbi/" title="Наредби">НАРЕДБИ</a>
+            </div>            
         </div>
     </footer>
 

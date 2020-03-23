@@ -18,12 +18,11 @@
             this.repository = repository;
         }
 
-        public GetAllCompanyViewModel GetAllCompanies()
+        public ICollection<SupportCompany> GetAllCompanies()
         {
             var companies = this.repository.All().OrderBy(x => x.Name).ToList();
-            var viewModel = new GetAllCompanyViewModel { SupportCompanies = companies };
 
-            return viewModel;
+            return companies;
         }
     }
 }

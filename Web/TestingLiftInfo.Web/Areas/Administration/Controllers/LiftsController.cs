@@ -22,7 +22,7 @@
         private readonly IDeletableEntityRepository<Lift> liftRepository;
 
         public LiftsController(ILiftsService liftService,
-            ICityService cityService, 
+            ICityService cityService,
             IManufacturerService manufacturerService,
             IDeletableEntityRepository<Manufacturer> manufacturerRepository,
             IDeletableEntityRepository<City> cityRepository,
@@ -51,7 +51,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(string registrationNumber,
+        public async Task<IActionResult> Create(/*string registrationNumber,*/
             LiftType liftType,
             int numberOfStops,
             int capacity,
@@ -62,10 +62,11 @@
         {
             var currentManufacturer = this.manufacturerRepository.All().FirstOrDefault(x => x.Name == manufacturer);
             var currentCity = this.cityRepository.All().FirstOrDefault(x => x.Name == city);
+            var currentNumber = (this.liftRepository.All().Count() + 1).ToString();
 
             var lift = new Lift
             {
-                RegistrationNumber = "777АС" + registrationNumber,
+                RegistrationNumber = "777АС" + currentNumber,
                 LiftType = liftType,
                 NumberOfStops = numberOfStops,
                 Capacity = capacity,
@@ -78,14 +79,83 @@
             await this.liftRepository.AddAsync(lift);
             await this.liftRepository.SaveChangesAsync();
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("All", "Lifts");
         }
 
         public IActionResult All()
         {
-            //var lifts = this.liftService.GetAllLifts();
+            var lifts = this.liftService.GetAllLifts();
 
-            return this.View();
+            var allLiftViewModel = new GetAllLiftsViewModel
+            {
+                Lifts = lifts,
+            };
+
+            var searchViewModel = new SearchLiftViewModel();
+
+            var bigLiftViewModel = new BigLiftViewModel
+            {
+                GetAllLiftViewModel = allLiftViewModel,
+                SearchLiftViewModel = searchViewModel,
+            };
+
+            return this.View(bigLiftViewModel);
+        }
+
+        public IActionResult Detail(string id)
+        {
+            var viewModel = this.liftService.GetCurrentLift(id);
+
+            return this.View(viewModel);
+        }
+
+        public IActionResult Search(SearchLiftViewModel searchLiftViewModel)
+        {
+            var registrationNumber = searchLiftViewModel.RegistrationNumber;
+            var manufaturer = searchLiftViewModel.Manufacturer;
+            var city = searchLiftViewModel.City;
+
+            var isRegistration = !string.IsNullOrEmpty(registrationNumber);
+            var isManufacturer = !string.IsNullOrEmpty(manufaturer);
+            var isCity = !string.IsNullOrEmpty(city);
+
+            ICollection<LiftViewModel> lifts = new List<LiftViewModel>();
+
+            if (isRegistration && !isManufacturer && !isCity)
+            {
+                lifts = this.liftService.SearchRegistrationCriteria(registrationNumber);
+            }
+            else if (isRegistration && isManufacturer && !isCity)
+            {
+                lifts = this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer);
+            }
+            else if (isRegistration && !isManufacturer && isCity)
+            {
+                lifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, city);
+            }
+            else if (!isRegistration && isManufacturer && !isCity)
+            {
+                lifts = this.liftService.SearchManufacturerCriteria(manufaturer);
+            }
+            else if (!isRegistration && isManufacturer && isCity)
+            {
+                lifts = this.liftService.SearchManufAndCityCriteria(manufaturer, city);
+            }
+            else if (!isRegistration && !isManufacturer && isCity)
+            {
+                lifts = this.liftService.SearchCityCriteria(city);
+            }
+            else
+            {
+                lifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, city);
+            }
+
+            var viewModel = new GetSearchLiftsViewModel()
+            {
+                Lifts = lifts,
+            };
+
+            return this.View(viewModel);
         }
     }
 }

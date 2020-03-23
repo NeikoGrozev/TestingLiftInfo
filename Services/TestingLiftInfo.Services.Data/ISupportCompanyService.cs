@@ -4,10 +4,11 @@
     using System.Collections.Generic;
     using System.Text;
 
+    using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
     public interface ISupportCompanyService
     {
-         GetAllCompanyViewModel GetAllCompanies();
+         ICollection<SupportCompany> GetAllCompanies();
     }
 }

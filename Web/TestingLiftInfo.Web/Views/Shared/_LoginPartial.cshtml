@@ -11,11 +11,19 @@
             if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin"><font size="4" face="Comic sans MS">Admin</font></a>
+                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin" style="text-align:center"><font size="4" face="Comic sans MS">Admin</font></a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Асансьори"><font size="4" face="Comic sans MS">Асансьори</font></a>
+                               
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <font size="4" face="Comic sans MS">Асансьори</font>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Създай нов"><font size="4" face="Comic sans MS">Създай нов</font></a>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="All" title="Производители"><font size="4" face="Comic sans MS">Създай ревизионнен акт</font></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="All" title="Регистър"><font size="4" face="Comic sans MS">Регистър</font></a>
+                    </div>
                 </li>
 
                 <li class="nav-item dropdown">

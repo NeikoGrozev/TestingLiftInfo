@@ -1,28 +1,24 @@
-﻿@model TestingLiftInfo.Web.ViewModels.Administration.Lifts.BigLiftViewModel
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.Lifts.GetSearchLiftsViewModel
 
 @{
-    this.ViewData["Title"] = "Регистър";
+    this.ViewData["Title"] = "Намерени резултати";
 }
 
 <h3>@this.ViewData["Title"]</h3>
 
-<div class="row">
-    <form asp-area="Administration" asp-controller="Lifts" asp-action="Search" class="col-md-11" method="post">
-        <input asp-for="SearchLiftViewModel.RegistrationNumber" type="text" class="form-control-sm text-center" placeholder="Търси по рег. №" size="25" />
-        <input asp-for="SearchLiftViewModel.Manufacturer" type="text" class="form-control-sm text-center" placeholder="Търси по произодител" size="25" />
-        <input asp-for="SearchLiftViewModel.City" type="text" class="form-control-sm text-center" placeholder="Търси по град" size="25" />
-        <button type="submit" class="btn btn-outline-primary btn-sm"><b>Търси</b></button>
-    </form>
-    <div>
-        <a style="float:right" class=" btn btn-success btn-sm" asp-area="Administration" asp-controller="Lifts" asp-action="Create">✙ Добави</a>
-    </div>
+
+<div>
+    <a style="float:left; margin: 0px 0px 20px 0px" class=" btn btn-primary btn-sm" asp-area="Administration" asp-controller="Lifts" asp-action="All">Регистър</a>
 </div>
-<p></p>
+<div>
+    <a style="float:right; margin: 0px 0px 20px 0px" class=" btn btn-success btn-sm" asp-area="Administration" asp-controller="Lifts" asp-action="Create">✙ Добави</a>
+</div>
+
 <table class="table table-dark border border-light" style="font-weight:300">
     <thead>
         <tr>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
-            <th class="border border-light text-light" scope="col" style="text-align:center; width:80px">Рег. №</th>
+            <th class="border border-light text-light" scope="col" style=" text-align: center; width: 80px">Рег. №</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Тип</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Спирки</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Товароподемност</th>
@@ -33,7 +29,7 @@
     <tbody>
         @{var count = 1;}
 
-        @foreach (var item in Model.GetAllLiftViewModel.Lifts)
+        @foreach (var item in Model.Lifts)
         {
             string color = "honeydew";
 

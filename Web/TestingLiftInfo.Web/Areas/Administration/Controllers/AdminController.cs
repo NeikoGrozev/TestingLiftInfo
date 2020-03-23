@@ -1,15 +1,15 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Dashboard;
 
-    using Microsoft.AspNetCore.Mvc;
-
-    public class DashboardController : AdministrationController
+    public class AdminController : AdministrationController
     {
         private readonly ISettingsService settingsService;
 
-        public DashboardController(ISettingsService settingsService)
+        public AdminController(ISettingsService settingsService)
         {
             this.settingsService = settingsService;
         }

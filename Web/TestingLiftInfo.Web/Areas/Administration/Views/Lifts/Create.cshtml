@@ -1,15 +1,16 @@
 ﻿@using TestingLiftInfo.Data.Models.Enumerations
 @model TestingLiftInfo.Web.ViewModels.Administration.Lifts.CreateLiftViewModel
 @{var cities = Model.Cities.ToList();}
-<h3>Добави асансьор</h3>
+
+<h3>Добави нов асансьор</h3>
 
 <form asp-area="Administration" asp-controller="Lifts" asp-action="Create" method="post" onsubmit="return submitResult();">
    
     <div class="form-group" style="margin-top:20px">
-        <div>
+        @*<div>
             <label asp-for="RegistrationNumber" for="registrationNumber" style="font-size:18px">Регистрационен номер   <strong>777АС</strong></label>
             <input asp-for="RegistrationNumber" type="number" id="registrationNumber" class="form-control-sm" min="0" />
-        </div>
+        </div>*@
         <div>
             <label asp-for="LiftType" for="type" style="font-size:18px">Вид на асансьорът</label>
             <select asp-for="LiftType" id="type" class="form-control-sm border-dark" asp-items="Html.GetEnumSelectList<LiftType>()"></select>

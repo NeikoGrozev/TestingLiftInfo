@@ -1,47 +1,40 @@
-﻿namespace TestingLiftInfo.Data.Models
+﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
-    using TestingLiftInfo.Data.Common.Models;
+    using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Data.Models.Enumerations;
+    using TestingLiftInfo.Services.Mapping;
 
-    public class Lift : BaseDeletableModel<string>
+    public class LiftViewModel : IMapFrom<Lift>
     {
-        public Lift()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        public string Id { get; set; }
 
-        [Required]
         public LiftType LiftType { get; set; }
 
-        [Required]
         public int NumberOfStops { get; set; }
 
-        [Required]
         public int Capacity { get; set; }
 
-        [Required]
         public DoorType DoorType { get; set; }
 
-        [Required]
         public string RegistrationNumber { get; set; }
-
 
         public string ManufacturerId { get; set; }
 
-        public virtual Manufacturer Manufacturer { get; set; }
+        public string ManufacturerName { get; set; }
 
         public string CityId { get; set; }
 
-        public virtual City City { get; set; }
+        public string CityName { get; set; }
 
-        [Required]
         public string Address { get; set; }
 
         public string SupportCompanyId { get; set; }
 
-        public virtual SupportCompany SupportCompany { get; set; }
+        public string SupportCompanyName { get; set; }
     }
 }
