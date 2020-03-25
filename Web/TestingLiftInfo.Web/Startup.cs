@@ -19,6 +19,7 @@
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Services.Mapping;
     using TestingLiftInfo.Services.Messaging;
+    using TestingLiftInfo.Web.Controllers;
     using TestingLiftInfo.Web.ViewModels;
 
     public class Startup
@@ -94,6 +95,8 @@
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithRedirects("/Home/HttpError?statusCode={0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
