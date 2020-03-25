@@ -15,15 +15,15 @@
     public class LiftsController : AdministrationController
     {
         private readonly ILiftsService liftService;
-        private readonly ICityService cityService;
-        private readonly IManufacturerService manufacturerService;
+        private readonly ICitiesService cityService;
+        private readonly IManufacturersService manufacturerService;
         private readonly IDeletableEntityRepository<Manufacturer> manufacturerRepository;
         private readonly IDeletableEntityRepository<City> cityRepository;
         private readonly IDeletableEntityRepository<Lift> liftRepository;
 
         public LiftsController(ILiftsService liftService,
-            ICityService cityService,
-            IManufacturerService manufacturerService,
+            ICitiesService cityService,
+            IManufacturersService manufacturerService,
             IDeletableEntityRepository<Manufacturer> manufacturerRepository,
             IDeletableEntityRepository<City> cityRepository,
             IDeletableEntityRepository<Lift> liftRepository)
@@ -38,13 +38,12 @@
 
         public IActionResult Create()
         {
-            var manufacturer = this.manufacturerService.GEtAllManufacturers();
+            var manufacturer = this.manufacturerService.GetAllManufacturers();
             var cities = this.cityService.GetAllCity();
-            var viewModel = new CreateLiftViewModel
+            var viewModel = new CreateLiftViewModel()
             {
                 Manufacturers = manufacturer,
                 Cities = cities,
-
             };
 
             return this.View(viewModel);
@@ -52,13 +51,13 @@
 
         [HttpPost]
         public async Task<IActionResult> Create(/*string registrationNumber,*/
-            LiftType liftType,
-            int numberOfStops,
-            int capacity,
-            DoorType doorType,
-            string manufacturer,
-            string city,
-            string address)
+        LiftType liftType,
+        int numberOfStops,
+        int capacity,
+        DoorType doorType,
+        string manufacturer,
+        string city,
+        string address)
         {
             var currentManufacturer = this.manufacturerRepository.All().FirstOrDefault(x => x.Name == manufacturer);
             var currentCity = this.cityRepository.All().FirstOrDefault(x => x.Name == city);
@@ -113,41 +112,41 @@
         {
             var registrationNumber = searchLiftViewModel.RegistrationNumber;
             var manufaturer = searchLiftViewModel.Manufacturer;
-            var city = searchLiftViewModel.City;
+            var cityOrAddress = searchLiftViewModel.City;
 
             var isRegistration = !string.IsNullOrEmpty(registrationNumber);
             var isManufacturer = !string.IsNullOrEmpty(manufaturer);
-            var isCity = !string.IsNullOrEmpty(city);
+            var isCityOrAddress = !string.IsNullOrEmpty(cityOrAddress);
 
             ICollection<LiftViewModel> lifts = new List<LiftViewModel>();
 
-            if (isRegistration && !isManufacturer && !isCity)
+            if (isRegistration && !isManufacturer && !isCityOrAddress)
             {
                 lifts = this.liftService.SearchRegistrationCriteria(registrationNumber);
             }
-            else if (isRegistration && isManufacturer && !isCity)
+            else if (isRegistration && isManufacturer && !isCityOrAddress)
             {
                 lifts = this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer);
             }
-            else if (isRegistration && !isManufacturer && isCity)
+            else if (isRegistration && !isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, city);
+                lifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, cityOrAddress);
             }
-            else if (!isRegistration && isManufacturer && !isCity)
+            else if (!isRegistration && isManufacturer && !isCityOrAddress)
             {
                 lifts = this.liftService.SearchManufacturerCriteria(manufaturer);
             }
-            else if (!isRegistration && isManufacturer && isCity)
+            else if (!isRegistration && isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchManufAndCityCriteria(manufaturer, city);
+                lifts = this.liftService.SearchManufAndCityCriteria(manufaturer, cityOrAddress);
             }
-            else if (!isRegistration && !isManufacturer && isCity)
+            else if (!isRegistration && !isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchCityCriteria(city);
+                lifts = this.liftService.SearchCityCriteria(cityOrAddress);
             }
             else
             {
-                lifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, city);
+                lifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, cityOrAddress);
             }
 
             var viewModel = new GetSearchLiftsViewModel()

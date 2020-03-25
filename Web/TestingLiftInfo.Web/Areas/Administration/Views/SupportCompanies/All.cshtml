@@ -1,0 +1,44 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies.GetAllSupportCompaniesViewModel
+@{
+    this.ViewData["Title"] = "Поддържащи фирми";
+}
+
+<h3>@this.ViewData["Title"]</h3>
+<div>
+    <a style="float:right" class="btn btn-success mb-3" asp-area="Administration" asp-controller="SupportCompanies" asp-action="Create">✙ Добави</a>
+</div>
+
+<table class="table table-dark border border-light" style="font-weight:300">
+    <thead>
+        <tr>
+            <th class=" border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
+            <th class="border border-light text-light" scope="col" style="width:800px">Име</th>
+            <th class="border border-light text-light " scope="col" style="text-align:center; width:30px">Брой асансьори</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var count = 1;}
+        @foreach (var item in Model.SupportCompanies)
+        {
+            string color = "honeydew";
+
+            if (count % 2 != 0)
+            {
+                color = "honeydew";
+            }
+            else
+            {
+                color = "lightblue";
+            }
+
+            <tr class="text-dark border-light" style="background-color:@color">
+                <td class="border border-light" style="text-align:center">@count</td>
+                <td class="border border-light">@item.Name</td>
+                <td class="border border-light" style="text-align:center">@item.Lifts.Count()</td>
+
+            </tr>
+
+            count++;
+        }
+    </tbody>
+</table>

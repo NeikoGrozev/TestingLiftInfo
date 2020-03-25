@@ -12,12 +12,12 @@
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
-    public class SupportCompanyController : AdministrationController
+    public class SupportCompaniesController : AdministrationController
     {
         private readonly IDeletableEntityRepository<SupportCompany> repository;
-        private readonly ISupportCompanyService service;
+        private readonly ISupportCompaniesService service;
 
-        public SupportCompanyController(IDeletableEntityRepository<SupportCompany> repository, ISupportCompanyService service)
+        public SupportCompaniesController(IDeletableEntityRepository<SupportCompany> repository, ISupportCompaniesService service)
         {
             this.repository = repository;
             this.service = service;
@@ -29,13 +29,18 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(string name)
+        public async Task<IActionResult> Create([FromForm]CreateSupportCompanyViewModel model)
         {
-            var currentCompany = this.repository.All().FirstOrDefault(x => x.Name == name);
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var currentCompany = this.repository.All().FirstOrDefault(x => x.Name == model.Name);
 
             if (currentCompany == null)
             {
-                var company = new SupportCompany { Name = name };
+                var company = new SupportCompany { Name = model.Name };
 
                 await this.repository.AddAsync(company);
                 await this.repository.SaveChangesAsync();
@@ -47,7 +52,10 @@
         public IActionResult All()
         {
             var companies = this.service.GetAllCompanies();
-            var viewModel = new GetAllCompanyViewModel { SupportCompanies = companies };
+            var viewModel = new GetAllSupportCompaniesViewModel
+            {
+                SupportCompanies = companies,
+            };
 
             return this.View(viewModel);
         }

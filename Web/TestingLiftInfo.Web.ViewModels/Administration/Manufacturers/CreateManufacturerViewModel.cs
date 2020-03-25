@@ -1,4 +1,4 @@
-﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Manufacturer
+﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Manufacturers
 {
     using System;
     using System.Collections.Generic;

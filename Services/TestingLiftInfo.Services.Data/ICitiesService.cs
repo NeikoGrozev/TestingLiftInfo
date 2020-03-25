@@ -8,8 +8,10 @@
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Web.ViewModels.Administration.Cities;
 
-    public interface ICityService
+    public interface ICitiesService
     {
         ICollection<City> GetAllCity();
+
+        ICollection<CityDetailViewModel> GetAllCityForViewModel();
     }
 }

@@ -17,14 +17,14 @@
 
         ICollection<LiftViewModel> SearchRegisAndManufCriteria(string registationNumber, string manufacturer);
 
-        ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string city);
+        ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress);
 
         ICollection<LiftViewModel> SearchManufacturerCriteria(string manufacturer);
 
-        ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string city);
+        ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress);
 
-        ICollection<LiftViewModel> SearchCityCriteria(string city);
+        ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress);
 
-        ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string city);
+        ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress);
     }
 }

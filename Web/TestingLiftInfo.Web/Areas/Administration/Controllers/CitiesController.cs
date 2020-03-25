@@ -1,6 +1,5 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -9,15 +8,14 @@
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
-    using TestingLiftInfo.Web.Controllers;
     using TestingLiftInfo.Web.ViewModels.Administration.Cities;
 
-    public class CityController : AdministrationController
+    public class CitiesController : AdministrationController
     {
-        private readonly ICityService cityService;
+        private readonly ICitiesService cityService;
         private readonly IDeletableEntityRepository<City> repository;
 
-        public CityController(ICityService cityService, IDeletableEntityRepository<City> repository)
+        public CitiesController(ICitiesService cityService, IDeletableEntityRepository<City> repository)
         {
             this.cityService = cityService;
             this.repository = repository;
@@ -29,13 +27,23 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(string name)
+        public async Task<IActionResult> Create([FromForm]CreateCityViewModel model)
         {
-            var currentCity = this.repository.All().FirstOrDefault(x => x.Name == name);
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var currentCity = this.repository
+                .All()
+                .FirstOrDefault(x => x.Name == model.Name);
 
             if (currentCity == null)
             {
-                var city = new City { Name = name };
+                var city = new City
+                {
+                    Name = model.Name,
+                };
 
                 await this.repository.AddAsync(city);
                 await this.repository.SaveChangesAsync();
@@ -46,8 +54,11 @@
 
         public IActionResult All()
         {
-            var cities = this.cityService.GetAllCity();
-            var viewModel = new GetAllCityViewModel { Cities = cities };
+            var cities = this.cityService.GetAllCityForViewModel();
+            var viewModel = new GetAllCityViewModel
+            {
+                Cities = cities,
+            };
 
             return this.View(viewModel);
         }

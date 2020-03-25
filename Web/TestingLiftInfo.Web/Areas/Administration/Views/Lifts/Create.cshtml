@@ -1,6 +1,5 @@
 ﻿@using TestingLiftInfo.Data.Models.Enumerations
 @model TestingLiftInfo.Web.ViewModels.Administration.Lifts.CreateLiftViewModel
-@{var cities = Model.Cities.ToList();}
 
 <h3>Добави нов асансьор</h3>
 
@@ -30,7 +29,7 @@
         </div>
         <div>
             <label for="manufacturer" style="font-size:18px">Производител</label>
-            <select id="manufacturer" class="form-control-sm border-dark" name="manufacturer">
+            <select id="manufacturer" class="form-control-sm border-dark" name="manufacturer">        
                 @foreach (var item in Model.Manufacturers)
                 {
                     <option value="@item.Name">@item.Name</option>

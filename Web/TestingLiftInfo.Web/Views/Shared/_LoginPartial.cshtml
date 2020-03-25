@@ -11,7 +11,7 @@
             if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin" style="text-align:center"><font size="4" face="Comic sans MS">Admin</font></a>
+                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin"><font size="4" face="Comic sans MS">Admin</font></a>
                 </li>
                                
                 <li class="nav-item dropdown">
@@ -20,7 +20,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Създай нов"><font size="4" face="Comic sans MS">Създай нов</font></a>
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="All" title="Производители"><font size="4" face="Comic sans MS">Създай ревизионнен акт</font></a>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturers" asp-action="All" title="Производители"><font size="4" face="Comic sans MS">Създай ревизионнен акт</font></a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="All" title="Регистър"><font size="4" face="Comic sans MS">Регистър</font></a>
                     </div>
@@ -31,10 +31,10 @@
                         <font size="4" face="Comic sans MS">Администрация</font>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="City" asp-action="All" title="Градове"><font size="4" face="Comic sans MS">Градове</font></a>
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturer" asp-action="All" title="Производители"><font size="4" face="Comic sans MS">Производители</font></a>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="Cities" asp-action="All" title="Градове"><font size="4" face="Comic sans MS">Градове</font></a>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturers" asp-action="All" title="Производители"><font size="4" face="Comic sans MS">Производители</font></a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="SupportCompany" asp-action="All" title="Поддържащи фирми"><font size="4" face="Comic sans MS">Поддържащи фирми</font></a>
+                        <a class="dropdown-item" asp-area="Administration" asp-controller="SupportCompanies" asp-action="All" title="Поддържащи фирми"><font size="4" face="Comic sans MS">Поддържащи фирми</font></a>
                     </div>
                 </li>
             }

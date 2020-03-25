@@ -1,5 +1,6 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
 {
+    using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,8 @@
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Data.Models.Enumerations;
     using TestingLiftInfo.Web.ViewModels.Administration.Cities;
+    using TestingLiftInfo.Web.ViewModels.Administration.Manufacturers;
+    using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
     public class CreateLiftViewModel
     {

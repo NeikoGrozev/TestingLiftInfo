@@ -7,8 +7,8 @@
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
-    public interface ISupportCompanyService
+    public interface ISupportCompaniesService
     {
-         ICollection<SupportCompany> GetAllCompanies();
+         ICollection<SupportCompanyDetailsViewModel> GetAllCompanies();
     }
 }

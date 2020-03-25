@@ -66,12 +66,12 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string city)
+        public ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress)
         {
             var lifts = this.liftRepository
                .All()
                .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
-                       x.City.Name.Contains(city))
+                       (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
                .To<LiftViewModel>()
                .OrderBy(x => x.RegistrationNumber)
                .ToList();
@@ -91,12 +91,12 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string city)
+        public ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress)
         {
             var lifts = this.liftRepository
                  .All()
                  .Where(x => x.Manufacturer.Name.Contains(manufacturer) &&
-                         x.City.Name.Contains(city))
+                          (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
                  .To<LiftViewModel>()
                  .OrderBy(x => x.RegistrationNumber)
                  .ToList();
@@ -104,11 +104,11 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchCityCriteria(string city)
+        public ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress)
         {
             var lifts = this.liftRepository
                 .All()
-                .Where(x => x.City.Name.Contains(city))
+                .Where(x => (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
                 .To<LiftViewModel>()
                 .OrderBy(x => x.RegistrationNumber)
                 .ToList();
@@ -116,13 +116,13 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string city)
+        public ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress)
         {
             var lifts = this.liftRepository
                 .All()
                 .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
                         x.Manufacturer.Name.Contains(manufacturer) &&
-                        x.City.Name.Contains(city))
+                         (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
                 .To<LiftViewModel>()
                 .OrderBy(x => x.RegistrationNumber)
                 .ToList();

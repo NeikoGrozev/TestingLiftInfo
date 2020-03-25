@@ -7,20 +7,25 @@
 
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Services.Mapping;
     using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
-    public class SupportCompanyService : ISupportCompanyService
+    public class SupportCompaniesService : ISupportCompaniesService
     {
         private readonly IDeletableEntityRepository<SupportCompany> repository;
 
-        public SupportCompanyService(IDeletableEntityRepository<SupportCompany> repository)
+        public SupportCompaniesService(IDeletableEntityRepository<SupportCompany> repository)
         {
             this.repository = repository;
         }
 
-        public ICollection<SupportCompany> GetAllCompanies()
+        public ICollection<SupportCompanyDetailsViewModel> GetAllCompanies()
         {
-            var companies = this.repository.All().OrderBy(x => x.Name).ToList();
+            var companies = this.repository
+                .All()
+                .OrderBy(x => x.Name)
+                .To<SupportCompanyDetailsViewModel>()
+                .ToList();
 
             return companies;
         }

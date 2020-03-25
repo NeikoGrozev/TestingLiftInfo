@@ -60,9 +60,9 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
-            services.AddTransient<ICityService, CityService>();
-            services.AddTransient<ISupportCompanyService, SupportCompanyService>();
-            services.AddTransient<IManufacturerService, ManufacturerService>();
+            services.AddTransient<ICitiesService, CitiesService>();
+            services.AddTransient<ISupportCompaniesService, SupportCompaniesService>();
+            services.AddTransient<IManufacturersService, ManufacturersService>();
             services.AddTransient<ILiftsService, LiftsService>();
         }
 

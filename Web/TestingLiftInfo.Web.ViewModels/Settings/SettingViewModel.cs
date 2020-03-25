@@ -1,9 +1,8 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {
