@@ -11,6 +11,16 @@
         [HttpGet("/")]
         public IActionResult Index()
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction("MainPage");
+            }
+
+            return this.View();
+        }
+
+        public IActionResult MainPage()
+        {
             return this.View();
         }
 

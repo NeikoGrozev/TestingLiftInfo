@@ -1,0 +1,21 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.InspectTypes.CreateInspectTypeViewModel
+
+<h3>Добави нов вид преглед</h3>
+
+<form asp-area="Administration" asp-controller="InspectTypes" asp-action="Create" method="post" onsubmit="return submitResult();">
+    <div class="text-center" style="margin-top:100px">
+        <label for="name" style="font-size:larger">Вид преглед: </label>
+        <input class="form-control-sm" asp-for="Name" type="text" id="name" size="25" />
+        <button type="submit" class="btn btn-success btn-sm">✙ Добави</button>
+    </div>
+</form>
+
+<script>
+    function submitResult() {
+        if (confirm("Сигурни ли сте, че искате да добавите този производител?") == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
