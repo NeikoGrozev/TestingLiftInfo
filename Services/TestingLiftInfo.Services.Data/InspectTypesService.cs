@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -18,15 +19,15 @@
             this.inspectTypeRepository = inspectTypeRepository;
         }
 
-        public ICollection<CreateInspectTypeViewModel> GetAllManufacturersForViewModel()
+        public ICollection<InspectTypeDetailViewModel> GetAllInspectTypesForViewModel()
         {
-            var manufacturers = this.inspectTypeRepository
+            var inspectTypes = this.inspectTypeRepository
                 .All()
-                .OrderBy(x => x.Name)
-                .To<CreateInspectTypeViewModel>()
+                .OrderBy(x => x.CreatedOn)
+                .To<InspectTypeDetailViewModel>()
                 .ToList();
 
-            return manufacturers;
+            return inspectTypes;
         }
     }
 }

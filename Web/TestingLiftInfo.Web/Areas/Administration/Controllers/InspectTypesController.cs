@@ -8,15 +8,20 @@
     using Microsoft.AspNetCore.Mvc;
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.InspectTypes;
 
     public class InspectTypesController : AdministrationController
     {
         private readonly IDeletableEntityRepository<InspectType> inspectTypeRepository;
+        private readonly IInspectTypesService inspectTypesService;
 
-        public InspectTypesController(IDeletableEntityRepository<InspectType> inspectTypeRepository)
+        public InspectTypesController(
+            IDeletableEntityRepository<InspectType> inspectTypeRepository,
+            IInspectTypesService inspectTypesService)
         {
             this.inspectTypeRepository = inspectTypeRepository;
+            this.inspectTypesService = inspectTypesService;
         }
 
         public IActionResult Create()
@@ -46,6 +51,18 @@
             }
 
             return this.RedirectToAction("All");
+        }
+
+        public IActionResult All()
+        {
+            var inspectTypes = this.inspectTypesService.GetAllInspectTypesForViewModel();
+
+            var viewModel = new GetAllInspectTypeViewModel
+            {
+                InspectTypes = inspectTypes,
+            };
+
+            return this.View(viewModel);
         }
     }
 }

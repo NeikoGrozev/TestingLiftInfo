@@ -28,6 +28,9 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new UserSeeder(),
+                              new InspectTypesSeeder(),
+                              new CitiesSeeder(),
+                              new ManufacturersSeeder(),
                           };
 
             foreach (var seeder in seeders)
