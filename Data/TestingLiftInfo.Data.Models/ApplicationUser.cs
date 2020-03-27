@@ -21,6 +21,12 @@ namespace TestingLiftInfo.Data.Models
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
         // Audit info
         public DateTime CreatedOn { get; set; }
 

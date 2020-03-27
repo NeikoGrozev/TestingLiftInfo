@@ -11,7 +11,9 @@
     {
         public string Id { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public string ApplicationUserFirstName { get; set; }
+
+        public string ApplicationUserLastName { get; set; }
 
         public string InspectTypeId { get; set; }
 

@@ -11,7 +11,10 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
-        //TODO:Inspektor!!!
+        public string ApplicationUserId { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         public string InspectTypeId { get; set; }
 
         public virtual InspectType InspectType { get; set; }

@@ -20,6 +20,7 @@
         private readonly IDeletableEntityRepository<Manufacturer> manufacturerRepository;
         private readonly IDeletableEntityRepository<City> cityRepository;
         private readonly IDeletableEntityRepository<Lift> liftRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
         public LiftsController(
             ILiftsService liftService,
@@ -27,7 +28,8 @@
             IManufacturersService manufacturerService,
             IDeletableEntityRepository<Manufacturer> manufacturerRepository,
             IDeletableEntityRepository<City> cityRepository,
-            IDeletableEntityRepository<Lift> liftRepository)
+            IDeletableEntityRepository<Lift> liftRepository,
+            IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.liftService = liftService;
             this.cityService = cityService;
@@ -35,6 +37,7 @@
             this.manufacturerRepository = manufacturerRepository;
             this.cityRepository = cityRepository;
             this.liftRepository = liftRepository;
+            this.userRepository = userRepository;
         }
 
         public IActionResult Create()
@@ -67,9 +70,12 @@
             }
 
             var currentNumber = (this.liftRepository.All().Count() + 1).ToString();
+            var user = this.User.Identity;
+            var currentUser = this.userRepository.All().FirstOrDefault(x => x.Email == user.Name);
 
             var lift = new Lift
             {
+                ApplicationUserId = currentUser.Id,
                 RegistrationNumber = "777АС" + currentNumber,
                 LiftType = model.CreateLiftViewModel.LiftType,
                 NumberOfStops = model.CreateLiftViewModel.NumberOfStops,

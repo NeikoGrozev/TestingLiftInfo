@@ -17,6 +17,8 @@
                 var userAdmin = new ApplicationUser
                 {
                     Name = "admin",
+                    FirstName = "Pesho",
+                    LastName = "Administratora",
                     UserName = "admin@gmail.com",
                     Email = "admin@gmail.com",
                 };

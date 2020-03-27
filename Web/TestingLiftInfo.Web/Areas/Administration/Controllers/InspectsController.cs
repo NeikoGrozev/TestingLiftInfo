@@ -19,6 +19,7 @@
         private readonly IInspectsService inspectsService;
         private readonly IDeletableEntityRepository<Inspect> inspectsRepository;
         private readonly IDeletableEntityRepository<Lift> liftsRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
         public InspectsController(
             ISupportCompaniesService supportCompaniesService,
@@ -26,7 +27,8 @@
             ILiftsService liftsService,
             IInspectsService inspectsService,
             IDeletableEntityRepository<Inspect> inspectsRepository,
-            IDeletableEntityRepository<Lift> liftsRepository)
+            IDeletableEntityRepository<Lift> liftsRepository,
+            IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.supportCompaniesService = supportCompaniesService;
             this.inspectTypesService = inspectTypesService;
@@ -34,6 +36,7 @@
             this.inspectsService = inspectsService;
             this.inspectsRepository = inspectsRepository;
             this.liftsRepository = liftsRepository;
+            this.userRepository = userRepository;
         }
 
         public IActionResult Create(string id)
@@ -67,8 +70,12 @@
 
             await this.liftsService.AddSupportCompany(model.CreateInspectViewModel.LiftId, model.CreateInspectViewModel.SupportCompanyId);
 
+            var user = this.User.Identity;
+            var currentUser = this.userRepository.All().FirstOrDefault(x => x.Email == user.Name);
+
             var inspect = new Inspect()
             {
+                ApplicationUserId = currentUser.Id,
                 InspectTypeId = model.CreateInspectViewModel.InspectTypeId,
                 LiftId = model.CreateInspectViewModel.LiftId,
                 Notes = model.CreateInspectViewModel.Notes,

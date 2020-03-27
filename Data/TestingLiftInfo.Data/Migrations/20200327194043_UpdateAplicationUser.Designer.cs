@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestingLiftInfo.Data;
 
 namespace TestingLiftInfo.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200327194043_UpdateAplicationUser")]
+    partial class UpdateAplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -287,9 +289,6 @@ namespace TestingLiftInfo.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -318,8 +317,6 @@ namespace TestingLiftInfo.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("InspectTypeId");
 
@@ -368,9 +365,6 @@ namespace TestingLiftInfo.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
@@ -415,8 +409,6 @@ namespace TestingLiftInfo.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CityId");
 
@@ -568,10 +560,6 @@ namespace TestingLiftInfo.Data.Migrations
 
             modelBuilder.Entity("TestingLiftInfo.Data.Models.Inspect", b =>
                 {
-                    b.HasOne("TestingLiftInfo.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("TestingLiftInfo.Data.Models.InspectType", "InspectType")
                         .WithMany("Inspects")
                         .HasForeignKey("InspectTypeId");
@@ -587,10 +575,6 @@ namespace TestingLiftInfo.Data.Migrations
 
             modelBuilder.Entity("TestingLiftInfo.Data.Models.Lift", b =>
                 {
-                    b.HasOne("TestingLiftInfo.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("TestingLiftInfo.Data.Models.City", "City")
                         .WithMany("Lifts")
                         .HasForeignKey("CityId")

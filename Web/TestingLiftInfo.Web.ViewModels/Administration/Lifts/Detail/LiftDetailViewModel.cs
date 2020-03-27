@@ -12,6 +12,10 @@
     {
         public string Id { get; set; }
 
+        public string ApplicationUserFirstName { get; set; }
+
+        public string ApplicationUserLastName { get; set; }
+
         public LiftType LiftType { get; set; }
 
         public int NumberOfStops { get; set; }

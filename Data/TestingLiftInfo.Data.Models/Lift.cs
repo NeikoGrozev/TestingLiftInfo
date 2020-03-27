@@ -15,6 +15,10 @@
             this.Inspects = new HashSet<Inspect>();
         }
 
+        public string ApplicationUserId { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         [Required]
         public LiftType LiftType { get; set; }
 
