@@ -1,0 +1,65 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.Inspects.BiginspectViewModel
+
+<h4>Създаване на ревизионен акт</h4>
+<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
+    <form asp-area="Administration" asp-controller="Inspects" asp-action="Create" method="post" onsubmit="return submitResult();">
+
+        <div class="text-center" style="margin-top:-60px">
+            <p><font size="10">РЕВИЗИОННЕН АКТ</font></p>
+        </div>
+        @*<div class="text-center" style="margin-top:-35px">
+            <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
+        </div>*@
+        <div class="text-center" style="margin-top:-20px">
+            <p><font size="6"><b>Асансьор</b></font></p>
+        </div>
+        <div>
+            <div class="row">
+                <a class="col-md-2"></a>
+                <a class="col-md-5"><font size="5">Регистрационен №: <b>@Model.InspectInputDataViewModel.Lift.RegistrationNumber</b></font></a>
+                <a class="col-md-4"><font size="5">Производствен №: <b>@Model.InspectInputDataViewModel.Lift.ProductionNumber</b></font></a>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:20px">
+            <label for="inspectTypes" style="font-size:18px">Вид на прегледа: </label>
+            <select asp-for="CreateInspectViewModel.InspectTypeId" id="inspectTypes" class="form-control-sm border-dark">
+                @foreach (var item in Model.InspectInputDataViewModel.InspectTypes)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="supportCompany" style="font-size:18px">Поддържаща фирма: </label>
+            <select asp-for="CreateInspectViewModel.SupportCompanyId" id="supportCompany" class="form-control-sm border-dark">
+                @foreach (var item in Model.InspectInputDataViewModel.SupportCompanies)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="notes" style="font-size:18px">Забележки: </label>
+            <textarea asp-for="CreateInspectViewModel.Notes" type="text" id="notes" class="form-control" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="prescriptions" style="font-size:18px">Предписания: </label>
+            <textarea asp-for="CreateInspectViewModel.Prescriptions" type="text" id="prescriptions" class="form-control" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+           <input hidden asp-for="CreateInspectViewModel.LiftId" value="@Model.InspectInputDataViewModel.Lift.Id" />
+        </div>
+
+        <button type="submit" class="btn btn-success" style="margin-bottom:-70px">✙ Добави</button>
+    </form>
+</div>
+
+<script>
+    function submitResult() {
+        if (confirm("Сигурни ли сте, че искате да създадете ревизионния акт?") == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>

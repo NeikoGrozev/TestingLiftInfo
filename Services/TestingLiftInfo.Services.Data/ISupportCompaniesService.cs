@@ -9,6 +9,8 @@
 
     public interface ISupportCompaniesService
     {
-         ICollection<SupportCompanyDetailsViewModel> GetAllCompanies();
+        ICollection<SupportCompany> GetAll();
+
+        ICollection<SupportCompanyDetailsViewModel> GetAllCompanies();
     }
 }

@@ -26,6 +26,8 @@
 
         public string ManufacturerName { get; set; }
 
+        public string ProductionNumber { get; set; }
+
         public string CityId { get; set; }
 
         public string CityName { get; set; }
@@ -35,5 +37,7 @@
         public string SupportCompanyId { get; set; }
 
         public string SupportCompanyName { get; set; }
+
+        public ICollection<Inspect> Inspects { get; set; }
     }
 }

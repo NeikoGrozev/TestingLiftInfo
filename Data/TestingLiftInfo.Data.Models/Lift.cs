@@ -1,6 +1,7 @@
 ﻿namespace TestingLiftInfo.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using TestingLiftInfo.Data.Common.Models;
@@ -11,6 +12,7 @@
         public Lift()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Inspects = new HashSet<Inspect>();
         }
 
         [Required]
@@ -28,11 +30,15 @@
         [Required]
         public string RegistrationNumber { get; set; }
 
-
+        [Required]
         public string ManufacturerId { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
 
+        [Required]
+        public string ProductionNumber { get; set; }
+
+        [Required]
         public string CityId { get; set; }
 
         public virtual City City { get; set; }
@@ -43,5 +49,7 @@
         public string SupportCompanyId { get; set; }
 
         public virtual SupportCompany SupportCompany { get; set; }
+
+        public virtual ICollection<Inspect> Inspects { get; set; }
     }
 }

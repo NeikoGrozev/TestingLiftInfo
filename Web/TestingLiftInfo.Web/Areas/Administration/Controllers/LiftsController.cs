@@ -21,7 +21,8 @@
         private readonly IDeletableEntityRepository<City> cityRepository;
         private readonly IDeletableEntityRepository<Lift> liftRepository;
 
-        public LiftsController(ILiftsService liftService,
+        public LiftsController(
+            ILiftsService liftService,
             ICitiesService cityService,
             IManufacturersService manufacturerService,
             IDeletableEntityRepository<Manufacturer> manufacturerRepository,
@@ -38,41 +39,46 @@
 
         public IActionResult Create()
         {
-            var manufacturer = this.manufacturerService.GetAllManufacturers();
+            var manufacturers = this.manufacturerService.GetAllManufacturers();
             var cities = this.cityService.GetAllCity();
-            var viewModel = new CreateLiftViewModel()
+            var inputModel = new LiftInputDataViewModel
             {
-                Manufacturers = manufacturer,
+                Manufacturers = manufacturers,
                 Cities = cities,
+            };
+
+            var createModel = new CreateLiftViewModel();
+
+            var viewModel = new BigCreateLiftViewModel()
+            {
+                LiftInputDataViewModel = inputModel,
+                CreateLiftViewModel = createModel,
             };
 
             return this.View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(/*string registrationNumber,*/
-        LiftType liftType,
-        int numberOfStops,
-        int capacity,
-        DoorType doorType,
-        string manufacturer,
-        string city,
-        string address)
+        public async Task<IActionResult> Create([FromForm]BigCreateLiftViewModel model)
         {
-            var currentManufacturer = this.manufacturerRepository.All().FirstOrDefault(x => x.Name == manufacturer);
-            var currentCity = this.cityRepository.All().FirstOrDefault(x => x.Name == city);
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             var currentNumber = (this.liftRepository.All().Count() + 1).ToString();
 
             var lift = new Lift
             {
                 RegistrationNumber = "777АС" + currentNumber,
-                LiftType = liftType,
-                NumberOfStops = numberOfStops,
-                Capacity = capacity,
-                DoorType = doorType,
-                ManufacturerId = currentManufacturer.Id,
-                CityId = currentCity.Id,
-                Address = address,
+                LiftType = model.CreateLiftViewModel.LiftType,
+                NumberOfStops = model.CreateLiftViewModel.NumberOfStops,
+                Capacity = model.CreateLiftViewModel.Capacity,
+                DoorType = model.CreateLiftViewModel.DoorType,
+                ManufacturerId = model.CreateLiftViewModel.ManufacturerId,
+                ProductionNumber = model.CreateLiftViewModel.ProductionNumber,
+                CityId = model.CreateLiftViewModel.CityId,
+                Address = model.CreateLiftViewModel.Address,
             };
 
             await this.liftRepository.AddAsync(lift);

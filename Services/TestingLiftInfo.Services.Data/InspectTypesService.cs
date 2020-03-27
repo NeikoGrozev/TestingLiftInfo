@@ -19,6 +19,16 @@
             this.inspectTypeRepository = inspectTypeRepository;
         }
 
+        public ICollection<InspectType> GetAllInspectTypes()
+        {
+            var inspectTypes = this.inspectTypeRepository
+                 .All()
+                 .OrderBy(x => x.CreatedOn)
+                 .ToList();
+
+            return inspectTypes;
+        }
+
         public ICollection<InspectTypeDetailViewModel> GetAllInspectTypesForViewModel()
         {
             var inspectTypes = this.inspectTypeRepository

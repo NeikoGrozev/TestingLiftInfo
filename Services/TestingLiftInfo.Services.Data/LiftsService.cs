@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
 
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
@@ -28,6 +29,16 @@
                 .ToList();
 
             return lifts;
+        }
+
+        public Lift GetLift(string id)
+        {
+            var lift = this.liftRepository
+                 .All()
+                 .Where(x => x.Id == id)
+                 .FirstOrDefault();
+
+            return lift;
         }
 
         public LiftDetailViewModel GetCurrentLift(string id)
@@ -128,6 +139,14 @@
                 .ToList();
 
             return lifts;
+        }
+
+        public async Task AddSupportCompany(string liftId, string supportCompanyId)
+        {
+            var lift = this.liftRepository.All().Where(x => x.Id == liftId).FirstOrDefault();
+            lift.SupportCompanyId = supportCompanyId;
+
+            await this.liftRepository.SaveChangesAsync();
         }
     }
 }

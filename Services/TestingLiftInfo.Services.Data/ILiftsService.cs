@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
 
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Web.ViewModels.Administration.Lifts;
@@ -10,6 +11,8 @@
     public interface ILiftsService
     {
         ICollection<LiftViewModel> GetAllLifts();
+
+        Lift GetLift(string id);
 
         LiftDetailViewModel GetCurrentLift(string id);
 
@@ -26,5 +29,7 @@
         ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress);
 
         ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress);
+
+        Task AddSupportCompany(string liftId, string supportCompanyId);
     }
 }

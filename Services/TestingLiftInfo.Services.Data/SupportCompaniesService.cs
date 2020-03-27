@@ -19,6 +19,16 @@
             this.repository = repository;
         }
 
+        public ICollection<SupportCompany> GetAll()
+        {
+            var companies = this.repository
+              .All()
+              .OrderBy(x => x.Name)
+              .ToList();
+
+            return companies;
+        }
+
         public ICollection<SupportCompanyDetailsViewModel> GetAllCompanies()
         {
             var companies = this.repository

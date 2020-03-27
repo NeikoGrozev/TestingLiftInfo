@@ -1,0 +1,40 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.Inspects.InspectDetailViewModel
+
+@{
+    this.ViewData["Title"] = "Характеристика на ревизионния акт";
+}
+
+<h3>@this.ViewData["Title"]</h3>
+
+<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
+    <div class="row">
+        <div class="col-md-5">
+            <div style="margin-top:-60px">
+                <h5>Асансьор с рег. № @Model.Lift.RegistrationNumber</h5>
+            </div>
+            <div>
+                <label style="font-size:18px">Прегледа е извършен на дата: </label>
+                <a style="font-size:18px"><b>@Model.CreatedOn.ToShortDateString()</b></a>
+            </div>
+            <div>
+                <label style="font-size:18px">Вид на прегледа: </label>
+                <a style="font-size:18px"><b>@Model.InspectType.Name</b></a>
+            </div>
+            <div>
+                <label style="font-size:18px">Извършил прегледа: </label>
+                <a style="font-size:18px"><b>@*@Model.User.Name*@ с e-mail: @*@Model.User.Email*@</b></a>
+            </div>          
+            <div>
+                <label style="font-size:18px">Забележки: </label>
+                <a style="font-size:18px"><b>@Model.Notes</b></a>
+            </div>
+            <div>
+                <label style="font-size:18px">Предписания: </label>
+                <a style="font-size:18px"><b>@Model.Prescriptions</b></a>
+            </div>
+            <div style="margin-top: 30px">
+                <a class="btn btn-success" asp-area="Administration" asp-controller="Lifts" asp-action="Detail" asp-route-id="@Model.Lift.Id">Назад</a>
+            </div>
+        </div>
+    </div>
+</div>
