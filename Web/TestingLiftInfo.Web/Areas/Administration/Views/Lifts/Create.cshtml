@@ -1,5 +1,6 @@
 ﻿@using TestingLiftInfo.Data.Models.Enumerations
 @model TestingLiftInfo.Web.ViewModels.Administration.Lifts.BigCreateLiftViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 <div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
     <form asp-area="Administration" asp-controller="Lifts" asp-action="Create" method="post" onsubmit="return submitResult();">
@@ -50,18 +51,30 @@
                 <input asp-for="CreateLiftViewModel.Address" type="text" id="address" class="form-control-sm" />
             </div>
         </div>
-      
+        <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
         <button type="submit" class="btn btn-success" style="margin-bottom:-70px">✙ Добави</button>
 
     </form>
 </div>
 
-<script>
-    function submitResult() {
-        if (confirm("Сигурни ли сте, че искате да регистрирате съоръжението?") == false) {
-            return false;
-        } else {
-            return true;
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да регистрирате съоръжението?") == false) {
+                return false;
+            } else {
+                return true;
+            }
         }
-    }
-</script>
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

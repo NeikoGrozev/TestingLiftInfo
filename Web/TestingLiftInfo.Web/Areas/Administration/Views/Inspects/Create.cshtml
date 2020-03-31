@@ -1,4 +1,5 @@
 ﻿@model TestingLiftInfo.Web.ViewModels.Administration.Inspects.BiginspectViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 <h4>Създаване на ревизионен акт</h4>
 <div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
@@ -8,8 +9,8 @@
             <p><font size="10">РЕВИЗИОННЕН АКТ</font></p>
         </div>
         @*<div class="text-center" style="margin-top:-35px">
-            <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
-        </div>*@
+                <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
+            </div>*@
         <div class="text-center" style="margin-top:-20px">
             <p><font size="6"><b>Асансьор</b></font></p>
         </div>
@@ -47,19 +48,31 @@
             <textarea asp-for="CreateInspectViewModel.Prescriptions" type="text" id="prescriptions" class="form-control" rows="5"></textarea>
         </div>
         <div class="form-group">
-           <input hidden asp-for="CreateInspectViewModel.LiftId" value="@Model.InspectInputDataViewModel.Lift.Id" />
+            <input hidden asp-for="CreateInspectViewModel.LiftId" value="@Model.InspectInputDataViewModel.Lift.Id" />
         </div>
 
         <button type="submit" class="btn btn-success" style="margin-bottom:-70px">✙ Добави</button>
     </form>
 </div>
 
-<script>
-    function submitResult() {
-        if (confirm("Сигурни ли сте, че искате да създадете ревизионния акт?") == false) {
-            return false;
-        } else {
-            return true;
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да създадете ревизионния акт?") == false) {
+                return false;
+            } else {
+                return true;
+            }
         }
-    }
-</script>
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}
