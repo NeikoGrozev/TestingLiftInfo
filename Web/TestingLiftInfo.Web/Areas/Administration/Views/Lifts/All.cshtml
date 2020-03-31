@@ -11,6 +11,10 @@
         <input asp-for="SearchLiftViewModel.RegistrationNumber" type="text" class="form-control-sm text-center" placeholder="Търси по рег. №" size="25" />
         <input asp-for="SearchLiftViewModel.Manufacturer" type="text" class="form-control-sm text-center" placeholder="Търси по произодител" size="25" />
         <input asp-for="SearchLiftViewModel.City" type="text" class="form-control-sm text-center" placeholder="Търси по град или адрес" size="25" />
+        <select asp-for="SearchLiftViewModel.IsDeleted" class="form-control-sm text-center">
+            <option value="false">Активни</option>
+            <option value="true">Неактивни</option>
+        </select>
         <button type="submit" class="btn btn-outline-primary btn-sm"><b>Търси</b></button>
     </form>
     <div>
@@ -22,6 +26,7 @@
     <thead>
         <tr>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
+            <th class="border border-light text-light" scope="col" style="text-align:center; width:30px">Статус</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:80px">Рег. №</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Тип</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Спирки</th>
@@ -48,6 +53,16 @@
 
             <tr class=" text-dark border-light" style="background-color:@color">
                 <td class="border border-light" style="text-align:center">@count</td>
+
+                @if (item.IsDeleted == false)
+                {
+            <td class="border border-light" style="text-align:center" title="Активен">✅</td>
+                }
+                else
+                {
+            <td class="border border-light" style="text-align:center" title="Неактивен">⛔</td>
+                }
+
                 <td class="border border-light">
                     <a href="/Administration/Lifts/Detail/@item.Id" class="text-danger" style="text-align:center">@item.RegistrationNumber</a>
                 </td>

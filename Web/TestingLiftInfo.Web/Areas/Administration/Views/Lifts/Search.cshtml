@@ -18,6 +18,7 @@
     <thead>
         <tr>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
+            <th class="border border-light text-light" scope="col" style="text-align:center; width:30px">Статус</th>
             <th class="border border-light text-light" scope="col" style=" text-align: center; width: 80px">Рег. №</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Тип</th>
             <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Спирки</th>
@@ -42,17 +43,26 @@
                 color = "lightblue";
             }
 
-            <tr class=" text-dark border-light" style="background-color:@color">
-                <td class="border border-light" style="text-align:center">@count</td>
-                <td class="border border-light">
-                    <a href="/Administration/Lifts/Detail/@item.Id" class="text-danger" style="text-align:center">@item.RegistrationNumber</a>
-                </td>
-                <td class="border border-light">@item.LiftType</td>
-                <td class="border border-light" style="text-align:center">@item.NumberOfStops</td>
-                <td class="border border-light" style="text-align:center">@item.Capacity</td>
-                <td class="border border-light" style="text-align:center">@item.ManufacturerName</td>
-                <td class="border border-light">гр. @item.CityName, @item.Address</td>
-            </tr>
+        <tr class=" text-dark border-light" style="background-color:@color">
+            <td class="border border-light" style="text-align:center">@count</td>
+
+            @if (item.IsDeleted == false)
+            {
+                <td class="border border-light" style="text-align:center" title="Активен">✅</td>
+            }
+            else
+            {
+                <td class="border border-light" style="text-align:center" title="Неактивен">⛔</td>
+            }
+            <td class="border border-light">
+                <a href="/Administration/Lifts/Detail/@item.Id" class="text-danger" style="text-align:center">@item.RegistrationNumber</a>
+            </td>
+            <td class="border border-light">@item.LiftType</td>
+            <td class="border border-light" style="text-align:center">@item.NumberOfStops</td>
+            <td class="border border-light" style="text-align:center">@item.Capacity</td>
+            <td class="border border-light" style="text-align:center">@item.ManufacturerName</td>
+            <td class="border border-light">гр. @item.CityName, @item.Address</td>
+        </tr>
 
             count++;
         }

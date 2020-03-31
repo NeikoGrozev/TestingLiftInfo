@@ -36,5 +36,7 @@
         public string SupportCompanyId { get; set; }
 
         public string SupportCompanyName { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

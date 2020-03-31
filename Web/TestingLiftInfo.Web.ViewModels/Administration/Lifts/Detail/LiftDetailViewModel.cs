@@ -42,6 +42,8 @@
 
         public string SupportCompanyName { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public ICollection<Inspect> Inspects { get; set; }
     }
 }

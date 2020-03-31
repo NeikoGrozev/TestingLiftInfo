@@ -14,19 +14,21 @@
 
         LiftDetailViewModel GetCurrentLift(string id);
 
-        ICollection<LiftViewModel> SearchRegistrationCriteria(string registationNumber);
+        ICollection<LiftViewModel> SearchIsDeletedCriteria(bool isDeleted);
 
-        ICollection<LiftViewModel> SearchRegisAndManufCriteria(string registationNumber, string manufacturer);
+        ICollection<LiftViewModel> SearchRegistrationCriteria(string registationNumber, bool isDeleted);
 
-        ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress);
+        ICollection<LiftViewModel> SearchRegisAndManufCriteria(string registationNumber, string manufacturer, bool isDeleted);
 
-        ICollection<LiftViewModel> SearchManufacturerCriteria(string manufacturer);
+        ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress, bool isDeleted);
 
-        ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress);
+        ICollection<LiftViewModel> SearchManufacturerCriteria(string manufacturer, bool isDeleted);
 
-        ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress);
+        ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress, bool isDeleted);
 
-        ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress);
+        ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress, bool isDeleted);
+
+        ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress, bool isDeleted);
 
         Task AddSupportCompany(string liftId, string supportCompanyId);
     }

@@ -13,6 +13,18 @@
                 <h5>Асансьор с рег. № @Model.RegistrationNumber</h5>
             </div>
             <div>
+                <label style="font-size:18px">Статус: </label>
+                @if (Model.IsDeleted == false)
+                {
+                    <a style="font-size:18px"><b>Активен</b></a>
+                }
+                else
+                {
+                    <a style="font-size:18px"><b>Неактивен</b></a>
+
+                }
+            </div>
+            <div>
                 <label style="font-size:18px">Вид на асансьорът: </label>
                 <a style="font-size:18px"><b>@Model.LiftType</b></a>
             </div>
@@ -51,8 +63,17 @@
 
             <div>
                 <a class="btn btn-success" asp-area="Administration" asp-controller="Lifts" asp-action="All">Назад</a>
-                <a class="btn btn-danger" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id">Създай ревизионне акт</a>
+                @if (@Model.IsDeleted == false)
+                {
+                    <a class="btn btn-danger" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id">Създай ревизионне акт</a>
+                }
             </div>
+            @if (@Model.IsDeleted == false)
+            {
+                <div>
+                    <a class="btn btn-dark" style="margin-top:10px" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id">Свали от регистрация</a>
+                </div>
+            }
         </div>
         <div class="col-md-1" style="margin-top:-40px">
             <div class="card" style="width: 12rem; background-color:#d5f5b9">
@@ -71,3 +92,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function submitResult() {
+        if (confirm("Сигурни ли сте, че искате да свалите асансьорът от регистрация?") == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>

@@ -42,7 +42,7 @@
         public LiftDetailViewModel GetCurrentLift(string id)
         {
             var lift = this.liftRepository
-                .All()
+                .AllWithDeleted()
                 .Where(x => x.Id == id)
                 .To<LiftDetailViewModel>()
                 .FirstOrDefault();
@@ -50,24 +50,11 @@
             return lift;
         }
 
-        public ICollection<LiftViewModel> SearchRegistrationCriteria(string registationNumber)
+        public ICollection<LiftViewModel> SearchIsDeletedCriteria(bool isDeleted)
         {
             var lifts = this.liftRepository
-                 .All()
-                 .Where(x => x.RegistrationNumber.Contains(registationNumber))
-                 .To<LiftViewModel>()
-                 .OrderBy(x => x.RegistrationNumber)
-                 .ToList();
-
-            return lifts;
-        }
-
-        public ICollection<LiftViewModel> SearchRegisAndManufCriteria(string registationNumber, string manufacturer)
-        {
-            var lifts = this.liftRepository
-                .All()
-                .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
-                        x.Manufacturer.Name.Contains(manufacturer))
+                .AllWithDeleted()
+                .Where(x => x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
                 .OrderBy(x => x.RegistrationNumber)
                 .ToList();
@@ -75,12 +62,40 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress)
+        public ICollection<LiftViewModel> SearchRegistrationCriteria(string registationNumber, bool isDeleted)
         {
             var lifts = this.liftRepository
-               .All()
+                 .AllWithDeleted()
+                 .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
+                            x.IsDeleted == isDeleted)
+                 .To<LiftViewModel>()
+                 .OrderBy(x => x.RegistrationNumber)
+                 .ToList();
+
+            return lifts;
+        }
+
+        public ICollection<LiftViewModel> SearchRegisAndManufCriteria(string registationNumber, string manufacturer, bool isDeleted)
+        {
+            var lifts = this.liftRepository
+                .AllWithDeleted()
+                .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
+                        x.Manufacturer.Name.Contains(manufacturer) &&
+                        x.IsDeleted == isDeleted)
+                .To<LiftViewModel>()
+                .OrderBy(x => x.RegistrationNumber)
+                .ToList();
+
+            return lifts;
+        }
+
+        public ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress, bool isDeleted)
+        {
+            var lifts = this.liftRepository
+               .AllWithDeleted()
                .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
-                       (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
+                       (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
+                       x.IsDeleted == isDeleted)
                .To<LiftViewModel>()
                .OrderBy(x => x.RegistrationNumber)
                .ToList();
@@ -88,24 +103,12 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchManufacturerCriteria(string manufacturer)
+        public ICollection<LiftViewModel> SearchManufacturerCriteria(string manufacturer, bool isDeleted)
         {
             var lifts = this.liftRepository
-                 .All()
-                 .Where(x => x.Manufacturer.Name.Contains(manufacturer))
-                 .To<LiftViewModel>()
-                 .OrderBy(x => x.RegistrationNumber)
-                 .ToList();
-
-            return lifts;
-        }
-
-        public ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress)
-        {
-            var lifts = this.liftRepository
-                 .All()
+                 .AllWithDeleted()
                  .Where(x => x.Manufacturer.Name.Contains(manufacturer) &&
-                          (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
+                         x.IsDeleted == isDeleted)
                  .To<LiftViewModel>()
                  .OrderBy(x => x.RegistrationNumber)
                  .ToList();
@@ -113,11 +116,26 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress)
+        public ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress, bool isDeleted)
         {
             var lifts = this.liftRepository
-                .All()
-                .Where(x => (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
+                 .AllWithDeleted()
+                 .Where(x => x.Manufacturer.Name.Contains(manufacturer) &&
+                          (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
+                          x.IsDeleted == isDeleted)
+                 .To<LiftViewModel>()
+                 .OrderBy(x => x.RegistrationNumber)
+                 .ToList();
+
+            return lifts;
+        }
+
+        public ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress, bool isDeleted)
+        {
+            var lifts = this.liftRepository
+                .AllWithDeleted()
+                .Where(x => (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
+                         x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
                 .OrderBy(x => x.RegistrationNumber)
                 .ToList();
@@ -125,13 +143,14 @@
             return lifts;
         }
 
-        public ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress)
+        public ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress, bool isDeleted)
         {
             var lifts = this.liftRepository
-                .All()
+                .AllWithDeleted()
                 .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
                         x.Manufacturer.Name.Contains(manufacturer) &&
-                         (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)))
+                         (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
+                         x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
                 .OrderBy(x => x.RegistrationNumber)
                 .ToList();

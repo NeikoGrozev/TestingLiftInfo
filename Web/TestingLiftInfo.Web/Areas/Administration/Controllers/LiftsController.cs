@@ -1,5 +1,6 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -62,7 +63,7 @@
                 return this.View(model);
             }
 
-            var currentNumber = (this.liftRepository.All().Count() + 1).ToString();
+            var currentNumber = (this.liftRepository.AllWithDeleted().Count() + 1).ToString();
             var user = this.User.Identity;
             var currentUser = this.userRepository.All().FirstOrDefault(x => x.Email == user.Name);
 
@@ -118,6 +119,7 @@
             var registrationNumber = searchLiftViewModel.RegistrationNumber;
             var manufaturer = searchLiftViewModel.Manufacturer;
             var cityOrAddress = searchLiftViewModel.City;
+            var isDeleted = searchLiftViewModel.IsDeleted;
 
             var isRegistration = !string.IsNullOrEmpty(registrationNumber);
             var isManufacturer = !string.IsNullOrEmpty(manufaturer);
@@ -127,31 +129,39 @@
 
             if (isRegistration && !isManufacturer && !isCityOrAddress)
             {
-                lifts = this.liftService.SearchRegistrationCriteria(registrationNumber);
+                lifts = this.liftService.SearchRegistrationCriteria(registrationNumber, isDeleted);
             }
             else if (isRegistration && isManufacturer && !isCityOrAddress)
             {
-                lifts = this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer);
+                lifts = this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer, isDeleted);
             }
             else if (isRegistration && !isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, cityOrAddress);
+                lifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, cityOrAddress, isDeleted);
             }
             else if (!isRegistration && isManufacturer && !isCityOrAddress)
             {
-                lifts = this.liftService.SearchManufacturerCriteria(manufaturer);
+                lifts = this.liftService.SearchManufacturerCriteria(manufaturer, isDeleted);
             }
             else if (!isRegistration && isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchManufAndCityCriteria(manufaturer, cityOrAddress);
+                lifts = this.liftService.SearchManufAndCityCriteria(manufaturer, cityOrAddress, isDeleted);
             }
             else if (!isRegistration && !isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchCityCriteria(cityOrAddress);
+                lifts = this.liftService.SearchCityCriteria(cityOrAddress, isDeleted);
+            }
+            else if (!isRegistration && !isManufacturer && !isCityOrAddress && isDeleted == true)
+            {
+                lifts = this.liftService.SearchIsDeletedCriteria(isDeleted);
+            }
+            else if (!isRegistration && !isManufacturer && !isCityOrAddress && isDeleted == false)
+            {
+                return this.RedirectToAction("All");
             }
             else
             {
-                lifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, cityOrAddress);
+                lifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, cityOrAddress, isDeleted);
             }
 
             var viewModel = new GetSearchLiftsViewModel()
@@ -160,6 +170,16 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var lift = this.liftService.GetLift(id);
+
+            this.liftRepository.Delete(lift);
+            await this.liftRepository.SaveChangesAsync();
+
+            return this.RedirectToAction("All");
         }
     }
 }
