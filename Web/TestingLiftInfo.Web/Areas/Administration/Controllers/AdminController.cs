@@ -1,23 +1,92 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using TestingLiftInfo.Services.Data;
-    using TestingLiftInfo.Web.ViewModels.Administration.Dashboard;
+    using TestingLiftInfo.Common;
+    using TestingLiftInfo.Data;
+    using TestingLiftInfo.Web.ViewModels.Administration.Admin;
 
     public class AdminController : AdministrationController
     {
-        private readonly ISettingsService settingsService;
+        private readonly ApplicationDbContext dbContext;
 
-        public AdminController(ISettingsService settingsService)
+        public AdminController(ApplicationDbContext dbContext)
         {
-            this.settingsService = settingsService;
+            this.dbContext = dbContext;
         }
 
-        public IActionResult Index()
+        public IActionResult AddAdmin()
         {
-            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAdmin(AddAdminViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var admin = this.dbContext.Roles
+                .FirstOrDefault(x => x.Name == GlobalConstants.AdministratorRoleName);
+            var user = this.dbContext.Users
+                .FirstOrDefault(x => x.Email == model.Email);
+            var isAdmin = this.dbContext.UserRoles
+                .FirstOrDefault(x => x.RoleId == admin.Id && x.UserId == user.Id);
+
+            if (user != null && isAdmin == null)
+            {
+                await this.dbContext.UserRoles
+                    .AddAsync(new IdentityUserRole<string> { UserId = user.Id, RoleId = admin.Id });
+
+                await this.dbContext.SaveChangesAsync();
+
+                return this.View("AdminCreateAdmin");
+            }
+
+            return this.RedirectToAction("AddAdmin");
+        }
+
+        public IActionResult All()
+        {
+            var adminRole = this.dbContext.Roles
+                .Where(x => x.Name == GlobalConstants.AdministratorRoleName)
+                .FirstOrDefault();
+            var user = this.dbContext.Users
+                .OrderBy(x => x.Name)
+                .Where(x => x.Roles.Any(y => y.RoleId == adminRole.Id) && x.Name != "Admin")
+                .ToList();
+
+            var viewModel = new GetAllAdminViewModel()
+            {
+                Users = user,
+            };
+
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var userRole = this.dbContext.UserRoles
+                .FirstOrDefault(x => x.UserId == id);
+
+            if (userRole != null)
+            {
+                var userTEst = this.dbContext.Users
+                    .Where(x => x.Id == id)
+                    .FirstOrDefault()
+                    .Roles.Remove(userRole);
+
+                this.dbContext.UserRoles.Remove(userRole);
+                await this.dbContext.SaveChangesAsync();
+            }
+
+            return this.RedirectToAction("All");
         }
     }
 }

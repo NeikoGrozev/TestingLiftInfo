@@ -5,13 +5,12 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-
-    using CommandLine;
 
     using TestingLiftInfo.Data;
     using TestingLiftInfo.Data.Common;
@@ -21,7 +20,6 @@
     using TestingLiftInfo.Data.Seeding;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Services.Messaging;
-
 
     public static class Program
     {

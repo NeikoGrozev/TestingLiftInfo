@@ -1,7 +1,5 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -18,7 +16,6 @@
         private readonly ILiftsService liftsService;
         private readonly IInspectsService inspectsService;
         private readonly IDeletableEntityRepository<Inspect> inspectsRepository;
-        private readonly IDeletableEntityRepository<Lift> liftsRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
         public InspectsController(
@@ -27,7 +24,6 @@
             ILiftsService liftsService,
             IInspectsService inspectsService,
             IDeletableEntityRepository<Inspect> inspectsRepository,
-            IDeletableEntityRepository<Lift> liftsRepository,
             IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.supportCompaniesService = supportCompaniesService;
@@ -35,7 +31,6 @@
             this.liftsService = liftsService;
             this.inspectsService = inspectsService;
             this.inspectsRepository = inspectsRepository;
-            this.liftsRepository = liftsRepository;
             this.userRepository = userRepository;
         }
 

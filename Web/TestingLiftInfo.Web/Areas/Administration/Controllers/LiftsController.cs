@@ -1,14 +1,13 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
-    using TestingLiftInfo.Data.Models.Enumerations;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Lifts;
 
@@ -17,8 +16,6 @@
         private readonly ILiftsService liftService;
         private readonly ICitiesService cityService;
         private readonly IManufacturersService manufacturerService;
-        private readonly IDeletableEntityRepository<Manufacturer> manufacturerRepository;
-        private readonly IDeletableEntityRepository<City> cityRepository;
         private readonly IDeletableEntityRepository<Lift> liftRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
@@ -26,16 +23,12 @@
             ILiftsService liftService,
             ICitiesService cityService,
             IManufacturersService manufacturerService,
-            IDeletableEntityRepository<Manufacturer> manufacturerRepository,
-            IDeletableEntityRepository<City> cityRepository,
             IDeletableEntityRepository<Lift> liftRepository,
             IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.liftService = liftService;
             this.cityService = cityService;
             this.manufacturerService = manufacturerService;
-            this.manufacturerRepository = manufacturerRepository;
-            this.cityRepository = cityRepository;
             this.liftRepository = liftRepository;
             this.userRepository = userRepository;
         }

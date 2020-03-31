@@ -1,7 +1,5 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -10,7 +8,6 @@
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Manufacturers;
-    using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
     public class ManufacturersController : AdministrationController
     {

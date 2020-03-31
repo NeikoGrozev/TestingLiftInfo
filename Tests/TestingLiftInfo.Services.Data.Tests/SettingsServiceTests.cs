@@ -6,12 +6,12 @@
 
     using Microsoft.EntityFrameworkCore;
 
+    using Moq;
+
     using TestingLiftInfo.Data;
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Data.Repositories;
-
-    using Moq;
 
     using Xunit;
 

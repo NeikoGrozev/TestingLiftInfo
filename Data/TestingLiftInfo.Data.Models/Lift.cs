@@ -15,6 +15,7 @@
             this.Inspects = new HashSet<Inspect>();
         }
 
+        [Required]
         public string ApplicationUserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
