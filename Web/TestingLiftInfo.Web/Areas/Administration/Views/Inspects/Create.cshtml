@@ -9,8 +9,8 @@
             <p><font size="10">РЕВИЗИОННЕН АКТ</font></p>
         </div>
         @*<div class="text-center" style="margin-top:-35px">
-                <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
-            </div>*@
+            <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
+        </div>*@
         <div class="text-center" style="margin-top:-20px">
             <p><font size="6"><b>Асансьор</b></font></p>
         </div>
@@ -50,6 +50,7 @@
         <div class="form-group">
             <input hidden asp-for="CreateInspectViewModel.LiftId" value="@Model.InspectInputDataViewModel.Lift.Id" />
         </div>
+        <input asp-for="CreateInspectViewModel.RecaptchaValue" type="hidden" id="RecaptchaValue" />
 
         <button type="submit" class="btn btn-success" style="margin-bottom:-70px">✙ Добави</button>
     </form>
@@ -70,7 +71,7 @@
     <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
     <script>
         grecaptcha.ready(function () {
-            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'createInspect' }).then(function (token) {
                 document.getElementById("RecaptchaValue").value = token;
             });
         });

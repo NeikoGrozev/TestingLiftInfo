@@ -19,6 +19,7 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
     using Microsoft.Extensions.Logging;
 
     using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Web.Infrastructure;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -79,6 +80,9 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
             [Display(Name = "Потвърди парола")]
             [Compare("Password", ErrorMessage = "Паролите не си съвпадат!")]
             public string ConfirmPassword { get; set; }
+
+            [GoogleReCaptchaValidation]
+            public string RecaptchaValue { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)

@@ -1,8 +1,6 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.InspectTypes
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
 
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;

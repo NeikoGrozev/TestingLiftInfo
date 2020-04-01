@@ -1,21 +1,37 @@
 ﻿@model TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies.CreateSupportCompanyViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
 
 <h3>Добави нова поддържаща фирма</h3>
 
 <form asp-area="Administration" asp-controller="SupportCompanies" asp-action="Create" method="post" onsubmit="return submitResult();">
     <div class="text-center" style="margin-top:100px">
         <label for="name">Поддържаща фирма: </label>
-        <input  class="form-control-sm" asp-for="Name" type="text" id="name" size="25" />
+        <input class="form-control-sm" asp-for="Name" type="text" id="name" size="25" />
+        <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
+
         <button type="submit" class="btn btn-success btn-sm">✙ Добави</button>
     </div>
 </form>
 
-<script>
-    function submitResult() {
-        if (confirm("Сигурни ли сте, че искате да добавите тази поддържаща фирма?") == false) {
-            return false;
-        } else {
-            return true;
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да добавите тази поддържаща фирма?") == false) {
+                return false;
+            } else {
+                return true;
+            }
         }
-    }
-</script>
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'createSupportCompany' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

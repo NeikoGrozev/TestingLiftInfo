@@ -1,10 +1,6 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
-
-    using Microsoft.AspNetCore.Identity;
 
     using TestingLiftInfo.Data.Models;
 

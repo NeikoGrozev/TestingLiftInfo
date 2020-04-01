@@ -17,6 +17,7 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
     using Microsoft.Extensions.Logging;
 
     using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Web.Infrastructure;
 
     [AllowAnonymous]
     public class LoginModel : PageModel
@@ -53,6 +54,9 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
+
+            [GoogleReCaptchaValidation]
+            public string RecaptchaValue { get; set; }
 
             [Display(Name = "Запомни ме!")]
             public bool RememberMe { get; set; }

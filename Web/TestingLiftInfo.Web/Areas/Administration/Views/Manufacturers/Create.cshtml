@@ -1,4 +1,6 @@
 ﻿@model TestingLiftInfo.Web.ViewModels.Administration.Manufacturers.CreateManufacturerViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
 
 <h3>Добави нов производител</h3>
 
@@ -6,16 +8,30 @@
     <div class="text-center" style="margin-top:100px">
         <label for="name" style="font-size:larger">Производител: </label>
         <input class="form-control-sm" asp-for="Name" type="text" id="name" size="25" />
+        <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
+
         <button type="submit" class="btn btn-success btn-sm">✙ Добави</button>
     </div>
 </form>
 
-<script>
-    function submitResult() {
-        if (confirm("Сигурни ли сте, че искате да добавите този производител?") == false) {
-            return false;
-        } else {
-            return true;
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да добавите този производител?") == false) {
+                return false;
+            } else {
+                return true;
+            }
         }
-    }
-</script>
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'createManufacturer' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

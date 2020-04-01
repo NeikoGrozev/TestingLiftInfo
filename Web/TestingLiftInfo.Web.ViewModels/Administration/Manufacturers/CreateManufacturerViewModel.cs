@@ -1,13 +1,15 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Manufacturers
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
+
+    using TestingLiftInfo.Web.Infrastructure;
 
     public class CreateManufacturerViewModel
     {
         [Required]
         public string Name { get; set; }
+
+        [GoogleReCaptchaValidation]
+        public string RecaptchaValue { get; set; }
     }
 }

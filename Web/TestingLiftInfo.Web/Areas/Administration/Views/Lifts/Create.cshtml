@@ -51,7 +51,7 @@
                 <input asp-for="CreateLiftViewModel.Address" type="text" id="address" class="form-control-sm" />
             </div>
         </div>
-        <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
+        <input  asp-for="CreateLiftViewModel.RecaptchaValue" type="hidden" id="RecaptchaValue"  />
         <button type="submit" class="btn btn-success" style="margin-bottom:-70px">✙ Добави</button>
 
     </form>
@@ -72,7 +72,7 @@
     <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
     <script>
         grecaptcha.ready(function () {
-            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'createLift' }).then(function (token) {
                 document.getElementById("RecaptchaValue").value = token;
             });
         });

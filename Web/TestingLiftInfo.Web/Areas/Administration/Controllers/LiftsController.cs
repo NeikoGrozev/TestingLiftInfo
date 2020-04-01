@@ -1,6 +1,5 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -125,35 +124,35 @@
             var isManufacturer = !string.IsNullOrEmpty(manufaturer);
             var isCityOrAddress = !string.IsNullOrEmpty(cityOrAddress);
 
-            ICollection<LiftViewModel> lifts = new List<LiftViewModel>();
+            ICollection<LiftViewModel> searchLifts = new List<LiftViewModel>();
 
             if (isRegistration && !isManufacturer && !isCityOrAddress)
             {
-                lifts = this.liftService.SearchRegistrationCriteria(registrationNumber, isDeleted);
+                searchLifts = this.liftService.SearchRegistrationCriteria(registrationNumber, isDeleted);
             }
             else if (isRegistration && isManufacturer && !isCityOrAddress)
             {
-                lifts = this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer, isDeleted);
+                searchLifts = this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer, isDeleted);
             }
             else if (isRegistration && !isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, cityOrAddress, isDeleted);
+                searchLifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, cityOrAddress, isDeleted);
             }
             else if (!isRegistration && isManufacturer && !isCityOrAddress)
             {
-                lifts = this.liftService.SearchManufacturerCriteria(manufaturer, isDeleted);
+                searchLifts = this.liftService.SearchManufacturerCriteria(manufaturer, isDeleted);
             }
             else if (!isRegistration && isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchManufAndCityCriteria(manufaturer, cityOrAddress, isDeleted);
+                searchLifts = this.liftService.SearchManufAndCityCriteria(manufaturer, cityOrAddress, isDeleted);
             }
             else if (!isRegistration && !isManufacturer && isCityOrAddress)
             {
-                lifts = this.liftService.SearchCityCriteria(cityOrAddress, isDeleted);
+                searchLifts = this.liftService.SearchCityCriteria(cityOrAddress, isDeleted);
             }
             else if (!isRegistration && !isManufacturer && !isCityOrAddress && isDeleted == true)
             {
-                lifts = this.liftService.SearchIsDeletedCriteria(isDeleted);
+                searchLifts = this.liftService.SearchIsDeletedCriteria(isDeleted);
             }
             else if (!isRegistration && !isManufacturer && !isCityOrAddress && isDeleted == false)
             {
@@ -161,12 +160,12 @@
             }
             else
             {
-                lifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, cityOrAddress, isDeleted);
+                searchLifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, cityOrAddress, isDeleted);
             }
 
             var viewModel = new GetSearchLiftsViewModel()
             {
-                Lifts = lifts,
+                Lifts = searchLifts,
             };
 
             return this.View(viewModel);

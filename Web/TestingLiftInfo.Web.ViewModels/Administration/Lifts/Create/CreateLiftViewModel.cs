@@ -1,17 +1,9 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
-    using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-    using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Data.Models.Enumerations;
-    using TestingLiftInfo.Web.ViewModels.Administration.Cities;
-    using TestingLiftInfo.Web.ViewModels.Administration.Manufacturers;
-    using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
+    using TestingLiftInfo.Web.Infrastructure;
 
     public class CreateLiftViewModel
     {
@@ -38,5 +30,8 @@
 
         [Required]
         public string Address { get; set; }
+
+        [GoogleReCaptchaValidation]
+        public string RecaptchaValue { get; set; }
     }
 }

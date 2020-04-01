@@ -1,10 +1,5 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Text;
-
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Data.Models.Enumerations;
     using TestingLiftInfo.Services.Mapping;
