@@ -12,10 +12,10 @@
         <input asp-for="SearchLiftViewModel.Manufacturer" type="text" class="form-control-sm text-center" placeholder="Търси по произодител" size="25" />
         <input asp-for="SearchLiftViewModel.City" type="text" class="form-control-sm text-center" placeholder="Търси по град или адрес" size="25" />
         <select asp-for="SearchLiftViewModel.IsDeleted" class="form-control-sm text-center">
-            <option value="false">Активни</option>
-            <option value="true">Неактивни</option>
+            <option value="false">✅ Активни</option>
+            <option value="true">⛔ Неактивни</option>
         </select>
-        <button type="submit" class="btn btn-outline-primary btn-sm"><b>Търси</b></button>
+        <button type="submit" class="btn btn-outline-primary btn-sm" style="margin-bottom:2px; height:28px"><b><i class="fas fa-search"></i> Търси</b></button>
     </form>
     <div>
         <a style="float:right" class=" btn btn-success btn-sm" asp-area="Administration" asp-controller="Lifts" asp-action="Create">✙ Добави</a>

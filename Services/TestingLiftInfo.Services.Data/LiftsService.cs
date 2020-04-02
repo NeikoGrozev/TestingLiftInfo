@@ -165,5 +165,14 @@
 
             await this.liftRepository.SaveChangesAsync();
         }
+
+        public Lift GetLiftWithRegistrationNumber(string regNumber)
+        {
+            var lift = this.liftRepository
+                .All()
+                .FirstOrDefault(x => x.RegistrationNumber == regNumber);
+
+            return lift;
+        }
     }
 }

@@ -67,6 +67,7 @@
             services.AddTransient<ILiftsService, LiftsService>();
             services.AddTransient<IInspectTypesService, InspectTypesService>();
             services.AddTransient<IInspectsService, InspectsService>();
+            services.AddTransient<IFollowsService, FollowsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

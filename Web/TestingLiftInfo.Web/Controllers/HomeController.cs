@@ -24,7 +24,7 @@
             return this.View();
         }
 
-        //TODO:Triabva da go premahna
+        // TODO:Triabva da go premahna
         public IActionResult Privacy()
         {
             return this.View();

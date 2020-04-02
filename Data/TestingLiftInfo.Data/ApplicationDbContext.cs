@@ -40,7 +40,9 @@
 
         public DbSet<SupportCompany> SupportCompanies { get; set; }
 
-       //TODO:TRiabva da se premahne
+        public DbSet<Follow> Follows { get; set; }
+
+       // TODO:TRiabva da se premahne
         public DbSet<Setting> Settings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

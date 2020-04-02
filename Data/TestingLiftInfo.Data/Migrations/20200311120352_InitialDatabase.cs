@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace TestingLiftInfo.Data.Migrations
+﻿namespace TestingLiftInfo.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +17,7 @@ namespace TestingLiftInfo.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -32,7 +33,7 @@ namespace TestingLiftInfo.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -48,7 +49,7 @@ namespace TestingLiftInfo.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -64,7 +65,7 @@ namespace TestingLiftInfo.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -88,7 +89,7 @@ namespace TestingLiftInfo.Data.Migrations
                     ManufacturerId = table.Column<string>(nullable: true),
                     CityId = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: false),
-                    SupportCompanyId = table.Column<string>(nullable: true)
+                    SupportCompanyId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -126,7 +127,7 @@ namespace TestingLiftInfo.Data.Migrations
                     LiftId = table.Column<string>(nullable: true),
                     SupportCompanyId = table.Column<string>(nullable: true),
                     Notes = table.Column<string>(nullable: true),
-                    Prescriptions = table.Column<string>(nullable: true)
+                    Prescriptions = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {

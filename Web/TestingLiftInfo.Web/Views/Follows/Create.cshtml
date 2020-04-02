@@ -1,0 +1,43 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Follows.CreateFollowViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+
+<h3>Последвай нов асансьор</h3>
+
+<div class="alert alert-primary" style="margin-top:100px">
+    <form asp-area="" asp-controller="Follows" asp-action="Create" method="post" onsubmit="return submitResult();">
+        <div class="text-center">
+            <label for="name" style="font-size:larger">Регистрационен №: </label>
+            <input class="form-control-sm" asp-for="RegistrationNumber" type="text" id="name" size="25" />
+            <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
+
+            <button type="submit" class="btn btn-success btn-sm">✙ Последвай</button>
+        </div>
+    </form>
+</div>
+
+    <div class="text-center" style="margin-top:50px; color:crimson">
+        <a><font size="6"><i>Забележка: Може да следите до три асансьора!</i></font></a>
+    </div>
+
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да добавите този асансьор към Вашия списък?") == false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'createInspectType' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

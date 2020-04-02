@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace TestingLiftInfo.Data.Migrations
+﻿namespace TestingLiftInfo.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class UpdateInspectModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

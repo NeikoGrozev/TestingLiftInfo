@@ -31,5 +31,7 @@
         ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress, bool isDeleted);
 
         Task AddSupportCompany(string liftId, string supportCompanyId);
+
+        Lift GetLiftWithRegistrationNumber(string regNumber);
     }
 }

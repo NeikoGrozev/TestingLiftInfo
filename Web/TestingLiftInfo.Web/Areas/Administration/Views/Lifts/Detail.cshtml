@@ -62,7 +62,7 @@
             </div>
 
             <div>
-                <a class="btn btn-success" asp-area="Administration" asp-controller="Lifts" asp-action="All">Назад</a>
+                <a class="btn btn-success" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
                 @if (@Model.IsDeleted == false)
                 {
                     <a class="btn btn-danger" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id">Създай ревизионне акт</a>

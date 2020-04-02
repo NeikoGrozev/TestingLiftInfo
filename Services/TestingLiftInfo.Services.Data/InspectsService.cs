@@ -19,7 +19,7 @@
         public InspectDetailViewModel GetCurrentInspect(string id)
         {
             var inspect = this.inspectRepository
-                .All()
+                .AllWithDeleted()
                 .Where(x => x.Id == id)
                 .To<InspectDetailViewModel>()
                 .FirstOrDefault();
