@@ -42,9 +42,6 @@
 
         public DbSet<Follow> Follows { get; set; }
 
-       // TODO:TRiabva da se premahne
-        public DbSet<Setting> Settings { get; set; }
-
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

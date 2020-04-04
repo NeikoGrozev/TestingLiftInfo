@@ -1,0 +1,59 @@
+﻿@using TestingLiftInfo.Common
+@model TestingLiftInfo.Web.ViewModels.Follows.AllFollowLiftsViewModel
+
+<div class="text-center" style="margin-top:10px">
+    <h3>Следените от Вас асансьори</h3>
+</div>
+
+<div class="row">
+    @foreach (var item in Model.Lifts)
+    {
+        <div class="col-md-4" style="margin-top:50px">
+            <div class="card" style="width: 21rem; height:16rem; background-color:lightblue">
+                <div class="card-body">
+                    <a asp-area="" asp-controller="Follows" asp-action="Delete" asp-route-id="@item.Id" class="card-link" onclick="return submitResult();"><i class="far fa-times-circle" style="margin-left:280px; color:black" title="Спри следенето"></i></a>
+                    <h4 style="text-align:center; margin-top:-10px">Асансьор</h4>
+                    <p class="card-title"><font size="5"><b>Регистрационнен № @item.RegistrationNumber</b></font></p>
+                    @{var inspect = item.Inspects.Select(x => x.CreatedOn).FirstOrDefault().AddYears(1); }
+                    @if (inspect <= DateTime.UtcNow.AddYears(1) && inspect >= DateTime.UtcNow)
+                    {
+                        <h6 class="card-subtitle mb-2">Статус: <font style="font-family:'Comic Sans MS'"><i>Има валиден преглед!</i></font></h6>
+                        <h6 class="card-subtitle mb-2">Валиден до: <font style="font-family:'Comic Sans MS'"><i>@inspect.ToShortDateString()</i></font></h6>
+                    }
+                    else
+                    {
+                        <h6 class="card-subtitle mb-2">
+                            Статус: <font style="color: red; font-family: 'Comic Sans MS'">Няма валиден преглед!</font>
+                        </h6>
+                        @if (inspect >= DateTime.UtcNow.AddYears(-2))
+                        {
+                            <h6 class="card-subtitle mb-2">Валиден до: <font style="color:red; font-family:'Comic Sans MS'"><i>@inspect.ToShortDateString()</i></font></h6>
+                        }
+                    }
+                    <p class="card-text"><b>Адрес: </b><i>гр. @item.CityName, @item.Address</i></p>
+                    <a class="card-link" style="color:#070cb5" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@item.Id" >Повече информация...</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.Lifts.Count < GlobalConstants.LimitFollowLifts)
+{
+    <div class="text-center" style="margin-top:50px">
+        <a class="btn btn-success" asp-area="" asp-controller="Follows" asp-action="Create">Последвай нов асансьор 😉</a>
+    </div>
+}
+
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да спрете да следвате този асансьор?") == false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+}

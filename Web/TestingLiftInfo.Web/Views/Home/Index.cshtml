@@ -1,14 +1,36 @@
 ﻿@using TestingLiftInfo.Common
+@model TestingLiftInfo.Web.ViewModels.Checks.InputCheckViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4 mb-sm-5">Здравей, добре дошъл в @GlobalConstants.Logo!</h1>
-    <p class="font-weight-bold font-italic">Тук може да намериш информация</p>
-    <p class="font-weight-bold font-italic">за</p>
-    <p class="font-weight-bold font-italic">техническите прегледи на твоя асансьор!</p>
+<h1 class="display-4 mb-sm-5 text-center">Здравей, добре дошъл в @GlobalConstants.Logo!</h1>
+<div class="row">
+    <div class="col-md-7 text-center">
+        <p><font size="5"><i><b>Тук може да намерите пълната информация</b></i></font></p>
+        <p><font size="5"><i><b>за</b></i></font></p>
+        <p><font size="5"><i><b>техническите прегледи на Вашия асансьор!</b></i></font></p>
 
-    <a class="btn btn-outline-primary text-warning" style="font-size:x-large" asp-area="Identity" asp-page="/Account/Login">ВХОД</a>
+        <a class="btn btn-outline-warning" style="font-size:x-large" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i> ВХОД</a>
+    </div>
 
+    <form asp-area="" asp-controller="Checks" asp-action="ValidInspect" method="post">
+        <div class="col=md-3 text-center" >
+            <div>
+                <p><font size="5"><i><b>Провери валидността на технически преглед!</b></i></font></p>
+                <p><font size="5"><i><b>Не се изисква регистрация!!!</b></i></font></p>
+            </div>
+            <div>
+                <input class="form-control-sm" asp-for="RegistrationNumber" type="text" id="registrationNumber" size="25" />
+                <p style="font-size:larger"><font size="3"><i>Въведете единственно пълния регистрационен номер на съоръжението!</i></font></p>
+
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success" style="margin-top:5px">ПРОВЕРИ 😉</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="text-center" style="margin-top:50px">
+    <p style="color:red"><font size="5">При забелязани нередности и инциденти, моля сигнализирайте незабавно Инспекция за държавен технически надзор!!!</font></p>
 </div>

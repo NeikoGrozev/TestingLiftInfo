@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -12,25 +12,13 @@
     {
         private readonly IDeletableEntityRepository<Follow> followRepository;
         private readonly IDeletableEntityRepository<Lift> liftRepository;
-        private readonly ILiftsService liftsService;
+        private readonly IDeletableEntityRepository<Inspect> inspectRepository;
 
-        public FollowsService(IDeletableEntityRepository<Follow> followRepository, IDeletableEntityRepository<Lift> liftRepository, ILiftsService liftsService)
+        public FollowsService(IDeletableEntityRepository<Follow> followRepository, IDeletableEntityRepository<Lift> liftRepository, IDeletableEntityRepository<Inspect> inspectRepository)
         {
             this.followRepository = followRepository;
             this.liftRepository = liftRepository;
-            this.liftsService = liftsService;
-        }
-
-        public async Task AddFollow(string liftId, string userId)
-        {
-            var follow = new Follow()
-            {
-                ApplicationUserId = userId,
-                LiftId = liftId,
-            };
-
-            await this.followRepository.AddAsync(follow);
-            await this.followRepository.SaveChangesAsync();
+            this.inspectRepository = inspectRepository;
         }
 
         public ICollection<Follow> GetAllFollowsForUser(string id)
@@ -62,13 +50,29 @@
                 }
             }
 
+            lifts = lifts
+                .OrderBy(x => x.RegistrationNumber)
+                .ToList();
+
             return lifts;
         }
 
-        private LiftDetailViewModels GetLiftWithId(string id)
+        public InspectDetailsViewModel GetInspectWithId(string id)
+        {
+            var inspect = this.inspectRepository
+              .All()
+              .Where(x => x.Id == id)
+              .To<InspectDetailsViewModel>()
+              .FirstOrDefault();
+
+            return inspect;
+        }
+
+        public LiftDetailViewModels GetLiftWithId(string id)
         {
             var lift = this.liftRepository
-                .All().Where(x => x.Id == id)
+                .All()
+                .Where(x => x.Id == id)
                 .To<LiftDetailViewModels>()
                 .FirstOrDefault();
 

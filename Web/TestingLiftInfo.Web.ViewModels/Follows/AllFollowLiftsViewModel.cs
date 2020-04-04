@@ -4,6 +4,6 @@
 
     public class AllFollowLiftsViewModel
     {
-        public ICollection<LiftDetailViewModels> LiftDetailViewModels { get; set; }
+        public ICollection<LiftDetailViewModels> Lifts { get; set; }
     }
 }

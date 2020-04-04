@@ -1,6 +1,8 @@
-﻿@model TestingLiftInfo.Web.ViewModels.Follows.CreateFollowViewModel
+﻿@using TestingLiftInfo.Common
+@model TestingLiftInfo.Web.ViewModels.Follows.CreateFollowViewModel
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+<script data-ad-client="ca-pub-1109472414906000" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 <h3>Последвай нов асансьор</h3>
 
@@ -16,9 +18,9 @@
     </form>
 </div>
 
-    <div class="text-center" style="margin-top:50px; color:crimson">
-        <a><font size="6"><i>Забележка: Може да следите до три асансьора!</i></font></a>
-    </div>
+<div class="text-center" style="margin-top:50px; color:crimson">
+    <a><font size="6"><i>Забележка: Може да следите до @GlobalConstants.LimitFollowLifts асансьора!</i></font></a>
+</div>
 
 @section Scripts
 {

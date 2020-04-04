@@ -1,0 +1,38 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Follows.InspectDetailsViewModel
+
+@{
+    this.ViewData["Title"] = "Информация за ревизионния акт";
+}
+
+<h3>@this.ViewData["Title"]</h3>
+
+<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
+    <div>
+        <div style="margin-top:-60px">
+            <h5>Асансьор с рег. № @Model.Lift.RegistrationNumber</h5>
+        </div>
+        <div>
+            <label style="font-size:18px">Инспектор: </label>
+            <a style="font-size:18px"><b>@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</b></a>
+        </div>
+        <div>
+            <label style="font-size:18px">Прегледа е извършен на дата: </label>
+            <a style="font-size:18px"><b>@Model.CreatedOn.ToShortDateString()</b></a>
+        </div>
+        <div>
+            <label style="font-size:18px">Вид на прегледа: </label>
+            <a style="font-size:18px"><b>@Model.InspectType.Name</b></a>
+        </div>
+        <div>
+            <label style="font-size:18px">Забележки: </label>
+            <a style="font-size:18px"><b>@Model.Notes</b></a>
+        </div>
+        <div>
+            <label style="font-size:18px">Предписания: </label>
+            <a style="font-size:18px"><b>@Model.Prescriptions</b></a>
+        </div>
+        <div style="margin-top: 30px">
+            <a class="btn btn-success" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@Model.Lift.Id"><i class="fas fa-arrow-circle-left"></i> Назад</a>
+        </div>
+    </div>
+</div>
