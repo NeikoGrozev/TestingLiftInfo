@@ -8,28 +8,28 @@
 
 <div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
     <div>
-        <div style="margin-top:-60px">
+        <div class="text-center" style="margin-top:-50px">
             <h5>Асансьор с рег. № @Model.Lift.RegistrationNumber</h5>
         </div>
-        <div>
-            <label style="font-size:18px">Инспектор: </label>
+        <div style="margin-top:30px">
+            <label style="font-size:20px"><b><i>Техническия преглед е извършен от инспектор: </i></b></label>
             <a style="font-size:18px"><b>@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</b></a>
         </div>
         <div>
-            <label style="font-size:18px">Прегледа е извършен на дата: </label>
+            <label style="font-size:20px"><b><i>Дата: </i></b></label>
             <a style="font-size:18px"><b>@Model.CreatedOn.ToShortDateString()</b></a>
         </div>
         <div>
-            <label style="font-size:18px">Вид на прегледа: </label>
+            <label style="font-size:20px"><b><i>Вид на прегледа: </i></b></label>
             <a style="font-size:18px"><b>@Model.InspectType.Name</b></a>
         </div>
         <div>
-            <label style="font-size:18px">Забележки: </label>
-            <a style="font-size:18px"><b>@Model.Notes</b></a>
+            <label style="font-size:20px"><b><i>Забележки: </i></b></label>
+            <a style="font-size:18px"><b>@Html.Raw(@Model.SanitizerNotes)</b></a>
         </div>
         <div>
-            <label style="font-size:18px">Предписания: </label>
-            <a style="font-size:18px"><b>@Model.Prescriptions</b></a>
+            <label style="font-size:20px"><b><i>Предписания: </i></b></label>
+            <a style="font-size:18px"><b>@Html.Raw(@Model.SanitizerPrescriptions)</b></a>
         </div>
         <div style="margin-top: 30px">
             <a class="btn btn-success" asp-area="Administration" asp-controller="Lifts" asp-action="Detail" asp-route-id="@Model.Lift.Id"><i class="fas fa-arrow-circle-left"></i> Назад</a>

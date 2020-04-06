@@ -1,5 +1,6 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Inspects
 {
+    using Ganss.XSS;
     using System;
 
     using TestingLiftInfo.Data.Models;
@@ -27,7 +28,11 @@
 
         public string Notes { get; set; }
 
+        public string SanitizerNotes => new HtmlSanitizer().Sanitize(this.Notes);
+
         public string Prescriptions { get; set; }
+
+        public string SanitizerPrescriptions => new HtmlSanitizer().Sanitize(this.Prescriptions);
 
         public DateTime CreatedOn { get; set; }
     }

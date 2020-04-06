@@ -1,6 +1,17 @@
 ﻿@model TestingLiftInfo.Web.ViewModels.Administration.Inspects.BiginspectViewModel
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+<script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "image paste table link code media"
+        ]
+    });
+</script>
+
+
 <h4>Създаване на ревизионен акт</h4>
 <div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
     <form asp-area="Administration" asp-controller="Inspects" asp-action="Create" method="post" onsubmit="return submitResult();">
@@ -9,8 +20,8 @@
             <p><font size="10">РЕВИЗИОННЕН АКТ</font></p>
         </div>
         @*<div class="text-center" style="margin-top:-35px">
-            <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
-        </div>*@
+                <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
+            </div>*@
         <div class="text-center" style="margin-top:-20px">
             <p><font size="6"><b>Асансьор</b></font></p>
         </div>

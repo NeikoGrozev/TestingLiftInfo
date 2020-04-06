@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
@@ -15,6 +16,24 @@
         public CitiesService(IDeletableEntityRepository<City> cityRepository)
         {
             this.cityRepository = cityRepository;
+        }
+
+        public async Task CreateAsync(string name)
+        {
+            var currentCity = this.cityRepository
+               .All()
+               .FirstOrDefault(x => x.Name == name);
+
+            if (currentCity == null)
+            {
+                var city = new City
+                {
+                    Name = name,
+                };
+
+                await this.cityRepository.AddAsync(city);
+                await this.cityRepository.SaveChangesAsync();
+            }
         }
 
         public ICollection<City> GetAllCity()

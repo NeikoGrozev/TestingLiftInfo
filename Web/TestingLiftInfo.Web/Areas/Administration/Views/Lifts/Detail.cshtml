@@ -65,13 +65,13 @@
                 <a class="btn btn-success" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
                 @if (@Model.IsDeleted == false)
                 {
-                    <a class="btn btn-danger" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id">Създай ревизионне акт</a>
+                    <a class="btn btn-danger" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
                 }
             </div>
             @if (@Model.IsDeleted == false)
             {
                 <div>
-                    <a class="btn btn-dark" style="margin-top:10px" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id">Свали от регистрация</a>
+                    <a class="btn btn-dark" style="margin-top:10px" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id"><i class="far fa-trash-alt"></i> Свали от регистрация</a>
                 </div>
             }
         </div>

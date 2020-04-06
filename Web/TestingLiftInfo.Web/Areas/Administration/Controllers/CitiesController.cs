@@ -1,24 +1,19 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
 
-    using TestingLiftInfo.Data.Common.Repositories;
-    using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Cities;
 
     public class CitiesController : AdministrationController
     {
         private readonly ICitiesService cityService;
-        private readonly IDeletableEntityRepository<City> repository;
 
-        public CitiesController(ICitiesService cityService, IDeletableEntityRepository<City> repository)
+        public CitiesController(ICitiesService cityService)
         {
             this.cityService = cityService;
-            this.repository = repository;
         }
 
         public IActionResult Create()
@@ -34,20 +29,7 @@
                 return this.View(model);
             }
 
-            var currentCity = this.repository
-                .All()
-                .FirstOrDefault(x => x.Name == model.Name);
-
-            if (currentCity == null)
-            {
-                var city = new City
-                {
-                    Name = model.Name,
-                };
-
-                await this.repository.AddAsync(city);
-                await this.repository.SaveChangesAsync();
-            }
+            await this.cityService.CreateAsync(model.Name);
 
             return this.RedirectToAction("All");
         }
