@@ -47,19 +47,19 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Email-ът е задължителен!!!")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Паролата е задължителена!!!")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [GoogleReCaptchaValidation]
-            public string RecaptchaValue { get; set; }
-
             [Display(Name = "Запомни ме!")]
             public bool RememberMe { get; set; }
+
+            [GoogleReCaptchaValidation]
+            public string RecaptchaValue { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)

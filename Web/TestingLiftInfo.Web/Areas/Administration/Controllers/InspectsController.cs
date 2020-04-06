@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
@@ -15,23 +15,20 @@
         private readonly IInspectTypesService inspectTypesService;
         private readonly ILiftsService liftsService;
         private readonly IInspectsService inspectsService;
-        private readonly IDeletableEntityRepository<Inspect> inspectsRepository;
-        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public InspectsController(
             ISupportCompaniesService supportCompaniesService,
             IInspectTypesService inspectTypesService,
             ILiftsService liftsService,
             IInspectsService inspectsService,
-            IDeletableEntityRepository<Inspect> inspectsRepository,
-            IDeletableEntityRepository<ApplicationUser> userRepository)
+            UserManager<ApplicationUser> userManager)
         {
             this.supportCompaniesService = supportCompaniesService;
             this.inspectTypesService = inspectTypesService;
             this.liftsService = liftsService;
             this.inspectsService = inspectsService;
-            this.inspectsRepository = inspectsRepository;
-            this.userRepository = userRepository;
+            this.userManager = userManager;
         }
 
         public IActionResult Create(string id)
@@ -60,26 +57,20 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(model);
+                return this.RedirectToAction("Create");
             }
 
             await this.liftsService.AddSupportCompany(model.CreateInspectViewModel.LiftId, model.CreateInspectViewModel.SupportCompanyId);
 
-            var user = this.User.Identity;
-            var currentUser = this.userRepository.All().FirstOrDefault(x => x.Email == user.Name);
+            var userId = this.userManager.GetUserId(this.User);
 
-            var inspect = new Inspect()
-            {
-                ApplicationUserId = currentUser.Id,
-                InspectTypeId = model.CreateInspectViewModel.InspectTypeId,
-                LiftId = model.CreateInspectViewModel.LiftId,
-                Notes = model.CreateInspectViewModel.Notes,
-                Prescriptions = model.CreateInspectViewModel.Prescriptions,
-                SupportCompanyId = model.CreateInspectViewModel.SupportCompanyId,
-            };
-
-            await this.inspectsRepository.AddAsync(inspect);
-            await this.inspectsRepository.SaveChangesAsync();
+            await this.inspectsService.CreateAsync(
+                 userId,
+                 model.CreateInspectViewModel.InspectTypeId,
+                 model.CreateInspectViewModel.LiftId,
+                 model.CreateInspectViewModel.Notes,
+                 model.CreateInspectViewModel.Prescriptions,
+                 model.CreateInspectViewModel.SupportCompanyId);
 
             return this.RedirectToAction("All", "Lifts");
         }

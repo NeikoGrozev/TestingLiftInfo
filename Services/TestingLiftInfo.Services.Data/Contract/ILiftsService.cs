@@ -1,13 +1,18 @@
 ﻿namespace TestingLiftInfo.Services.Data
 {
+    using AutoMapper.Mappers;
+    using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Data.Models.Enumerations;
     using TestingLiftInfo.Web.ViewModels.Administration.Lifts;
 
     public interface ILiftsService
     {
+        Task CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address);
+
         ICollection<LiftViewModel> GetAllLifts();
 
         Lift GetLift(string id);
@@ -33,5 +38,7 @@
         Task AddSupportCompany(string liftId, string supportCompanyId);
 
         Lift GetLiftWithRegistrationNumber(string regNumber);
+
+        Task DeleteAsync(string id);
     }
 }

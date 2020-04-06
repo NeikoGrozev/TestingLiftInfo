@@ -50,27 +50,27 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Username-ът е задължителен!!!")]
             [StringLength(25, ErrorMessage = "{0}-мът трябва да бъде дълг, най-малко {2} и максимум {1} символа.", MinimumLength = 5)]
             [Display(Name = "Username")]
             public string Name { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Името е задължителено!!!")]
             [StringLength(25, ErrorMessage = "{0}то трябва да бъде дълго, най-малко {2} и максимум {1} символа.", MinimumLength = 3)]
             [Display(Name = "Име")]
             public string FirstName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Фамилията е задължителена!!!")]
             [StringLength(25, ErrorMessage = "{0}та трябва да бъде дълга, най-малко {2} и максимум {1} символа.", MinimumLength = 3)]
             [Display(Name = "Фамилия")]
             public string LastName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Email-ът е задължителен!!!")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Паролата е задължителена!!!")]
             [StringLength(20, ErrorMessage = "{0}та трябва да бъде дълга, най-малко {2} и максимум {1} символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]

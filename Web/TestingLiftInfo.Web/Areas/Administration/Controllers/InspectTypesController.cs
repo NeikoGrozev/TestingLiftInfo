@@ -1,9 +1,9 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
@@ -11,14 +11,10 @@
 
     public class InspectTypesController : AdministrationController
     {
-        private readonly IDeletableEntityRepository<InspectType> inspectTypeRepository;
         private readonly IInspectTypesService inspectTypesService;
 
-        public InspectTypesController(
-            IDeletableEntityRepository<InspectType> inspectTypeRepository,
-            IInspectTypesService inspectTypesService)
+        public InspectTypesController(IInspectTypesService inspectTypesService)
         {
-            this.inspectTypeRepository = inspectTypeRepository;
             this.inspectTypesService = inspectTypesService;
         }
 
@@ -35,25 +31,15 @@
                 return this.View(model);
             }
 
-            var currentInspectType = this.inspectTypeRepository.All().FirstOrDefault(x => x.Name == model.Name);
-
-            if (currentInspectType == null)
-            {
-                var inspectType = new InspectType
-                {
-                    Name = model.Name,
-                };
-
-                await this.inspectTypeRepository.AddAsync(inspectType);
-                await this.inspectTypeRepository.SaveChangesAsync();
-            }
+            await this.inspectTypesService.CreateAsync(model.Name);
 
             return this.RedirectToAction("All");
         }
 
         public IActionResult All()
         {
-            var inspectTypes = this.inspectTypesService.GetAllInspectTypesForViewModel();
+            var inspectTypes = this.inspectTypesService
+                .GetAllInspectTypesForViewModel();
 
             var viewModel = new GetAllInspectTypeViewModel
             {

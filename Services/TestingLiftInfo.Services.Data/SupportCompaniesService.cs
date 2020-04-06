@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -15,6 +15,24 @@
         public SupportCompaniesService(IDeletableEntityRepository<SupportCompany> repository)
         {
             this.repository = repository;
+        }
+
+        public async Task CreateAsync(string name)
+        {
+            var currentCompany = this.repository
+                .All()
+                .FirstOrDefault(x => x.Name == name);
+
+            if (currentCompany == null)
+            {
+                var company = new SupportCompany
+                {
+                    Name = name,
+                };
+
+                await this.repository.AddAsync(company);
+                await this.repository.SaveChangesAsync();
+            }
         }
 
         public ICollection<SupportCompany> GetAll()

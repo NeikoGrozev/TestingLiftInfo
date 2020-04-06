@@ -9,8 +9,10 @@
         <label for="name" style="font-size:larger">Вид преглед: </label>
         <input class="form-control-sm" asp-for="Name" type="text" id="name" size="25" />
         <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
-
         <button type="submit" class="btn btn-success btn-sm">✙ Добави</button>
+        <div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
     </div>
 </form>
 

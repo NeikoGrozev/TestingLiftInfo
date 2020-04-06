@@ -42,7 +42,11 @@
             if (user != null && isAdmin == null)
             {
                 await this.dbContext.UserRoles
-                    .AddAsync(new IdentityUserRole<string> { UserId = user.Id, RoleId = admin.Id });
+                    .AddAsync(new IdentityUserRole<string>
+                    {
+                        UserId = user.Id,
+                        RoleId = admin.Id,
+                    });
 
                 await this.dbContext.SaveChangesAsync();
 

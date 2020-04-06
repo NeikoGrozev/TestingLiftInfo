@@ -12,13 +12,11 @@
 
     public class SupportCompaniesController : AdministrationController
     {
-        private readonly IDeletableEntityRepository<SupportCompany> repository;
-        private readonly ISupportCompaniesService service;
+        private readonly ISupportCompaniesService supportCompanyService;
 
-        public SupportCompaniesController(IDeletableEntityRepository<SupportCompany> repository, ISupportCompaniesService service)
+        public SupportCompaniesController(ISupportCompaniesService service)
         {
-            this.repository = repository;
-            this.service = service;
+            this.supportCompanyService = service;
         }
 
         public IActionResult Create()
@@ -34,22 +32,14 @@
                 return this.View(model);
             }
 
-            var currentCompany = this.repository.All().FirstOrDefault(x => x.Name == model.Name);
-
-            if (currentCompany == null)
-            {
-                var company = new SupportCompany { Name = model.Name };
-
-                await this.repository.AddAsync(company);
-                await this.repository.SaveChangesAsync();
-            }
+            await this.supportCompanyService.CreateAsync(model.Name);
 
             return this.RedirectToAction("All");
         }
 
         public IActionResult All()
         {
-            var companies = this.service.GetAllCompanies();
+            var companies = this.supportCompanyService.GetAllCompanies();
             var viewModel = new GetAllSupportCompaniesViewModel
             {
                 SupportCompanies = companies,

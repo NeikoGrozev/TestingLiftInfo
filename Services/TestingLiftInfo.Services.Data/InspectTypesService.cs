@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -15,6 +15,24 @@
         public InspectTypesService(IDeletableEntityRepository<InspectType> inspectTypeRepository)
         {
             this.inspectTypeRepository = inspectTypeRepository;
+        }
+
+        public async Task CreateAsync(string name)
+        {
+            var currentInspectType = this.inspectTypeRepository
+                .All()
+                .FirstOrDefault(x => x.Name == name);
+
+            if (currentInspectType == null)
+            {
+                var inspectType = new InspectType
+                {
+                    Name = name,
+                };
+
+                await this.inspectTypeRepository.AddAsync(inspectType);
+                await this.inspectTypeRepository.SaveChangesAsync();
+            }
         }
 
         public ICollection<InspectType> GetAllInspectTypes()

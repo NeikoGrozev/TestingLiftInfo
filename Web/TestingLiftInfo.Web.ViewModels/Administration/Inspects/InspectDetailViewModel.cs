@@ -1,7 +1,8 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Inspects
 {
-    using Ganss.XSS;
     using System;
+
+    using Ganss.XSS;
 
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;

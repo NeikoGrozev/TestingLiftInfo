@@ -53,10 +53,14 @@
         <div class="form-group">
             <label for="notes" style="font-size:18px">Забележки: </label>
             <textarea asp-for="CreateInspectViewModel.Notes" type="text" id="notes" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="CreateInspectViewModel.Notes" class="text-danger"></span>
+            <p class="text-danger" style="margin-left:20px"><font size="3">*Полето със забележки, задължително трябва да бъде попълнено!!!</font></p>
         </div>
         <div class="form-group">
             <label for="prescriptions" style="font-size:18px">Предписания: </label>
             <textarea asp-for="CreateInspectViewModel.Prescriptions" type="text" id="prescriptions" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="CreateInspectViewModel.Prescriptions" class="text-danger"></span>
+            <p class="text-danger" style="margin-left:20px"><font size="3">*Полето със предписания, задължително трябва да бъде попълнено!!!</font></p>
         </div>
         <div class="form-group">
             <input hidden asp-for="CreateInspectViewModel.LiftId" value="@Model.InspectInputDataViewModel.Lift.Id" />

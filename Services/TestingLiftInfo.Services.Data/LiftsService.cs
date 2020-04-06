@@ -6,6 +6,7 @@
 
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Data.Models.Enumerations;
     using TestingLiftInfo.Services.Mapping;
     using TestingLiftInfo.Web.ViewModels.Administration.Lifts;
 
@@ -16,6 +17,28 @@
         public LiftsService(IDeletableEntityRepository<Lift> liftRepository)
         {
             this.liftRepository = liftRepository;
+        }
+
+        public async Task CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address)
+        {
+            var currentNumber = (this.liftRepository.AllWithDeleted().Count() + 1).ToString();
+
+            var lift = new Lift
+            {
+                ApplicationUserId = userId,
+                RegistrationNumber = "777АС" + currentNumber,
+                LiftType = liftType,
+                NumberOfStops = numberOfStops,
+                Capacity = capacity,
+                DoorType = doorType,
+                ManufacturerId = manufacturerId,
+                ProductionNumber = productionNumber,
+                CityId = cityId,
+                Address = address,
+            };
+
+            await this.liftRepository.AddAsync(lift);
+            await this.liftRepository.SaveChangesAsync();
         }
 
         public ICollection<LiftViewModel> GetAllLifts()
@@ -173,6 +196,14 @@
                 .FirstOrDefault(x => x.RegistrationNumber == regNumber);
 
             return lift;
+        }
+
+        public async Task DeleteAsync(string id)
+        {
+            var lift = this.GetLift(id);
+
+            this.liftRepository.Delete(lift);
+            await this.liftRepository.SaveChangesAsync();
         }
     }
 }

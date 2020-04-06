@@ -1,12 +1,11 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Lifts;
@@ -16,21 +15,18 @@
         private readonly ILiftsService liftService;
         private readonly ICitiesService cityService;
         private readonly IManufacturersService manufacturerService;
-        private readonly IDeletableEntityRepository<Lift> liftRepository;
-        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public LiftsController(
             ILiftsService liftService,
             ICitiesService cityService,
             IManufacturersService manufacturerService,
-            IDeletableEntityRepository<Lift> liftRepository,
-            IDeletableEntityRepository<ApplicationUser> userRepository)
+            UserManager<ApplicationUser> userManager)
         {
             this.liftService = liftService;
             this.cityService = cityService;
             this.manufacturerService = manufacturerService;
-            this.liftRepository = liftRepository;
-            this.userRepository = userRepository;
+            this.userManager = userManager;
         }
 
         public IActionResult Create()
@@ -62,26 +58,18 @@
                 return this.View(model);
             }
 
-            var currentNumber = (this.liftRepository.AllWithDeleted().Count() + 1).ToString();
-            var user = this.User.Identity;
-            var currentUser = this.userRepository.All().FirstOrDefault(x => x.Email == user.Name);
+            var userId = this.userManager.GetUserId(this.User);
 
-            var lift = new Lift
-            {
-                ApplicationUserId = currentUser.Id,
-                RegistrationNumber = "777АС" + currentNumber,
-                LiftType = model.CreateLiftViewModel.LiftType,
-                NumberOfStops = model.CreateLiftViewModel.NumberOfStops,
-                Capacity = model.CreateLiftViewModel.Capacity,
-                DoorType = model.CreateLiftViewModel.DoorType,
-                ManufacturerId = model.CreateLiftViewModel.ManufacturerId,
-                ProductionNumber = model.CreateLiftViewModel.ProductionNumber,
-                CityId = model.CreateLiftViewModel.CityId,
-                Address = model.CreateLiftViewModel.Address,
-            };
-
-            await this.liftRepository.AddAsync(lift);
-            await this.liftRepository.SaveChangesAsync();
+            await this.liftService.CreateAsync(
+                userId,
+                model.CreateLiftViewModel.LiftType,
+                model.CreateLiftViewModel.NumberOfStops,
+                model.CreateLiftViewModel.Capacity,
+                model.CreateLiftViewModel.DoorType,
+                model.CreateLiftViewModel.ManufacturerId,
+                model.CreateLiftViewModel.ProductionNumber,
+                model.CreateLiftViewModel.CityId,
+                model.CreateLiftViewModel.Address);
 
             return this.RedirectToAction("All", "Lifts");
         }
@@ -173,10 +161,7 @@
 
         public async Task<IActionResult> Delete(string id)
         {
-            var lift = this.liftService.GetLift(id);
-
-            this.liftRepository.Delete(lift);
-            await this.liftRepository.SaveChangesAsync();
+            await this.liftService.DeleteAsync(id);
 
             return this.RedirectToAction("All");
         }
