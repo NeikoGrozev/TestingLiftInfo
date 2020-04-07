@@ -16,12 +16,12 @@
         public string SupportCompanyId { get; set; }
 
         [Required(ErrorMessage = "Полето е задължително!!!")]
-        [StringLength(1000, ErrorMessage = "{0}те трябва да бъдът дълги, най-малко {2} и максимум {1} символа.", MinimumLength = 5)]
+        //[StringLength(1000, ErrorMessage = "{0}те трябва да бъдът дълги, най-малко {2} и максимум {1} символа.", MinimumLength = 5)]
         [Display(Name = "Забележки")]
         public string Notes { get; set; }
 
         [Required(ErrorMessage = "Полето е задължително!!!")]
-        [StringLength(1000, ErrorMessage = "{0}та трябва да бъдът дълги, най-малко {2} и максимум {1} символа.", MinimumLength = 5)]
+        //[StringLength(1000, ErrorMessage = "{0}та трябва да бъдът дълги, най-малко {2} и максимум {1} символа.", MinimumLength = 5)]
         [Display(Name = "Предписания")]
         public string Prescriptions { get; set; }
 

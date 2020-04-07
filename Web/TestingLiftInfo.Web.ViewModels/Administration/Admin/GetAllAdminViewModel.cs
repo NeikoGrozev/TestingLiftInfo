@@ -7,5 +7,7 @@
     public class GetAllAdminViewModel
     {
         public ICollection<ApplicationUser> Users { get; set; }
+
+        public AddAdminViewModel Add { get; set; }
     }
 }

@@ -36,10 +36,8 @@
                 .FirstOrDefault(x => x.Name == GlobalConstants.AdministratorRoleName);
             var user = this.dbContext.Users
                 .FirstOrDefault(x => x.Email == model.Email);
-            var isAdmin = this.dbContext.UserRoles
-                .FirstOrDefault(x => x.RoleId == admin.Id && x.UserId == user.Id);
 
-            if (user != null && isAdmin == null)
+            if (admin != null && user != null)
             {
                 await this.dbContext.UserRoles
                     .AddAsync(new IdentityUserRole<string>
@@ -51,6 +49,25 @@
                 await this.dbContext.SaveChangesAsync();
 
                 return this.View("AdminCreateAdmin");
+            }
+            else if (user != null)
+            {
+                var isAdmin = this.dbContext.UserRoles
+                    .FirstOrDefault(x => x.RoleId == admin.Id && x.UserId == user.Id);
+
+                if (isAdmin == null)
+                {
+                    await this.dbContext.UserRoles
+                        .AddAsync(new IdentityUserRole<string>
+                        {
+                            UserId = user.Id,
+                            RoleId = admin.Id,
+                        });
+
+                    await this.dbContext.SaveChangesAsync();
+
+                    return this.View("AdminCreateAdmin");
+                }
             }
 
             return this.RedirectToAction("AddAdmin");

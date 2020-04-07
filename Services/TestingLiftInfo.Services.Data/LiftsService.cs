@@ -41,15 +41,24 @@
             await this.liftRepository.SaveChangesAsync();
         }
 
-        public ICollection<LiftViewModel> GetAllLifts()
+        public ICollection<LiftViewModel> GetAllLifts(int page, int numberOfPrintLifts)
         {
             var lifts = this.liftRepository
                 .All()
-                .OrderBy(x => x.RegistrationNumber)
                 .To<LiftViewModel>()
+                .OrderBy(x => x.CreatedOn)
+                .Skip((page - 1) * numberOfPrintLifts)
+                .Take(numberOfPrintLifts)
                 .ToList();
 
             return lifts;
+        }
+
+        public int GetCountAllActiveLifts()
+        {
+            var count = this.liftRepository.All().Count();
+
+            return count;
         }
 
         public Lift GetLift(string id)
@@ -79,7 +88,7 @@
                 .AllWithDeleted()
                 .Where(x => x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
-                .OrderBy(x => x.RegistrationNumber)
+                .OrderBy(x => x.CreatedOn)
                 .ToList();
 
             return lifts;
@@ -92,7 +101,7 @@
                  .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
                             x.IsDeleted == isDeleted)
                  .To<LiftViewModel>()
-                 .OrderBy(x => x.RegistrationNumber)
+                 .OrderBy(x => x.CreatedOn)
                  .ToList();
 
             return lifts;
@@ -106,7 +115,7 @@
                         x.Manufacturer.Name.Contains(manufacturer) &&
                         x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
-                .OrderBy(x => x.RegistrationNumber)
+                .OrderBy(x => x.CreatedOn)
                 .ToList();
 
             return lifts;
@@ -120,7 +129,7 @@
                        (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
                        x.IsDeleted == isDeleted)
                .To<LiftViewModel>()
-               .OrderBy(x => x.RegistrationNumber)
+               .OrderBy(x => x.CreatedOn)
                .ToList();
 
             return lifts;
@@ -133,7 +142,7 @@
                  .Where(x => x.Manufacturer.Name.Contains(manufacturer) &&
                          x.IsDeleted == isDeleted)
                  .To<LiftViewModel>()
-                 .OrderBy(x => x.RegistrationNumber)
+                 .OrderBy(x => x.CreatedOn)
                  .ToList();
 
             return lifts;
@@ -147,7 +156,7 @@
                           (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
                           x.IsDeleted == isDeleted)
                  .To<LiftViewModel>()
-                 .OrderBy(x => x.RegistrationNumber)
+                 .OrderBy(x => x.CreatedOn)
                  .ToList();
 
             return lifts;
@@ -160,7 +169,7 @@
                 .Where(x => (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
                          x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
-                .OrderBy(x => x.RegistrationNumber)
+                .OrderBy(x => x.CreatedOn)
                 .ToList();
 
             return lifts;
@@ -175,7 +184,7 @@
                          (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
                          x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
-                .OrderBy(x => x.RegistrationNumber)
+                .OrderBy(x => x.CreatedOn)
                 .ToList();
 
             return lifts;

@@ -25,6 +25,18 @@
                 }
             </div>
             <div>
+                <label style="font-size:18px">Регистриран на: </label>
+                <a style="font-size:18px"><b>@Model.CreatedOn.ToShortDateString()</b></a>
+            </div>
+            @if (Model.DeletedOn != null)
+            {
+                <div>
+                    <label style="font-size:18px">Свален от регистрация на: </label>
+                    <a style="font-size:18px"><b>@Model.DeletedOn.GetValueOrDefault().ToShortDateString()</b></a>
+                    <a style="font-size:18px"><b></b></a>
+                </div>
+            }
+            <div>
                 <label style="font-size:18px">Вид на асансьорът: </label>
                 <a style="font-size:18px"><b>@Model.LiftType</b></a>
             </div>

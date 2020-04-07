@@ -1,5 +1,7 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
 {
+    using System;
+
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Data.Models.Enumerations;
     using TestingLiftInfo.Services.Mapping;
@@ -33,5 +35,7 @@
         public string SupportCompanyName { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

@@ -9,5 +9,7 @@
         public const string AdministratorRoleName = "Administrator";
 
         public const int LimitFollowLifts = 3;
+
+        public const int NumberOfPrintLifts = 5;
     }
 }

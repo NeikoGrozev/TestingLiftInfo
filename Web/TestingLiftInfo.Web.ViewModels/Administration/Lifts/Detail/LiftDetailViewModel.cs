@@ -1,5 +1,6 @@
 ﻿namespace TestingLiftInfo.Web.ViewModels.Administration.Lifts
 {
+    using System;
     using System.Collections.Generic;
 
     using TestingLiftInfo.Data.Models;
@@ -41,6 +42,10 @@
         public string SupportCompanyName { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
 
         public ICollection<Inspect> Inspects { get; set; }
     }

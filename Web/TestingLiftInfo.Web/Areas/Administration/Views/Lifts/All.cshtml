@@ -1,4 +1,5 @@
-﻿@model TestingLiftInfo.Web.ViewModels.Administration.Lifts.BigLiftViewModel
+﻿@using TestingLiftInfo.Common
+@model TestingLiftInfo.Web.ViewModels.Administration.Lifts.BigLiftViewModel
 
 @{
     this.ViewData["Title"] = "Регистър";
@@ -36,7 +37,8 @@
         </tr>
     </thead>
     <tbody>
-        @{var count = 1;}
+        @{var page = GlobalConstants.NumberOfPrintLifts; }
+        @{var count = (Model.GetAllLiftViewModel.CurrentPage - 1) * page  + 1;}
 
         @foreach (var item in Model.GetAllLiftViewModel.Lifts)
         {
@@ -56,11 +58,11 @@
 
                 @if (item.IsDeleted == false)
                 {
-            <td class="border border-light" style="text-align:center" title="Активен">✅</td>
+                    <td class="border border-light" style="text-align:center" title="Активен">✅</td>
                 }
                 else
                 {
-            <td class="border border-light" style="text-align:center" title="Неактивен">⛔</td>
+                    <td class="border border-light" style="text-align:center" title="Неактивен">⛔</td>
                 }
 
                 <td class="border border-light">
@@ -77,4 +79,44 @@
         }
     </tbody>
 </table>
+
+<nav>
+    @{var currentPage = Model.GetAllLiftViewModel.CurrentPage; }
+    @{var counterPage = Model.GetAllLiftViewModel.PagesCount; }
+    <ul class="pagination  pagination-sm justify-content-start">
+        @if (currentPage == 1)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="All" asp-route-page="(@currentPage - 1)">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= counterPage; i++)
+        {
+            var active = i == currentPage ? "active" : string.Empty;
+            <li class="page-item @active">
+                <a class="page-link" asp-action="All" asp-route-page="@i">@i</a>
+            </li>
+        }
+
+        @if (currentPage == counterPage)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="All" asp-route-page="@(currentPage + 1)">Next</a>
+            </li>
+        }
+    </ul>
+</nav>
 

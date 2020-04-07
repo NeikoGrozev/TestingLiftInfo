@@ -5,5 +5,9 @@
     public class GetAllLiftsViewModel
     {
         public IEnumerable<LiftViewModel> Lifts { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int PagesCount { get; set; }
     }
 }

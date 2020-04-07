@@ -6,8 +6,8 @@
 
     public class AddAdminViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Email-ът е задължителен!!!")]
+        [EmailAddress(ErrorMessage = "Email-ът не е валиден!!!")]
         public string Email { get; set; }
 
         [GoogleReCaptchaValidation]

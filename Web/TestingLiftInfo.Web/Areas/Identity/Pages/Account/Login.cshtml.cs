@@ -48,7 +48,7 @@ namespace TestingLiftInfo.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required(ErrorMessage = "Email-ът е задължителен!!!")]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "Email-ът не е валиден!!!")]
             public string Email { get; set; }
 
             [Required(ErrorMessage = "Паролата е задължителена!!!")]

@@ -1,11 +1,13 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using TestingLiftInfo.Common;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Lifts;
@@ -74,13 +76,25 @@
             return this.RedirectToAction("All", "Lifts");
         }
 
-        public IActionResult All()
+        public IActionResult All(int page = 1)
         {
-            var lifts = this.liftService.GetAllLifts();
+            var numberOfPrintLifts = GlobalConstants.NumberOfPrintLifts;
+
+            var lifts = this.liftService.GetAllLifts(page, numberOfPrintLifts);
+
+            var count = this.liftService.GetCountAllActiveLifts();
+            var pagesCount = (int)Math.Ceiling((double)count / numberOfPrintLifts);
+
+            if (pagesCount == 0)
+            {
+                pagesCount = 1;
+            }
 
             var allLiftViewModel = new GetAllLiftsViewModel
             {
                 Lifts = lifts,
+                PagesCount = pagesCount,
+                CurrentPage = page,
             };
 
             var searchViewModel = new SearchLiftViewModel();

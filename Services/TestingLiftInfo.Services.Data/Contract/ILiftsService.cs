@@ -1,7 +1,5 @@
 ﻿namespace TestingLiftInfo.Services.Data
 {
-    using AutoMapper.Mappers;
-    using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -13,7 +11,9 @@
     {
         Task CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address);
 
-        ICollection<LiftViewModel> GetAllLifts();
+        ICollection<LiftViewModel> GetAllLifts(int page, int numberOfPrintLifts);
+
+        int GetCountAllActiveLifts();
 
         Lift GetLift(string id);
 
