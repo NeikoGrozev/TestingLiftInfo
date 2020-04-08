@@ -7,7 +7,7 @@
 
 <h3>@this.ViewData["Title"]</h3>
 <div class="row">
-    <a class="btn btn-success btn-sm" style="float:right; margin:10px; margin-left:20px" onclick="showForm()">✙ Добави</a>
+    <a class="btn btn-success btn-sm" style="float:right; margin:10px; margin-left:20px" onclick="showForm()">✙ Добави нов инспектор</a>
 </div>
 
 <div class="row">
@@ -17,8 +17,9 @@
                 <tr>
                     <th class=" border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
                     <th class="border border-light text-light" scope="col" style="width:200px">Име</th>
+                    <th class="border border-light text-light" scope="col" style="width:200px">E-mail</th>
                     <th class="border border-light text-light" scope="col" style="text-align:center; width:140px"><font size="3">Премахни инспектор</font></th>
-            </thead>
+</thead>
             <tbody>
                 @{var count = 1;}
                 @foreach (var item in Model.Users)
@@ -34,11 +35,12 @@
                         color = "lightblue";
                     }
 
-                    <tr class="text-dark border-light" style="background-color:@color">
-                        <td class="border border-light" style="text-align:center">@count</td>
-                        <td class="border border-light">@item.Name</td>
-                        <td class="border border-light" style="text-align:center"> <a asp-area="Administration" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger justify-content-md-center">Премахни</a></td>
-                    </tr>
+                <tr class="text-dark border-light" style="background-color:@color">
+                    <td class="border border-light" style="text-align:center">@count</td>
+                    <td class="border border-light">@item.Name</td>
+                    <td class="border border-light">@item.Email</td>
+                    <td class="border border-light" style="text-align:center"> <a asp-area="Administration" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger justify-content-md-center">Премахни</a></td>
+                </tr>
 
                     count++;
                 }
@@ -48,6 +50,7 @@
     <div class="col-md-4">
         <form asp-area="Administration" asp-controller="Admin" asp-action="AddAdmin" method="post" id="AddForm" style="display: none" onsubmit="return submitResult();">
             <div class="text-center" style="margin-top:100px">
+                <h5>Добави нов инспектор</h5>
                 <div>
                     <label for="name" style="font-size:larger">E-mail на потребителя</label>
                 </div>

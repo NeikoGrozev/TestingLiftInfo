@@ -7,7 +7,9 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-<div class="row justify-content-center">
+<div class="row">
+    <div class="col-md-2">
+    </div>
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
@@ -27,14 +29,18 @@
                 <div class="form-group">
                     <div class="checkbox">
                         <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe"/>
+                            <input asp-for="Input.RememberMe" checked />
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">ВХОД</button>
                 </div>
+
+
+
                 <input asp-for="Input.RecaptchaValue" type="hidden" id="RecaptchaValue" />
 
                 <div class="form-group">
@@ -47,6 +53,26 @@
                 </div>
             </form>
         </section>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-4">
+        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <div>
+                <h6>Може да влезете и с Ваш акаунт!</h6>
+                <hr />
+                <p>
+                    @foreach (var provider in Model.ExternalLogins)
+                    {
+                        if (provider.DisplayName == "Facebook")
+                        {
+                            <button type="submit" class="btn btn-primary" style="background-color:#3e4bbd" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-facebook-square"></i> @provider.DisplayName</button>
+                        }
+                    }
+                </p>
+            </div>
+        </form>
+
     </div>
 </div>
 

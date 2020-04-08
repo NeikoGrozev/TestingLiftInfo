@@ -95,6 +95,7 @@
                 Lifts = lifts,
                 PagesCount = pagesCount,
                 CurrentPage = page,
+                CountAllLifts = count,
             };
 
             var searchViewModel = new SearchLiftViewModel();

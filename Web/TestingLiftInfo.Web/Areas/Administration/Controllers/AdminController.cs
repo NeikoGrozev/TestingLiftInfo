@@ -25,7 +25,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAdmin(AddAdminViewModel model)
+        public async Task<IActionResult> AddAdmin(GetAllAdminViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -35,7 +35,7 @@
             var admin = this.dbContext.Roles
                 .FirstOrDefault(x => x.Name == GlobalConstants.AdministratorRoleName);
             var user = this.dbContext.Users
-                .FirstOrDefault(x => x.Email == model.Email);
+                .FirstOrDefault(x => x.Email == model.Add.Email);
 
             if (admin != null && user != null)
             {

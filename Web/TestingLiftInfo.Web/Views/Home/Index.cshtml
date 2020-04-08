@@ -4,25 +4,28 @@
     this.ViewData["Title"] = "Home Page";
 }
 
-<h1 class="display-4 mb-sm-5 text-center">Здравей, добре дошъл в @GlobalConstants.Logo!</h1>
-<div class="row">
-    <div class="col-md-7 text-center">
+<h4 class=" text-center">Здравейте и добре дошли в информационната система</h4>
+<h2 class=" text-center"><i>@GlobalConstants.Logo!</i></h2>
+<div class="row m-5">
+    <div class="col-md-6 text-center">
         <p><font size="5"><i><b>Тук може да намерите пълната информация</b></i></font></p>
         <p><font size="5"><i><b>за</b></i></font></p>
         <p><font size="5"><i><b>техническите прегледи на Вашия асансьор!</b></i></font></p>
+        <p><font size="5"><i><b>Влез в системата...</b></i></font></p>
 
         <a class="btn btn-outline-warning" style="font-size:x-large" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i> ВХОД</a>
     </div>
 
     <form asp-area="" asp-controller="Checks" asp-action="ValidInspect" method="post">
-        <div class="col=md-3 text-center" >
+        <div class="col=md-3 text-center">
             <div>
-                <p><font size="5"><i><b>Провери валидността на технически преглед!</b></i></font></p>
-                <p><font size="5"><i><b>Не се изисква регистрация!!!</b></i></font></p>
+                <p><font size="6"><i><b>Бързо търсене без регистрация!!!</b></i></font></p>
+                <p><font size="5"><i><b>Провери валидността на техническия преглед!</b></i></font></p>
+                <p><font size="5"><i><b>На всеки един регистриран асансьор!</b></i></font></p>
             </div>
             <div>
                 <input class="form-control-sm" asp-for="RegistrationNumber" type="text" id="registrationNumber" size="25" />
-                <p style="font-size:larger"><font size="3"><i>Въведете единственно пълния регистрационен номер на съоръжението!</i></font></p>
+                <p style="font-size:larger"><font size="3"><i>Въведете единственно, пълния регистрационен номер на съоръжението!</i></font></p>
 
             </div>
             <div>
