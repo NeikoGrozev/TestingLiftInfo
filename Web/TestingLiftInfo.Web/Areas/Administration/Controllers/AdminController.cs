@@ -25,7 +25,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAdmin(GetAllAdminViewModel model)
+        public async Task<IActionResult> AddAdmin([FromForm]GetAllAdminViewModel model)
         {
             if (!this.ModelState.IsValid)
             {

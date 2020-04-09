@@ -43,6 +43,8 @@
 
         public bool IsDeleted { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         public ICollection<Inspect> Inspects { get; set; }
     }
 }

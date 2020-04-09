@@ -51,7 +51,7 @@
             }
 
             lifts = lifts
-                .OrderBy(x => x.RegistrationNumber)
+                .OrderBy(x => x.CreatedOn)
                 .ToList();
 
             return lifts;
