@@ -8,7 +8,7 @@
 
     public interface ISupportCompaniesService
     {
-        Task CreateAsync(string name);
+        Task<bool> CreateAsync(string name);
 
         ICollection<SupportCompany> GetAll();
 

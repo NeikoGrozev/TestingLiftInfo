@@ -1,10 +1,10 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using TestingLiftInfo.Data.Common.Repositories;
+
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Inspects;
@@ -60,17 +60,17 @@
                 return this.RedirectToAction("Create");
             }
 
-            await this.liftsService.AddSupportCompany(model.CreateInspectViewModel.LiftId, model.CreateInspectViewModel.SupportCompanyId);
+            await this.liftsService.AddSupportCompany(model.CreateInspectInputModel.LiftId, model.CreateInspectInputModel.SupportCompanyId);
 
             var userId = this.userManager.GetUserId(this.User);
 
             await this.inspectsService.CreateAsync(
                  userId,
-                 model.CreateInspectViewModel.InspectTypeId,
-                 model.CreateInspectViewModel.LiftId,
-                 model.CreateInspectViewModel.Notes,
-                 model.CreateInspectViewModel.Prescriptions,
-                 model.CreateInspectViewModel.SupportCompanyId);
+                 model.CreateInspectInputModel.InspectTypeId,
+                 model.CreateInspectInputModel.LiftId,
+                 model.CreateInspectInputModel.Notes,
+                 model.CreateInspectInputModel.Prescriptions,
+                 model.CreateInspectInputModel.SupportCompanyId);
 
             return this.RedirectToAction("All", "Lifts");
         }

@@ -42,7 +42,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateFollowViewModel model)
+        public async Task<IActionResult> Create(CreateFollowInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

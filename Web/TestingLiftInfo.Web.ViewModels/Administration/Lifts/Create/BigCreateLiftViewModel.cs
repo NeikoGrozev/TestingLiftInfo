@@ -4,6 +4,6 @@
     {
         public LiftInputDataViewModel LiftInputDataViewModel { get; set; }
 
-        public CreateLiftViewModel CreateLiftViewModel { get; set; }
+        public CreateLiftInputModel CreateLiftInputModel { get; set; }
     }
 }

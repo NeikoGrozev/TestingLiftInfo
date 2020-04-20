@@ -22,14 +22,19 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateManufacturerViewModel model)
+        public async Task<IActionResult> Create([FromForm]CreateManufacturerInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            await this.manufacturerService.CreateAsync(model.Name);
+            var isCreate = await this.manufacturerService.CreateAsync(model.Name);
+
+            if (isCreate)
+            {
+                this.TempData["CreateManufacturer"] = $"Производителят {model.Name} е добавен към списъка!";
+            }
 
             return this.RedirectToAction("All");
         }

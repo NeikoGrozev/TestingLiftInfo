@@ -8,6 +8,6 @@
     {
         public ICollection<ApplicationUser> Users { get; set; }
 
-        public AddAdminViewModel Add { get; set; }
+        public AddAdminInputModel Add { get; set; }
     }
 }

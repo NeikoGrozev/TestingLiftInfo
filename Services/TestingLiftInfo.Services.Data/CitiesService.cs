@@ -18,11 +18,13 @@
             this.cityRepository = cityRepository;
         }
 
-        public async Task CreateAsync(string name)
+        public async Task<bool> CreateAsync(string name)
         {
             var currentCity = this.cityRepository
                .All()
                .FirstOrDefault(x => x.Name == name);
+
+            var isCreate = false;
 
             if (currentCity == null)
             {
@@ -33,7 +35,11 @@
 
                 await this.cityRepository.AddAsync(city);
                 await this.cityRepository.SaveChangesAsync();
+
+                isCreate = true;
             }
+
+            return isCreate;
         }
 
         public ICollection<City> GetAllCity()

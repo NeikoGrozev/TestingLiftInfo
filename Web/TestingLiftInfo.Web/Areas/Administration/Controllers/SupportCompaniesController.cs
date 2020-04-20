@@ -1,12 +1,9 @@
 ﻿namespace TestingLiftInfo.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
 
-    using TestingLiftInfo.Data.Common.Repositories;
-    using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
@@ -25,14 +22,19 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateSupportCompanyViewModel model)
+        public async Task<IActionResult> Create([FromForm]CreateSupportCompanyInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            await this.supportCompanyService.CreateAsync(model.Name);
+            var isCreate = await this.supportCompanyService.CreateAsync(model.Name);
+
+            if (isCreate)
+            {
+                this.TempData["CreateSupportCompany"] = $"Поддържащата фирма {model.Name} е добавена към списъка!";
+            }
 
             return this.RedirectToAction("All");
         }

@@ -17,11 +17,13 @@
             this.repository = repository;
         }
 
-        public async Task CreateAsync(string name)
+        public async Task<bool> CreateAsync(string name)
         {
             var currentCompany = this.repository
                 .All()
                 .FirstOrDefault(x => x.Name == name);
+
+            var isCreate = false;
 
             if (currentCompany == null)
             {
@@ -32,7 +34,11 @@
 
                 await this.repository.AddAsync(company);
                 await this.repository.SaveChangesAsync();
+
+                isCreate = true;
             }
+
+            return isCreate;
         }
 
         public ICollection<SupportCompany> GetAll()

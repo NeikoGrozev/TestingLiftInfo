@@ -18,11 +18,13 @@
             this.manufacturerRepository = manufacturerRepository;
         }
 
-        public async Task CreateAsync(string name)
+        public async Task<bool> CreateAsync(string name)
         {
             var currentManufacturer = this.manufacturerRepository
                 .All()
                 .FirstOrDefault(x => x.Name == name);
+
+            var isCreate = false;
 
             if (currentManufacturer == null)
             {
@@ -30,7 +32,11 @@
 
                 await this.manufacturerRepository.AddAsync(manufacturer);
                 await this.manufacturerRepository.SaveChangesAsync();
+
+                isCreate = true;
             }
+
+            return isCreate;
         }
 
         public ICollection<Manufacturer> GetAllManufacturers()

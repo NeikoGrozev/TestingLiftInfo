@@ -19,26 +19,37 @@
             this.liftRepository = liftRepository;
         }
 
-        public async Task CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address)
+        public async Task<bool> CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address)
         {
-            var currentNumber = (this.liftRepository.AllWithDeleted().Count() + 1).ToString();
+            var currentLift = this.liftRepository.All().FirstOrDefault(x => x.ProductionNumber == productionNumber);
 
-            var lift = new Lift
+            var isCreate = false;
+
+            if (currentLift == null)
             {
-                ApplicationUserId = userId,
-                RegistrationNumber = "777АС" + currentNumber,
-                LiftType = liftType,
-                NumberOfStops = numberOfStops,
-                Capacity = capacity,
-                DoorType = doorType,
-                ManufacturerId = manufacturerId,
-                ProductionNumber = productionNumber,
-                CityId = cityId,
-                Address = address,
-            };
+                var currentNumber = (this.liftRepository.AllWithDeleted().Count() + 1).ToString();
 
-            await this.liftRepository.AddAsync(lift);
-            await this.liftRepository.SaveChangesAsync();
+                var lift = new Lift
+                {
+                    ApplicationUserId = userId,
+                    RegistrationNumber = "777АС" + currentNumber,
+                    LiftType = liftType,
+                    NumberOfStops = numberOfStops,
+                    Capacity = capacity,
+                    DoorType = doorType,
+                    ManufacturerId = manufacturerId,
+                    ProductionNumber = productionNumber,
+                    CityId = cityId,
+                    Address = address,
+                };
+
+                await this.liftRepository.AddAsync(lift);
+                await this.liftRepository.SaveChangesAsync();
+
+                isCreate = true;
+            }
+
+            return isCreate;
         }
 
         public ICollection<LiftViewModel> GetAllLifts(int page, int numberOfPrintLifts)

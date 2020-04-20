@@ -41,12 +41,12 @@
                 Cities = cities,
             };
 
-            var createModel = new CreateLiftViewModel();
+            var createModel = new CreateLiftInputModel();
 
             var viewModel = new BigCreateLiftViewModel()
             {
                 LiftInputDataViewModel = inputModel,
-                CreateLiftViewModel = createModel,
+                CreateLiftInputModel = createModel,
             };
 
             return this.View(viewModel);
@@ -62,16 +62,21 @@
 
             var userId = this.userManager.GetUserId(this.User);
 
-            await this.liftService.CreateAsync(
-                userId,
-                model.CreateLiftViewModel.LiftType,
-                model.CreateLiftViewModel.NumberOfStops,
-                model.CreateLiftViewModel.Capacity,
-                model.CreateLiftViewModel.DoorType,
-                model.CreateLiftViewModel.ManufacturerId,
-                model.CreateLiftViewModel.ProductionNumber,
-                model.CreateLiftViewModel.CityId,
-                model.CreateLiftViewModel.Address);
+            var isCreate = await this.liftService.CreateAsync(
+                 userId,
+                 model.CreateLiftInputModel.LiftType,
+                 model.CreateLiftInputModel.NumberOfStops,
+                 model.CreateLiftInputModel.Capacity,
+                 model.CreateLiftInputModel.DoorType,
+                 model.CreateLiftInputModel.ManufacturerId,
+                 model.CreateLiftInputModel.ProductionNumber,
+                 model.CreateLiftInputModel.CityId,
+                 model.CreateLiftInputModel.Address);
+
+            if (isCreate)
+            {
+                this.TempData["CreateLift"] = $"Асансьорът е добавен към списъка!";
+            }
 
             return this.RedirectToAction("All", "Lifts");
         }

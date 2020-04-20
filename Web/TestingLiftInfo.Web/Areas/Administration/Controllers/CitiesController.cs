@@ -22,14 +22,19 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateCityViewModel model)
+        public async Task<IActionResult> Create([FromForm]CreateCityInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            await this.cityService.CreateAsync(model.Name);
+            var isCreate = await this.cityService.CreateAsync(model.Name);
+
+            if (isCreate)
+            {
+                this.TempData["CreateCity"] = $"Град {model.Name} е добавен към списъка!";
+            }
 
             return this.RedirectToAction("All");
         }

@@ -3,6 +3,11 @@
     this.ViewData["Title"] = "Поддържащи фирми";
 }
 
+@if (@TempData["CreateSupportCompany"] != null)
+{
+    <div id="newSupportCompany" class="alert alert-dismissible alert-success">@TempData["CreateSupportCompany"]</div>
+}
+
 <h3>@this.ViewData["Title"]</h3>
 <div>
     <a style="float:right" class="btn btn-success mb-3" asp-area="Administration" asp-controller="SupportCompanies" asp-action="Create">✙ Добави</a>
@@ -42,3 +47,9 @@
         }
     </tbody>
 </table>
+
+<script>
+    setTimeout(function () {
+        $('#newSupportCompany').hide('fade');
+    }, 5000);
+</script> 

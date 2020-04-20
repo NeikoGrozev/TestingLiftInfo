@@ -5,7 +5,7 @@
     using TestingLiftInfo.Data.Models.Enumerations;
     using TestingLiftInfo.Web.Infrastructure;
 
-    public class CreateLiftViewModel
+    public class CreateLiftInputModel
     {
         [Required]
         public LiftType LiftType { get; set; }

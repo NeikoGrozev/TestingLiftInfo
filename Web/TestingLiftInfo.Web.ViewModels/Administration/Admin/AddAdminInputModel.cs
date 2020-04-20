@@ -4,7 +4,7 @@
 
     using TestingLiftInfo.Web.Infrastructure;
 
-    public class AddAdminViewModel
+    public class AddAdminInputModel
     {
         [Required(ErrorMessage = "Email-ът е задължителен!!!")]
         [EmailAddress(ErrorMessage = "Email-ът не е валиден!!!")]

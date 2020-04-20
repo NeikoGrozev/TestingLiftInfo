@@ -8,7 +8,7 @@
 
     public interface ICitiesService
     {
-        Task CreateAsync(string name);
+        Task<bool> CreateAsync(string name);
 
         ICollection<City> GetAllCity();
 

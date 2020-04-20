@@ -4,6 +4,6 @@
     {
         public InspectInputDataViewModel InspectInputDataViewModel { get; set; }
 
-        public CreateInspectViewModel CreateInspectViewModel { get; set; }
+        public CreateInspectInputModel CreateInspectInputModel { get; set; }
     }
 }

@@ -24,7 +24,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateInspectTypeViewModel model)
+        public async Task<IActionResult> Create([FromForm]CreateInspectTypeInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

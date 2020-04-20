@@ -4,7 +4,7 @@
 
     using TestingLiftInfo.Web.Infrastructure;
 
-    public class CreateFollowViewModel
+    public class CreateFollowInputModel
     {
         [Required]
         public string RegistrationNumber { get; set; }
