@@ -39,9 +39,9 @@
             return this.RedirectToAction("All");
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var companies = this.supportCompanyService.GetAllCompanies();
+            var companies = await this.supportCompanyService.GetAllCompanies();
             var viewModel = new GetAllSupportCompaniesViewModel
             {
                 SupportCompanies = companies,

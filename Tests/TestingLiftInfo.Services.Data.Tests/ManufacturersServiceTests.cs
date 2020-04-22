@@ -18,7 +18,7 @@
         {
             this.manufacturerService = InitializeCategoriesService();
 
-            string manufacturerName = @"""Експрес лифт сервиз"" ООД";
+            string manufacturerName = @"""Изамет"" ООД";
 
             var isCreate = await this.manufacturerService.CreateAsync(manufacturerName);
 
@@ -44,8 +44,8 @@
         {
             this.manufacturerService = InitializeCategoriesService();
 
-            string manufacturerNameOne = @"""Експрес лифт сервиз"" ООД";
-            string manufacturerNameTwo = @"""Глобал лифт сервиз"" ООД";
+            string manufacturerNameOne = @"""Изамет"" ООД";
+            string manufacturerNameTwo = @"""Лифт Груп Аспект"" ООД";
 
             await this.manufacturerService.CreateAsync(manufacturerNameOne);
             await this.manufacturerService.CreateAsync(manufacturerNameTwo);
@@ -53,8 +53,8 @@
             var manufacturers = await this.manufacturerService.GetAllManufacturers();
 
             Assert.Equal(2, manufacturers.Count);
-            Assert.Equal(manufacturerNameTwo, manufacturers.FirstOrDefault().Name);
-            Assert.Equal(manufacturerNameOne, manufacturers.Skip(1).Take(1).FirstOrDefault().Name);
+            Assert.Equal(manufacturerNameOne, manufacturers.FirstOrDefault().Name);
+            Assert.Equal(manufacturerNameTwo, manufacturers.Skip(1).Take(1).FirstOrDefault().Name);
         }
 
         [Fact]
@@ -62,7 +62,7 @@
         {
             this.manufacturerService = InitializeCategoriesService();
 
-            string manufacturerName = @"""Експрес лифт сервиз"" ООД";
+            string manufacturerName = @"""Изамет"" ООД";
             var result = await this.manufacturerService.CreateAsync(manufacturerName);
 
             var manufacturers = await this.manufacturerService.GetAllManufacturersForViewModel();

@@ -3,6 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -25,7 +28,7 @@
 
             var isCreate = false;
 
-            if (currentCompany == null)
+            if (currentCompany == null && !string.IsNullOrWhiteSpace(name))
             {
                 var company = new SupportCompany
                 {
@@ -41,23 +44,23 @@
             return isCreate;
         }
 
-        public ICollection<SupportCompany> GetAll()
+        public async Task<ICollection<SupportCompany>> GetAll()
         {
-            var companies = this.repository
+            var companies = await this.repository
               .All()
               .OrderBy(x => x.Name)
-              .ToList();
+              .ToListAsync();
 
             return companies;
         }
 
-        public ICollection<SupportCompanyDetailsViewModel> GetAllCompanies()
+        public async Task<ICollection<SupportCompanyDetailsViewModel>> GetAllCompanies()
         {
-            var companies = this.repository
+            var companies = await this.repository
                 .All()
                 .OrderBy(x => x.Name)
                 .To<SupportCompanyDetailsViewModel>()
-                .ToList();
+                .ToListAsync();
 
             return companies;
         }

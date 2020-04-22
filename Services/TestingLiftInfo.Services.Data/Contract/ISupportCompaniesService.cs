@@ -10,8 +10,8 @@
     {
         Task<bool> CreateAsync(string name);
 
-        ICollection<SupportCompany> GetAll();
+        Task<ICollection<SupportCompany>> GetAll();
 
-        ICollection<SupportCompanyDetailsViewModel> GetAllCompanies();
+        Task<ICollection<SupportCompanyDetailsViewModel>> GetAllCompanies();
     }
 }
