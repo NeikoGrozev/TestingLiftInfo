@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.EntityFrameworkCore;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -26,7 +28,7 @@
 
             var isCreate = false;
 
-            if (currentCity == null)
+            if (currentCity == null && !string.IsNullOrWhiteSpace(name))
             {
                 var city = new City
                 {
@@ -42,23 +44,23 @@
             return isCreate;
         }
 
-        public ICollection<City> GetAllCity()
+        public async Task<ICollection<City>> GetAllCity()
         {
-            var cities = this.cityRepository
+            var cities = await this.cityRepository
                .All()
                .OrderBy(x => x.Name)
-               .ToList();
+               .ToListAsync();
 
             return cities;
         }
 
-        public ICollection<CityDetailViewModel> GetAllCityForViewModel()
+        public async Task<ICollection<CityDetailViewModel>> GetAllCityForViewModel()
         {
-            var cities = this.cityRepository
+            var cities = await this.cityRepository
                 .All()
                 .OrderBy(x => x.Name)
                 .To<CityDetailViewModel>()
-                .ToList();
+                .ToListAsync();
 
             return cities;
         }

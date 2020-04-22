@@ -10,8 +10,8 @@
     {
         Task<bool> CreateAsync(string name);
 
-        ICollection<City> GetAllCity();
+        Task<ICollection<City>> GetAllCity();
 
-        ICollection<CityDetailViewModel> GetAllCityForViewModel();
+        Task<ICollection<CityDetailViewModel>> GetAllCityForViewModel();
     }
 }

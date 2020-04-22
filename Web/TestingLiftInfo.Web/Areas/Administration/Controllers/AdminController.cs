@@ -8,6 +8,7 @@
 
     using TestingLiftInfo.Common;
     using TestingLiftInfo.Data;
+    using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Web.ViewModels.Administration.Admin;
 
     public class AdminController : AdministrationController
@@ -76,8 +77,8 @@
         public IActionResult All()
         {
             var adminRole = this.dbContext.Roles
-                .Where(x => x.Name == GlobalConstants.AdministratorRoleName)
-                .FirstOrDefault();
+             .Where(x => x.Name == GlobalConstants.AdministratorRoleName)
+             .FirstOrDefault();
             var user = this.dbContext.Users
                 .OrderBy(x => x.Name)
                 .Where(x => x.Roles.Any(y => y.RoleId == adminRole.Id) && x.Name != "Admin")

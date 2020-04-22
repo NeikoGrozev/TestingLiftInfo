@@ -39,9 +39,9 @@
             return this.RedirectToAction("All");
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var cities = this.cityService.GetAllCityForViewModel();
+            var cities = await this.cityService.GetAllCityForViewModel();
             var viewModel = new GetAllCityViewModel
             {
                 Cities = cities,

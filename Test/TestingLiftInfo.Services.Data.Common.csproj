@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\TestingLiftInfo.Data.Common\TestingLiftInfo.Data.Common.csproj" />
+    <ProjectReference Include="..\Data\TestingLiftInfo.Data.Models\TestingLiftInfo.Data.Models.csproj" />
+    <ProjectReference Include="..\Data\TestingLiftInfo.Data\TestingLiftInfo.Data.csproj" />
+    <ProjectReference Include="..\Services\TestingLiftInfo.Services.Data\TestingLiftInfo.Services.Data.csproj" />
+    <ProjectReference Include="..\Services\TestingLiftInfo.Services.Mapping\TestingLiftInfo.Services.Mapping.csproj" />
+    <ProjectReference Include="..\Web\TestingLiftInfo.Web.ViewModels\TestingLiftInfo.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
