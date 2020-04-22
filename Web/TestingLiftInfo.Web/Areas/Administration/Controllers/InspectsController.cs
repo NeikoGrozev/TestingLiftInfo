@@ -31,10 +31,10 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Create(string id)
+        public async Task<IActionResult> Create(string id)
         {
-            var inspectTypes = this.inspectTypesService.GetAllInspectTypes();
-            var supportCompanies = this.supportCompaniesService.GetAll();
+            var inspectTypes = await this.inspectTypesService.GetAllInspectTypes();
+            var supportCompanies = await this.supportCompaniesService.GetAll();
             var lift = this.liftsService.GetLift(id);
 
             var input = new InspectInputDataViewModel()

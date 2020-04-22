@@ -3,6 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -23,7 +26,7 @@
                 .All()
                 .FirstOrDefault(x => x.Name == name);
 
-            if (currentInspectType == null)
+            if (currentInspectType == null && !string.IsNullOrWhiteSpace(name))
             {
                 var inspectType = new InspectType
                 {
@@ -35,23 +38,23 @@
             }
         }
 
-        public ICollection<InspectType> GetAllInspectTypes()
+        public async Task<ICollection<InspectType>> GetAllInspectTypes()
         {
-            var inspectTypes = this.inspectTypeRepository
+            var inspectTypes = await this.inspectTypeRepository
                  .All()
                  .OrderBy(x => x.CreatedOn)
-                 .ToList();
+                 .ToListAsync();
 
             return inspectTypes;
         }
 
-        public ICollection<InspectTypeDetailViewModel> GetAllInspectTypesForViewModel()
+        public async Task<ICollection<InspectTypeDetailViewModel>> GetAllInspectTypesForViewModel()
         {
-            var inspectTypes = this.inspectTypeRepository
+            var inspectTypes = await this.inspectTypeRepository
                 .All()
                 .OrderBy(x => x.CreatedOn)
                 .To<InspectTypeDetailViewModel>()
-                .ToList();
+                .ToListAsync();
 
             return inspectTypes;
         }

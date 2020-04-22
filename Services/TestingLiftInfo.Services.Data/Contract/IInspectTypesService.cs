@@ -10,8 +10,8 @@
     {
         Task CreateAsync(string name);
 
-        ICollection<InspectType> GetAllInspectTypes();
+        Task<ICollection<InspectType>> GetAllInspectTypes();
 
-        ICollection<InspectTypeDetailViewModel> GetAllInspectTypesForViewModel();
+        Task<ICollection<InspectTypeDetailViewModel>> GetAllInspectTypesForViewModel();
     }
 }

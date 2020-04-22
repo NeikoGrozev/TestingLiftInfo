@@ -31,10 +31,10 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var manufacturers = this.manufacturerService.GetAllManufacturers();
-            var cities = this.cityService.GetAllCity();
+            var manufacturers = await this.manufacturerService.GetAllManufacturers();
+            var cities = await this.cityService.GetAllCity();
             var inputModel = new LiftInputDataViewModel
             {
                 Manufacturers = manufacturers,
