@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.EntityFrameworkCore;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -26,7 +28,7 @@
 
             var isCreate = false;
 
-            if (currentManufacturer == null)
+            if (currentManufacturer == null && !string.IsNullOrWhiteSpace(name))
             {
                 var manufacturer = new Manufacturer { Name = name };
 
@@ -39,23 +41,23 @@
             return isCreate;
         }
 
-        public ICollection<Manufacturer> GetAllManufacturers()
+        public async Task<ICollection<Manufacturer>> GetAllManufacturers()
         {
-            var manufacturers = this.manufacturerRepository
+            var manufacturers = await this.manufacturerRepository
                  .All()
                  .OrderBy(x => x.Name)
-                 .ToList();
+                 .ToListAsync();
 
             return manufacturers;
         }
 
-        public ICollection<ManufacturerDetailViewModel> GetAllManufacturersForViewModel()
+        public async Task<ICollection<ManufacturerDetailViewModel>> GetAllManufacturersForViewModel()
         {
-            var manufacturers = this.manufacturerRepository
+            var manufacturers = await this.manufacturerRepository
                 .All()
                 .OrderBy(x => x.Name)
                 .To<ManufacturerDetailViewModel>()
-                .ToList();
+                .ToListAsync();
 
             return manufacturers;
         }

@@ -39,9 +39,9 @@
             return this.RedirectToAction("All");
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var manufacturers = this.manufacturerService.GetAllManufacturersForViewModel();
+            var manufacturers = await this.manufacturerService.GetAllManufacturersForViewModel();
 
             var viewModel = new GetAllManufacturerViewModel
             {
