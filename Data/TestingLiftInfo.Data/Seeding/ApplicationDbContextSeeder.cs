@@ -30,6 +30,7 @@
                               new InspectTypesSeeder(),
                               new CitiesSeeder(),
                               new ManufacturersSeeder(),
+                              new SupportCompaniesSeeder(),
                           };
 
             foreach (var seeder in seeders)
