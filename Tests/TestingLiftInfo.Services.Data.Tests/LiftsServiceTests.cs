@@ -121,6 +121,68 @@
             Assert.Null(getCurrentLift);
         } // Triabva da se preraboti
 
+        [Fact]
+        public async Task AddSupportCompany__WithValidInput_ShouldBeReturnCorrectData()
+        {
+            this.liftsService = this.InitializeCategoriesService();
+
+            await CreateLiftAsync(this.liftsService);
+            var lift = this.repository.All().FirstOrDefaultAsync().Result;
+
+            string supportCompanyId = "SP1";
+            await this.liftsService.AddSupportCompany(lift.Id, supportCompanyId);
+
+            Assert.Equal(supportCompanyId, lift.SupportCompanyId);
+        }
+
+        [Fact]
+        public async Task GetLiftWithRegistrationNumber_WithValidInput_ShouldBeReturnCorrectLift()
+        {
+            this.liftsService = this.InitializeCategoriesService();
+
+            await CreateLiftAsync(this.liftsService);
+            var lift = this.repository.All().FirstOrDefaultAsync().Result;
+
+            var currentLift = this.liftsService.GetLiftWithRegistrationNumber(lift.RegistrationNumber);
+
+            Assert.Equal(lift.RegistrationNumber, currentLift.RegistrationNumber);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData(" ")]
+        [InlineData("123")]
+        public async Task GetLiftWithRegistrationNumber_WithInvalidInput_ShouldBeReturnNull(string input)
+        {
+            this.liftsService = this.InitializeCategoriesService();
+
+            await CreateLiftAsync(this.liftsService);
+            var lift = this.repository.All().FirstOrDefaultAsync().Result;
+
+            var currentLift = this.liftsService.GetLiftWithRegistrationNumber(input);
+
+            Assert.Null(currentLift);
+            Assert.True(lift != currentLift);
+        }
+
+        [Fact]
+        public async Task DeleteLift_WithValidInput_ShouldBeDeleteLift()
+        {
+            this.liftsService = this.InitializeCategoriesService();
+
+            await CreateLiftAsync(this.liftsService);
+            var lift = this.repository.All().FirstOrDefaultAsync().Result;
+
+            await this.liftsService.DeleteAsync(lift.Id);
+
+            lift = this.repository.All().FirstOrDefaultAsync().Result;
+            var deleteLift = this.repository.AllWithDeleted().FirstOrDefaultAsync().Result;
+
+            Assert.Null(lift);
+            Assert.NotNull(deleteLift);
+            Assert.Equal(DateTime.UtcNow.ToShortDateString(), deleteLift.DeletedOn.Value.ToShortDateString());
+        }
+
         private static async Task<bool> CreateLiftAsync(ILiftsService liftsService)
         {
             string userId = "U1";
