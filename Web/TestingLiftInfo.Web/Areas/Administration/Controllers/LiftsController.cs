@@ -121,7 +121,7 @@
             return this.View(viewModel);
         }
 
-        public IActionResult Search(SearchLiftViewModel searchLiftViewModel)
+        public async Task<IActionResult> Search(SearchLiftViewModel searchLiftViewModel)
         {
             var registrationNumber = searchLiftViewModel.RegistrationNumber;
             var manufaturer = searchLiftViewModel.Manufacturer;
@@ -136,31 +136,31 @@
 
             if (isRegistration && !isManufacturer && !isCityOrAddress)
             {
-                searchLifts = this.liftService.SearchRegistrationCriteria(registrationNumber, isDeleted);
+                searchLifts = await this.liftService.SearchRegistrationCriteria(registrationNumber, isDeleted);
             }
             else if (isRegistration && isManufacturer && !isCityOrAddress)
             {
-                searchLifts = this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer, isDeleted);
+                searchLifts = await this.liftService.SearchRegisAndManufCriteria(registrationNumber, manufaturer, isDeleted);
             }
             else if (isRegistration && !isManufacturer && isCityOrAddress)
             {
-                searchLifts = this.liftService.SearchRegisAndCityCriteria(registrationNumber, cityOrAddress, isDeleted);
+                searchLifts = await this.liftService.SearchRegisAndCityCriteria(registrationNumber, cityOrAddress, isDeleted);
             }
             else if (!isRegistration && isManufacturer && !isCityOrAddress)
             {
-                searchLifts = this.liftService.SearchManufacturerCriteria(manufaturer, isDeleted);
+                searchLifts = await this.liftService.SearchManufacturerCriteria(manufaturer, isDeleted);
             }
             else if (!isRegistration && isManufacturer && isCityOrAddress)
             {
-                searchLifts = this.liftService.SearchManufAndCityCriteria(manufaturer, cityOrAddress, isDeleted);
+                searchLifts = await this.liftService.SearchManufAndCityCriteria(manufaturer, cityOrAddress, isDeleted);
             }
             else if (!isRegistration && !isManufacturer && isCityOrAddress)
             {
-                searchLifts = this.liftService.SearchCityCriteria(cityOrAddress, isDeleted);
+                searchLifts = await this.liftService.SearchCityCriteria(cityOrAddress, isDeleted);
             }
             else if (!isRegistration && !isManufacturer && !isCityOrAddress && isDeleted == true)
             {
-                searchLifts = this.liftService.SearchIsDeletedCriteria(isDeleted);
+                searchLifts = await this.liftService.SearchIsDeletedCriteria(isDeleted);
             }
             else if (!isRegistration && !isManufacturer && !isCityOrAddress && isDeleted == false)
             {
@@ -168,7 +168,7 @@
             }
             else
             {
-                searchLifts = this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, cityOrAddress, isDeleted);
+                searchLifts = await this.liftService.GetAllSearchCriteria(registrationNumber, manufaturer, cityOrAddress, isDeleted);
             }
 
             var viewModel = new GetSearchLiftsViewModel()

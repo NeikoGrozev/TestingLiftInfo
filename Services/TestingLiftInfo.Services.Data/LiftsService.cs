@@ -95,102 +95,102 @@
             return lift;
         }
 
-        public ICollection<LiftViewModel> SearchIsDeletedCriteria(bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> SearchIsDeletedCriteria(bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                 .AllWithDeleted()
                 .Where(x => x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
                 .OrderBy(x => x.CreatedOn)
-                .ToList();
+                .ToListAsync();
 
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchRegistrationCriteria(string registationNumber, bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> SearchRegistrationCriteria(string registationNumber, bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                  .AllWithDeleted()
                  .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
                             x.IsDeleted == isDeleted)
                  .To<LiftViewModel>()
                  .OrderBy(x => x.CreatedOn)
-                 .ToList();
+                 .ToListAsync();
 
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchRegisAndManufCriteria(string registationNumber, string manufacturer, bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> SearchRegisAndManufCriteria(string registationNumber, string manufacturer, bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                 .AllWithDeleted()
                 .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
                         x.Manufacturer.Name.Contains(manufacturer) &&
                         x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
                 .OrderBy(x => x.CreatedOn)
-                .ToList();
+                .ToListAsync();
 
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress, bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> SearchRegisAndCityCriteria(string registationNumber, string cityOrAddress, bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                .AllWithDeleted()
                .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
                        (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
                        x.IsDeleted == isDeleted)
                .To<LiftViewModel>()
                .OrderBy(x => x.CreatedOn)
-               .ToList();
+               .ToListAsync();
 
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchManufacturerCriteria(string manufacturer, bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> SearchManufacturerCriteria(string manufacturer, bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                  .AllWithDeleted()
                  .Where(x => x.Manufacturer.Name.Contains(manufacturer) &&
                          x.IsDeleted == isDeleted)
                  .To<LiftViewModel>()
                  .OrderBy(x => x.CreatedOn)
-                 .ToList();
+                 .ToListAsync();
 
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress, bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> SearchManufAndCityCriteria(string manufacturer, string cityOrAddress, bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                  .AllWithDeleted()
                  .Where(x => x.Manufacturer.Name.Contains(manufacturer) &&
                           (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
                           x.IsDeleted == isDeleted)
                  .To<LiftViewModel>()
                  .OrderBy(x => x.CreatedOn)
-                 .ToList();
+                 .ToListAsync();
 
             return lifts;
         }
 
-        public ICollection<LiftViewModel> SearchCityCriteria(string cityOrAddress, bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> SearchCityCriteria(string cityOrAddress, bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                 .AllWithDeleted()
                 .Where(x => (x.City.Name.Contains(cityOrAddress) || x.Address.Contains(cityOrAddress)) &&
                          x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
                 .OrderBy(x => x.CreatedOn)
-                .ToList();
+                .ToListAsync();
 
             return lifts;
         }
 
-        public ICollection<LiftViewModel> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress, bool isDeleted)
+        public async Task<ICollection<LiftViewModel>> GetAllSearchCriteria(string registationNumber, string manufacturer, string cityOrAddress, bool isDeleted)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                 .AllWithDeleted()
                 .Where(x => x.RegistrationNumber.Contains(registationNumber) &&
                         x.Manufacturer.Name.Contains(manufacturer) &&
@@ -198,7 +198,7 @@
                          x.IsDeleted == isDeleted)
                 .To<LiftViewModel>()
                 .OrderBy(x => x.CreatedOn)
-                .ToList();
+                .ToListAsync();
 
             return lifts;
         }
