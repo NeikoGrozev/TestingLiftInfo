@@ -1,8 +1,9 @@
 ﻿namespace TestingLiftInfo.Services.Data
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Mapping;
@@ -17,13 +18,13 @@
             this.liftRepository = liftRepository;
         }
 
-        public DateTime? GetValidInspect(string registrationNumber)
+        public async Task<DateTime?> GetValidInspect(string registrationNumber)
         {
-            var inspects = this.liftRepository
+            var inspects = await this.liftRepository
                 .All()
                 .Where(x => x.RegistrationNumber == registrationNumber)
                 .To<CheckValidateInspectionViewModel>()
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             DateTime? currentInspect = null;
 

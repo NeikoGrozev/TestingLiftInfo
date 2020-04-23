@@ -30,6 +30,7 @@
     <ProjectReference Include="..\..\Data\TestingLiftInfo.Data\TestingLiftInfo.Data.csproj" />
     <ProjectReference Include="..\..\Services\TestingLiftInfo.Services.Data\TestingLiftInfo.Services.Data.csproj" />
     <ProjectReference Include="..\..\Test\TestingLiftInfo.Services.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Web\TestingLiftInfo.Web.ViewModels\TestingLiftInfo.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
 ﻿namespace TestingLiftInfo.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
 
     using TestingLiftInfo.Services.Data;
@@ -15,9 +17,9 @@
         }
 
         [HttpPost]
-        public IActionResult ValidInspect(InputCheckViewModel model)
+        public async Task<IActionResult> ValidInspect(InputCheckViewModel model)
         {
-            var date = this.checksService.GetValidInspect(model.RegistrationNumber);
+            var date = await this.checksService.GetValidInspect(model.RegistrationNumber);
 
             var viewModel = new CheckOutputViewModel()
             {

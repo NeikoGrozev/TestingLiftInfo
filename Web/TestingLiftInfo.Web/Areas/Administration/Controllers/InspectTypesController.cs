@@ -36,9 +36,9 @@
             return this.RedirectToAction("All");
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var inspectTypes = this.inspectTypesService
+            var inspectTypes = await this.inspectTypesService
                 .GetAllInspectTypesForViewModel();
 
             var viewModel = new GetAllInspectTypeViewModel

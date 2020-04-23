@@ -1,9 +1,10 @@
 ﻿namespace TestingLiftInfo.Services.Data
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IChecksService
     {
-        DateTime? GetValidInspect(string registrationNumber);
+        Task<DateTime?> GetValidInspect(string registrationNumber);
     }
 }
