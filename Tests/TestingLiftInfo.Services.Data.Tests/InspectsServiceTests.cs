@@ -64,39 +64,30 @@
             await context.Inspects.AddAsync(ins);
             await context.SaveChangesAsync();
 
-            var repositoryTest = new EfDeletableEntityRepository<Inspect>(context);
-            var inspectsServiceTest = new InspectsService(repositoryTest);
+            // var repositoryTest = new EfDeletableEntityRepository<Inspect>(context);
 
-            //var userId = "U1";
-            //var inspectTypeId = "I1";
-            //var liftId = "L1";
-            //var notes = "test";
-            //var prescriptions = "presTest";
-            //var supportCompanyId = "S1";
-
-
-           // await inspectsServiceTest.CreateAsync(userId, inspectTypeId, liftId, notes, prescriptions, supportCompanyId);
-
-
+            // var userId = "U1";
+            // var inspectTypeId = "I1";
+            // var liftId = "L1";
+            // var notes = "test";
+            // var prescriptions = "presTest";
+            // var supportCompanyId = "S1";
+            // await inspectsServiceTest.CreateAsync(userId, inspectTypeId, liftId, notes, prescriptions, supportCompanyId);
             var test = await context.Inspects.FirstOrDefaultAsync();
 
-            //Assert.Equal(inspectTypeId, test.InspectTypeId);
-
-
-            //var inspectViewModel = inspectsServiceTest.GetCurrentInspect(test.Id);
-
-            // var test = typeof(InspectDetailViewModel);
-
+            // Assert.Equal(inspectTypeId, test.InspectTypeId);
+            // var inspectViewModel = inspectsServiceTest.GetCurrentInspect(test.Id);
             Assert.Equal(1, context.Inspects.Count());
             Assert.NotNull(inspectsService);
             Assert.NotNull(test);
-           // Assert.Null(inspectViewModel);
+
+            // Assert.Null(inspectViewModel);
             // Assert.Equal(inspectTypeId, inspect.InspectTypeId);
-            //Assert.Equal(test, inspectViewModel);
-            //Assert.Equal(inspectTypeId, inspectViewModel.InspectTypeId);
+            // Assert.Equal(test, inspectViewModel);
+            // Assert.Equal(inspectTypeId, inspectViewModel.InspectTypeId);
             // Assert.Equal(liftId, inspectViewModel.LiftId);
-            //Assert.Equal(notes, inspectViewModel.Notes);
-            //Assert.Equal(prescriptions, inspectViewModel.Prescriptions);
+            // Assert.Equal(notes, inspectViewModel.Notes);
+            // Assert.Equal(prescriptions, inspectViewModel.Prescriptions);
             // Assert.Equal(supportCompanyId, inspectViewModel.SupportCompanyId);
         }
     }

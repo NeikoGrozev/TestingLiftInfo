@@ -11,13 +11,13 @@
     {
         Task<bool> CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address);
 
-        ICollection<LiftViewModel> GetAllLifts(int page, int numberOfPrintLifts);
+        Task<ICollection<LiftViewModel>> GetAllLifts(int page, int numberOfPrintLifts);
 
         int GetCountAllActiveLifts();
 
         Lift GetLift(string id);
 
-        LiftDetailViewModel GetCurrentLift(string id);
+        Task<LiftDetailViewModel> GetCurrentLift(string id);
 
         ICollection<LiftViewModel> SearchIsDeletedCriteria(bool isDeleted);
 

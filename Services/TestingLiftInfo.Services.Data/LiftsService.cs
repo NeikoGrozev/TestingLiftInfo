@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.EntityFrameworkCore;
+
     using TestingLiftInfo.Data.Common.Repositories;
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Data.Models.Enumerations;
@@ -52,15 +54,15 @@
             return isCreate;
         }
 
-        public ICollection<LiftViewModel> GetAllLifts(int page, int numberOfPrintLifts)
+        public async Task<ICollection<LiftViewModel>> GetAllLifts(int page, int numberOfPrintLifts)
         {
-            var lifts = this.liftRepository
+            var lifts = await this.liftRepository
                 .All()
                 .To<LiftViewModel>()
                 .OrderBy(x => x.CreatedOn)
                 .Skip((page - 1) * numberOfPrintLifts)
                 .Take(numberOfPrintLifts)
-                .ToList();
+                .ToListAsync();
 
             return lifts;
         }
@@ -82,13 +84,13 @@
             return lift;
         }
 
-        public LiftDetailViewModel GetCurrentLift(string id)
+        public async Task<LiftDetailViewModel> GetCurrentLift(string id)
         {
-            var lift = this.liftRepository
+            var lift = await this.liftRepository
                 .AllWithDeleted()
                 .Where(x => x.Id == id)
                 .To<LiftDetailViewModel>()
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return lift;
         }

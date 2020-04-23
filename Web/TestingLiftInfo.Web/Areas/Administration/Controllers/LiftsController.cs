@@ -81,11 +81,11 @@
             return this.RedirectToAction("All", "Lifts");
         }
 
-        public IActionResult All(int page = 1)
+        public async Task<IActionResult> All(int page = 1)
         {
             var numberOfPrintLifts = GlobalConstants.NumberOfPrintLifts;
 
-            var lifts = this.liftService.GetAllLifts(page, numberOfPrintLifts);
+            var lifts = await this.liftService.GetAllLifts(page, numberOfPrintLifts);
 
             var count = this.liftService.GetCountAllActiveLifts();
             var pagesCount = (int)Math.Ceiling((double)count / numberOfPrintLifts);
@@ -114,9 +114,9 @@
             return this.View(bigLiftViewModel);
         }
 
-        public IActionResult Detail(string id)
+        public async Task<IActionResult> Detail(string id)
         {
-            var viewModel = this.liftService.GetCurrentLift(id);
+            var viewModel = await this.liftService.GetCurrentLift(id);
 
             return this.View(viewModel);
         }

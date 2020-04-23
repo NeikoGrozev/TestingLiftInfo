@@ -16,20 +16,17 @@
     [Authorize]
     public class FollowsController : BaseController
     {
-        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
         private readonly IDeletableEntityRepository<Follow> followRepository;
         private readonly IFollowsService followsService;
         private readonly ILiftsService liftsService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public FollowsController(
-            IDeletableEntityRepository<ApplicationUser> userRepository,
             IDeletableEntityRepository<Follow> followRepository,
             IFollowsService followsService,
             ILiftsService liftsService,
             UserManager<ApplicationUser> userManager)
         {
-            this.userRepository = userRepository;
             this.followRepository = followRepository;
             this.followsService = followsService;
             this.liftsService = liftsService;

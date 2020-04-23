@@ -53,8 +53,8 @@
             string cityNameOne = "Бургас";
             string cityNameTwo = "Пловдив";
 
-            var result = await this.citiesService.CreateAsync(cityNameOne);
-            result = await this.citiesService.CreateAsync(cityNameTwo);
+            await this.citiesService.CreateAsync(cityNameOne);
+            await this.citiesService.CreateAsync(cityNameTwo);
 
             var cities = await this.citiesService.GetAllCity();
 
@@ -69,7 +69,7 @@
             this.citiesService = InitializeCategoriesService(this.context);
 
             string cityName = "София";
-            var result = await this.citiesService.CreateAsync(cityName);
+            await this.citiesService.CreateAsync(cityName);
 
             var cities = await this.citiesService.GetAllCityForViewModel();
 

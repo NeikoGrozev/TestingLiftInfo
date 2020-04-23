@@ -23,7 +23,7 @@
             await this.inspectTypeService.CreateAsync(inspectTypeName);
             var inspectTypes = await this.inspectTypeService.GetAllInspectTypes();
 
-            Assert.Equal(1,inspectTypes.Count);
+            Assert.Equal(1, inspectTypes.Count);
             Assert.Equal(inspectTypeName, inspectTypes.FirstOrDefault().Name);
         }
 
