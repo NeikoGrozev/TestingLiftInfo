@@ -6,4 +6,6 @@ https://testingliftinfo.azurewebsites.net/
 Test admin account:
 
 Email: admin@gmail.com
+
 Password: 123456
+
