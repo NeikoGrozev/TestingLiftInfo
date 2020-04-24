@@ -8,7 +8,8 @@
         <p><font size="6" style="color:red">Асансьорът не е регистриран в нашата система!!!</font></p>
 
     }
-    else if (Model.Date.GetValueOrDefault().AddYears(1) <= DateTime.UtcNow.AddYears(1) && Model.Date.GetValueOrDefault().AddYears(1) >= DateTime.UtcNow)
+    else if (Model.Date.GetValueOrDefault().AddYears(1) <= DateTime.UtcNow.AddYears(1) && Model.Date.GetValueOrDefault().AddYears(1) >= DateTime.UtcNow 
+        || Model.Date.GetValueOrDefault().AddDays(-1) <= DateTime.UtcNow && Model.Date.GetValueOrDefault().AddDays(-1) >= DateTime.UtcNow.AddDays(-2))
     {
         <p><font size="6"><b>Статус: </b><font style="font-family:'Comic Sans MS'"><i>Има валиден преглед!</i></font></font></p>
         <p><font size="6"><b>Валиден до: </b><font style="font-family:'Comic Sans MS'"><i>@Model.Date.GetValueOrDefault().AddYears(1).ToShortDateString()</i></font></font></p>

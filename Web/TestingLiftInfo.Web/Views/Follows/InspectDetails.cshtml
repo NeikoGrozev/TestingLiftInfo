@@ -25,11 +25,11 @@
         </div>
         <div>
             <label style="font-size:18px">Забележки: </label>
-            <a style="font-size:18px"><b>@Model.Notes</b></a>
+            <a style="font-size:18px"><b>@Html.Raw(Model.Notes)</b></a>
         </div>
         <div>
             <label style="font-size:18px">Предписания: </label>
-            <a style="font-size:18px"><b>@Model.Prescriptions</b></a>
+            <a style="font-size:18px"><b>@Html.Raw(Model.Prescriptions)</b></a>
         </div>
         <div style="margin-top: 30px">
             <a class="btn btn-success" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@Model.Lift.Id"><i class="fas fa-arrow-circle-left"></i> Назад</a>
