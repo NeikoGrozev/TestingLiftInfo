@@ -18,7 +18,7 @@
                     @if (inspect <= DateTime.UtcNow.AddYears(1) && inspect >= DateTime.UtcNow)
                     {
                         <h6 class="card-subtitle mb-2">Статус: <font style="font-family:'Comic Sans MS'"><i>Има валиден преглед!</i></font></h6>
-                        <h6 class="card-subtitle mb-2">Валиден до: <font style="font-family:'Comic Sans MS'"><i>@inspect.ToShortDateString()</i></font></h6>
+                        <h6 class="card-subtitle mb-2">Валиден до: <font style="font-family:'Comic Sans MS'"><i>@inspect.ToString("dd.MM.yyyy г.")</i></font></h6>
                     }
                     else
                     {
@@ -27,11 +27,11 @@
                         </h6>
                         @if (inspect >= DateTime.UtcNow.AddYears(-2))
                         {
-                            <h6 class="card-subtitle mb-2">Валиден до: <font style="color:red; font-family:'Comic Sans MS'"><i>@inspect.ToShortDateString()</i></font></h6>
+                            <h6 class="card-subtitle mb-2">Валиден до: <font style="color:red; font-family:'Comic Sans MS'"><i>@inspect.ToString("dd.MM.yyyy г.")</i></font></h6>
                         }
                     }
                     <p class="card-text"><b>Адрес: </b><i>гр. @item.CityName, @item.Address</i></p>
-                    <a class="card-link" style="color:#070cb5" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@item.Id" >Повече информация...</a>
+                    <a class="card-link" style="color:#070cb5" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@item.Id">Повече информация...</a>
                 </div>
             </div>
         </div>

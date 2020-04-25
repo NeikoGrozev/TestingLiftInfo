@@ -54,7 +54,7 @@
                     @foreach (var item in Model.Inspects.OrderBy(x => x.CreatedOn))
                     {
                         <li class="list-group-item text-center" style="background-color:cornsilk">
-                            <a href="/Follows/InspectDetails/@item.Id" >@item.CreatedOn.ToShortDateString()</a>
+                            <a href="/Follows/InspectDetails/@item.Id" >@item.CreatedOn.ToString("dd.MM.yyyy г.")</a>
                         </li>
                     }
                 </ul>

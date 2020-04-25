@@ -26,13 +26,13 @@
             </div>
             <div>
                 <label style="font-size:18px">Регистриран на: </label>
-                <a style="font-size:18px"><b>@Model.CreatedOn.ToShortDateString()</b></a>
+                <a style="font-size:18px"><b>@Model.CreatedOn.ToString("dd.MM.yyyy г.")</b></a>
             </div>
             @if (Model.DeletedOn != null)
             {
                 <div>
                     <label style="font-size:18px">Свален от регистрация на: </label>
-                    <a style="font-size:18px"><b>@Model.DeletedOn.GetValueOrDefault().ToShortDateString()</b></a>
+                    <a style="font-size:18px"><b>@Model.DeletedOn.GetValueOrDefault().ToString("dd.MM.yyyy г.")</b></a>
                     <a style="font-size:18px"><b></b></a>
                 </div>
             }
@@ -96,7 +96,7 @@
                     @foreach (var item in Model.Inspects.OrderBy(x => x.CreatedOn))
                     {
                         <li class="list-group-item text-center" style="background-color:cornsilk">
-                            <a href="/Administration/Inspects/Detail/@item.Id">@item.CreatedOn.ToShortDateString()</a>
+                            <a href="/Administration/Inspects/Detail/@item.Id">@item.CreatedOn.ToString("dd.MM.yyyy г.")</a>
                         </li>
                     }
                 </ul>
