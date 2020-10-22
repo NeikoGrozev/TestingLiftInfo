@@ -7,77 +7,66 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-<div class="row">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h5>Моля, въведете вашата електронна поща и парола!</h5>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control border-dark" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password">Парола</label>
-                    <input asp-for="Input.Password" class="form-control border-dark" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" checked />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">ВХОД</button>
-                </div>
-
-
-
-                <input asp-for="Input.RecaptchaValue" type="hidden" id="RecaptchaValue" />
-
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола!</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Нова регистрация</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-4">
-        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-            <div>
-                <h6>Може да влезете и с Ваш акаунт!</h6>
-                <hr />
-                <p>
-                    @foreach (var provider in Model.ExternalLogins)
-                    {
-                        if (provider.DisplayName == "Facebook")
-                        {
-                            <button type="submit" class="btn btn-primary" style="background-color:#4a7dcc; width:120px" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-facebook-square"></i> @provider.DisplayName</button>
-                        }
-                        else if (provider.DisplayName == "Google")
-                        {
-                            <button type="submit" class="btn btn-danger" style="background-color:#e16840; width:120px"  name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-google-plus"></i> @provider.DisplayName</button>
-                        }
-                    }
-                </p>
+<div class="u-grid o-login-page">
+    <form id="account" method="post">
+        <h5>Моля, въведете вашата електронна поща и парола!</h5>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="o-form-group">
+            <label class="u-text-min-width" asp-for="Input.Email">Email</label>
+            <input asp-for="Input.Email"/>
+            <span asp-validation-for="Input.Email" class="u-text-danger"></span>
+        </div>
+        <div class="o-form-group">
+            <label class="u-text-min-width" asp-for="Input.Password">Парола</label>
+            <input asp-for="Input.Password"/>
+            <span asp-validation-for="Input.Password" class="u-text-danger"></span>
+        </div>
+        <div class="o-form-group">
+            <div class="checkbox">
+                <label asp-for="Input.RememberMe">
+                    <input class="u-input-checked" asp-for="Input.RememberMe" checked />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
             </div>
-        </form>
+        </div>
 
-    </div>
+        <div class="o-form-group">
+            <button type="submit" class="btn btn-deepskyblue">ВХОД</button>
+        </div>
+
+
+
+        <input asp-for="Input.RecaptchaValue" type="hidden" id="RecaptchaValue" />
+
+        <div class="o-form-group">
+            <p>
+                <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола!</a>
+            </p>
+            <p>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Нова регистрация</a>
+            </p>
+        </div>
+    </form>
+    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <div>
+            <h6>Може да влезете и с Ваш акаунт!</h6>
+            <hr />
+            <p>
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                    if (provider.DisplayName == "Facebook")
+                    {
+                        <button type="submit" class="btn btn-primary" style="background-color:#4a7dcc; width:120px" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-facebook-square"></i> @provider.DisplayName</button>
+                    }
+                    else if (provider.DisplayName == "Google")
+                    {
+                        <button type="submit" class="btn btn-danger" style="background-color:#e16840; width:120px" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-google-plus"></i> @provider.DisplayName</button>
+                    }
+                }
+            </p>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
