@@ -3,37 +3,42 @@
 @{
     this.ViewData["Title"] = "Home Page";
 }
+<article class="o-index-page">
+    <section class="o-column-container o-index-page-title">
+        <p>Здравейте и добре дошли в информационната система</p>
+        <h1>@GlobalConstants.Logo!</h1>
+    </section>
+    <section class="o-index-page-input-container">
+        <section>
+            <div>
+                <p>Тук може да намерите пълната информация</p>
+                <p>за</p>
+                <p>техническите прегледи на Вашия асансьор!</p>
+                <p>Влез в системата...</p>
 
-<h4 class=" text-center">Здравейте и добре дошли в информационната система</h4>
-<h2 class=" text-center"><i>@GlobalConstants.Logo!</i></h2>
-<div class="row m-5">
-    <div class="col-md-6 text-center">
-        <p><font size="5"><i><b>Тук може да намерите пълната информация</b></i></font></p>
-        <p><font size="5"><i><b>за</b></i></font></p>
-        <p><font size="5"><i><b>техническите прегледи на Вашия асансьор!</b></i></font></p>
-        <p><font size="5"><i><b>Влез в системата...</b></i></font></p>
+            </div>
 
-        <a class="btn btn-outline-warning" style="font-size:x-large" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i> ВХОД</a>
+            <a class="btn btn-orange" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i> ВХОД</a>
+        </section>
+
+        <form asp-area="" asp-controller="Checks" asp-action="ValidInspect" method="post">
+            <div>
+                <p class="text-bold--800">Бързо търсене без регистрация!!!</p>
+                <p>Провери валидността на техническия преглед!</p>
+                <p>На всеки един регистриран асансьор!</p>
+            </div>
+            <div>
+                <input asp-for="RegistrationNumber" type="text" id="registrationNumber" placeholder="777AC456" />
+                <p class="text-small"><em>Въведете единственно, пълния регистрационен номер на съоръжението!</em></p>
+
+            </div>
+            <div>
+                <button type="submit" class="btn btn-green">ПРОВЕРИ 😉</button>
+            </div>
+
+        </form>
+    </section>
+    <div class="important-text">
+        <p>При забелязани нередности и инциденти, моля сигнализирайте незабавно Инспекция за държавен технически надзор!!!</p>
     </div>
-
-    <form asp-area="" asp-controller="Checks" asp-action="ValidInspect" method="post">
-        <div class="col=md-3 text-center">
-            <div>
-                <p><font size="6"><i><b>Бързо търсене без регистрация!!!</b></i></font></p>
-                <p><font size="5"><i><b>Провери валидността на техническия преглед!</b></i></font></p>
-                <p><font size="5"><i><b>На всеки един регистриран асансьор!</b></i></font></p>
-            </div>
-            <div>
-                <input class="form-control-sm" asp-for="RegistrationNumber" type="text" id="registrationNumber" size="25" />
-                <p style="font-size:larger"><font size="3"><i>Въведете единственно, пълния регистрационен номер на съоръжението!</i></font></p>
-
-            </div>
-            <div>
-                <button type="submit" class="btn btn-success" style="margin-top:5px">ПРОВЕРИ 😉</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="text-center" style="margin-top:50px">
-    <p style="color:red"><font size="5">При забелязани нередности и инциденти, моля сигнализирайте незабавно Инспекция за държавен технически надзор!!!</font></p>
-</div>
+</article>

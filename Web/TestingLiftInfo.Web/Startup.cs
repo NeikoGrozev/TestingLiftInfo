@@ -53,6 +53,9 @@
             {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()); // CSRF
             });
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
             services.AddAntiforgery(options =>
             {
                 options.HeaderName = "X-CSRF-TOKEN";

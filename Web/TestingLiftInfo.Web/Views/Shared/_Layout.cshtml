@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"]  @GlobalConstants.Logo</title>
     <script src="https://kit.fontawesome.com/da4b1de3cd.js" crossorigin="anonymous"></script>
-   
+
     <environment names="Development">
-        <link href="~/css/bootstrap-cyborg.css" rel="stylesheet" asp-append-version="true" />
+        @*<link href="~/css/bootstrap-cyborg.css" rel="stylesheet" asp-append-version="true" />*@
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
@@ -19,64 +19,54 @@
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     </environment>
 </head>
-<body style="background-color:#f0ecd1">
-    <header>
-        <nav class="navbar navbar-expand-xl navbar-light bg-primary border-bottom shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.Logo</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item" style="margin-left:20px">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i></a>
-                        </li>
-
-                        @if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName) && this.SignInManager.IsSignedIn(this.User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Follows" asp-action="Create"><font face="Comic sans MS">Последвай</font></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Follows" asp-action="All"><font face="Comic sans MS">Мойте асансьори</font></a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+<body>
+    <header class="c-header o-row-container">
+        <section class="o-row-container c-header--navigation">
+            <div>
+                <a class="c-header--brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.Logo</a>
             </div>
-        </nav>
+            <nav class="o-row-container">
+                <ul class="o-row-container c-header--ul-container">
+                    <li>
+                        <partial name="_LoginPartial" />
+                    </li>
+                </ul>
+            </nav>
+        </section>
     </header>
 
-    <div class="container">
+    <section class="o-main-container">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
+        <main role="main">
             @this.RenderBody()
         </main>
-    </div>
+    </section>
 
-    <footer class="border-top footer text-primary">
-        <div class="row" style="color:black">
-            <div class="col-md-4" style="margin-left:20px">
-                &copy; @DateTime.Now.Year - @GlobalConstants.Logo  - <a href="https://github.com/NeikoGrozev/TestingLiftInfo">Open source system</a>
-            </div>
-            <div class="col-md-4">
-                Полезни връзки:
-                <a href="https://www.damtn.government.bg/" title="Държавна агенция за метрологичен и технически надзор">ДАМТН</a>
-                <a>  |  </a>
-                <a href="https://www.damtn.government.bg/za-nas/normativna-uredba/balgarsko-zakonodatelstvo/dejstvashto/zakoni/" title="Закони">ЗАКОНИ</a>
-                <a>  |  </a>
-                <a href="https://www.damtn.government.bg/za-nas/normativna-uredba/balgarsko-zakonodatelstvo/dejstvashto/naredbi/" title="Наредби">НАРЕДБИ</a>
-                <a>  |  </a>
-                <a href="https://www.damtn.government.bg/registri/" title="Регистри">РЕГИСТРИ</a>
-
-            </div>
-            <div class="col-md-1" style="margin-left:150px">
-                <a asp-area="" asp-controller="Home" asp-action="Privacy">Политика за поверителност</a>
-            </div>
+    <footer class="o-row-container c-footer">
+        <div class="o-row-container">
+            <p class="c-footer--p">&copy; @DateTime.Now.Year - @GlobalConstants.Logo - <a class="c-footer--a" href="https://github.com/NeikoGrozev/TestingLiftInfo">Open source system</a></p>
+        </div>
+        <div class="o-row-container">
+            <ul class="c-footer--ul-container o-row-container">
+                <li class="c-footer--li">
+                    <p class="c-footer--p">Полезни връзки:</p>
+                </li>
+                <li class="c-footer--li c-footer--dividing-line">
+                    <a class="c-footer--a" href="https://www.damtn.government.bg/" title="Държавна агенция за метрологичен и технически надзор">ДАМТН</a>
+                </li>
+                <li class="c-footer--li c-footer--dividing-line">
+                    <a class="c-footer--a" href="https://www.damtn.government.bg/za-nas/normativna-uredba/balgarsko-zakonodatelstvo/dejstvashto/zakoni/" title="Закони">ЗАКОНИ</a>
+                </li>
+                <li class="c-footer--li c-footer--dividing-line">
+                    <a class="c-footer--a" href="https://www.damtn.government.bg/za-nas/normativna-uredba/balgarsko-zakonodatelstvo/dejstvashto/naredbi/" title="Наредби">НАРЕДБИ</a>
+                </li>
+                <li class="c-footer--li">
+                    <a class="c-footer--a" href="https://www.damtn.government.bg/registri/" title="Регистри">РЕГИСТРИ</a>
+                </li>
+            </ul>
+        </div>
+        <div class="o-row-container">
+            <a class="c-footer--a" asp-area="" asp-controller="Home" asp-action="Privacy">Политика за поверителност</a>
         </div>
     </footer>
 

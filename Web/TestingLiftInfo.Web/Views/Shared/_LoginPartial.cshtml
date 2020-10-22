@@ -5,57 +5,64 @@
 @inject UserManager<ApplicationUser> UserManager
 @{var user = this.UserManager.FindByEmailAsync(this.User.Identity.Name); }
 
-    <ul class="navbar-nav">
-        @if (this.SignInManager.IsSignedIn(this.User))
+<ul class="o-row-container c-header--ul-container">
+    @if (this.SignInManager.IsSignedIn(this.User))
+    {
+        <li class="c-header--li">
+            <a class="c-header--a" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i></a>
+        </li>
+
+        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
-            if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-            {
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Admin" asp-action="All" title="Admin"><font size="4" face="Comic sans MS">Admin</font></a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <font size="4" face="Comic sans MS">Асансьори</font>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Създай нов"><font size="4" face="Comic sans MS">Създай нов</font></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="All" title="Регистър"><font size="4" face="Comic sans MS">Регистър</font></a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown" style="margin-right:463px">
-                    <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <font size="4" face="Comic sans MS">Администрация</font>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="Cities" asp-action="All" title="Градове"><font size="4" face="Comic sans MS">Градове</font></a>
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturers" asp-action="All" title="Производители"><font size="4" face="Comic sans MS">Производители</font></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="InspectTypes" asp-action="All" title="Поддържащи фирми"><font size="4" face="Comic sans MS">Видове прегледи</font></a>
-                        <a class="dropdown-item" asp-area="Administration" asp-controller="SupportCompanies" asp-action="All" title="Поддържащи фирми"><font size="4" face="Comic sans MS">Поддържащи фирми</font></a>
-                    </div>
-                </li>
-            }
-
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Потребител"><font size="4" style="color:chartreuse; font-style:italic" face="Comic sans MS">Здравей, @user.Result.Name @*@(this.User.Identity.Name)*@</font></a>
+            <li class="c-header--li">
+                <a class="c-header--a" asp-area="Administration" asp-controller="Admin" asp-action="All" title="Admin">Admin</a>
             </li>
 
-            <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                    <button type="submit" class="nav-link btn btn-link text-dark"><font size="4" face="Comic sans MS">Изход</font></button>
-                </form>
+            <li class="c-header--li dropdown">
+                <a class="c-header--a" href="">Асансьори</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Създай нов">Създай нов</a>
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="Lifts" asp-action="All" title="Регистър">Регистър</a>
+                </div>
+            </li>
+
+            <li class="c-header--li dropdown">
+                <a class="c-header--a" href="">Администрация</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="Cities" asp-action="All" title="Градове">Градове</a>
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="Manufacturers" asp-action="All" title="Производители">Производители</a>
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="InspectTypes" asp-action="All" title="Поддържащи фирми">Видове прегледи</a>
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="SupportCompanies" asp-action="All" title="Поддържащи фирми">Поддържащи фирми</a>
+                </div>
             </li>
         }
-        else
+        else if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" style="font-size:larger"><font size="5" face="Comic sans MS">Регистрация</font></a>
+            <li class="c-header--li">
+                <a class="c-header--a" asp-area="" asp-controller="Follows" asp-action="Create">Последвай</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" style="font-size:larger"><font size="5" face="Comic sans MS">Вход</font></a>
+            <li class="c-header--li">
+                <a class="c-header--a" asp-area="" asp-controller="Follows" asp-action="All">Мойте асансьори</a>
             </li>
         }
-    </ul>
+
+        <li class="c-header--li">
+            <a class="c-header--hello-username" asp-area="Identity" asp-page="/Account/Manage/Index" title="Потребител">Здравей, @user.Result.Name</a>
+        </li>
+
+        <li class="c-header--li nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                <button type="submit" class="c-header--btn-logout">Изход</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="c-header--li">
+            <a class="c-header--btn" asp-area="Identity" asp-page="/Account/Register" style="font-size:larger">Регистрация</a>
+        </li>
+        <li class="c-header--li">
+            <a class="c-header--btn" asp-area="Identity" asp-page="/Account/Login" style="font-size:larger">Вход</a>
+        </li>
+    }
+</ul>
