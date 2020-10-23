@@ -1,0 +1,108 @@
+﻿.c-header {
+    width: 100%;
+    min-height: 60px;
+    background-color: deepskyblue;
+}
+
+.c-header--navigation {
+    width: 90%;
+    height: 50px;
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 6px 10px 0 rgba(41,57,75,.25);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px 0 10px;
+}
+
+    .c-header--navigation nav {
+        height: 100%;
+    }
+
+.c-header--ul-container {
+    list-style: none;
+    margin: 0;
+    height: 100%;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.c-header--li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    height: 100%;
+}
+
+.c-header--brand {
+    font-family: 'Finger Paint', cursive;
+    font-size: 26px;
+    text-decoration: none;
+    color: deepskyblue;
+}
+
+    .c-header--brand:hover {
+        text-shadow: 4px 4px 5px rgba(114,206,108,0.95);
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+.c-header--a {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    font-style: italic;
+}
+
+    .c-header--a:hover {
+        text-shadow: 0px 0px 10px rgba(55,165,170,0.95);
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+.c-header--hello-username {
+    font-size: 18px;
+    color: limegreen;
+    text-shadow: 0px 0px 1px #39A1E0;
+    text-decoration: none;
+    font-style: italic;
+    margin: 0 20px;
+}
+
+    .c-header--hello-username:hover {
+        text-shadow: 0px 0px 10px rgba(241,175,219,0.95);
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+.c-header--btn-logout {
+    background-color: deepskyblue;
+    border: none;
+    border-radius: 10px;
+    padding: 7px 15px;
+    color: white;
+    box-shadow: 3px 1px 15px 1px rgba(27,139,249,0.4);
+}
+
+    .c-header--btn-logout:hover {
+        cursor: pointer;
+        color: lawngreen
+    }
+
+.c-header--btn {
+    text-decoration: none;
+    color: deepskyblue;
+    padding: 3px 10px;
+    border: 1px solid deepskyblue;
+    border-radius: 5px;
+}
+
+    .c-header--btn:hover {
+        color: forestgreen;
+        box-shadow: 3px 3px 4px 0px rgba(48,193,60,0.89);
+        text-decoration: none !important;
+    }

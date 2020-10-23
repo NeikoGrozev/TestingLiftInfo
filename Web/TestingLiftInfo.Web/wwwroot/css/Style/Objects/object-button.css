@@ -1,0 +1,62 @@
+﻿.btn {
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 100px;
+    border: none;
+    outline: none;
+    padding: 6px 22px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 16px
+}
+
+.btn-orange {
+    background-color: rgb(240, 171, 34);
+    color: white;
+}
+
+    .btn-orange:hover {
+        color: rgb(0, 191, 255);
+    }
+
+.btn-green {
+    background-color: rgb(0, 205, 0);
+    color: black;
+}
+
+    .btn-green:hover {
+        color: rgb(248, 126, 9);
+        cursor: pointer;
+    }
+
+.btn-deepskyblue {
+    background-color: deepskyblue;
+    color: rgb(26, 25, 25);
+}
+
+    .btn-deepskyblue:hover {
+        cursor: pointer;
+        color: dimgray;
+    }
+
+.btn-facebook {
+    background-color: rgb(36, 72, 114);
+    color: white;
+}
+
+    .btn-facebook:hover {
+        cursor: pointer;
+        color: black;
+    }
+
+.btn-google {
+    background-color: rgb(206, 38, 22);
+    color: white;
+}
+
+    .btn-google:hover {
+        cursor: pointer;
+        color: black;
+    }

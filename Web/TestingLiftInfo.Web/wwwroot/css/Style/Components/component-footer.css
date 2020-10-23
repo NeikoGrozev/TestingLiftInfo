@@ -1,0 +1,43 @@
+﻿.c-footer {
+    width: 100%;
+    min-height: 50px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: slategrey;
+}
+
+.c-footer--ul-container {
+    list-style: none;
+    margin: 0;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.c-footer--li {
+    padding: 0 10px;
+}
+
+.c-footer--dividing-line:after {
+    content: "";
+    background: white;
+    width: 1px;
+    height: 12px;
+    display: inline-block;
+    position: relative;
+    right: -10px;
+}
+
+.c-footer--a {
+    text-decoration: none;
+    color: deepskyblue;
+}
+
+    .c-footer--a:hover {
+        cursor: pointer;
+        text-decoration: none;
+        text-shadow: 3px 0px 10px rgba(255,255,255,0.9);
+    }
+
+.c-footer--p {
+    margin: 0;
+}

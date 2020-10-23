@@ -1,0 +1,16 @@
+﻿.o-main-page {
+    width: 100%;
+}
+
+.o-main-page--image {
+    width: 90%;
+    height: 75%;
+    margin: 5px auto;
+}
+
+.o-main-page--title {
+    width: 100%;
+    margin: 5px auto;
+    color: deepskyblue;
+    font-family: 'Finger Paint', cursive;
+}

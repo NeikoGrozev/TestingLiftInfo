@@ -1,0 +1,17 @@
+﻿.text-bold--800 {
+    font-weight: 800 !important;
+}
+
+.text-small {
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.u-text-danger {
+    color: red;
+}
+
+.u-text-label {
+    display: block;
+    font-weight: 600;
+}

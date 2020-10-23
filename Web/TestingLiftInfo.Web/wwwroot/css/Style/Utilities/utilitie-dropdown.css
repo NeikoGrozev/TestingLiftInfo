@@ -1,0 +1,33 @@
+﻿.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    min-width: 180px;
+    z-index: 1;
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown-item {
+    display: block;
+    color: white;
+    padding: 5px 20px;
+    text-decoration: none;
+    background-color: deepskyblue;
+    font-style: italic;
+    border-radius: 10px;
+    border: 1px solid #0957a5    
+}
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown:hover .dropdown-menu .dropdown-item:hover{
+    color: grey;
+}

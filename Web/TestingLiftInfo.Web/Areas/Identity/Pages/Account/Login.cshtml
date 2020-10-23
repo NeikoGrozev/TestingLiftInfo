@@ -13,12 +13,12 @@
         <hr />
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="o-form-group">
-            <label class="u-text-min-width" asp-for="Input.Email">Email</label>
+            <label class="u-text-label" asp-for="Input.Email">Email</label>
             <input asp-for="Input.Email"/>
             <span asp-validation-for="Input.Email" class="u-text-danger"></span>
         </div>
         <div class="o-form-group">
-            <label class="u-text-min-width" asp-for="Input.Password">Парола</label>
+            <label class="u-text-label" asp-for="Input.Password">Парола</label>
             <input asp-for="Input.Password"/>
             <span asp-validation-for="Input.Password" class="u-text-danger"></span>
         </div>
@@ -48,7 +48,7 @@
             </p>
         </div>
     </form>
-    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div>
             <h6>Може да влезете и с Ваш акаунт!</h6>
             <hr />
@@ -57,11 +57,11 @@
                 {
                     if (provider.DisplayName == "Facebook")
                     {
-                        <button type="submit" class="btn btn-primary" style="background-color:#4a7dcc; width:120px" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-facebook-square"></i> @provider.DisplayName</button>
+                        <button type="submit" class="btn btn-facebook" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-facebook-square"></i> @provider.DisplayName</button>
                     }
                     else if (provider.DisplayName == "Google")
                     {
-                        <button type="submit" class="btn btn-danger" style="background-color:#e16840; width:120px" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-google-plus"></i> @provider.DisplayName</button>
+                        <button type="submit" class="btn btn-google" name="provider" value="@provider.Name" title="Влез с твоя @provider.DisplayName акаунт"><i class="fab fa-google-plus"></i> @provider.DisplayName</button>
                     }
                 }
             </p>
