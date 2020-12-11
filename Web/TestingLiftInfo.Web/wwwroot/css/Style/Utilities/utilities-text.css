@@ -1,5 +1,16 @@
-﻿.text-bold--800 {
+﻿.u-text-bold--500{
+    font-weight: 500 !important;
+}
+
+.text-bold--800 {
     font-weight: 800 !important;
+}
+
+.u-text-size--6 {
+    font-size: 6px;
+}
+.u-text-size--16 {
+    font-size: 16px;
 }
 
 .text-small {
@@ -14,4 +25,8 @@
 .u-text-label {
     display: block;
     font-weight: 600;
+}
+
+.u-text-center {
+    text-align: center;
 }

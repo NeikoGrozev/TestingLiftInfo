@@ -5,21 +5,19 @@
     this.ViewData["Title"] = "Всички инспектори";
 }
 
-<h3>@this.ViewData["Title"]</h3>
-<div class="row">
-    <a class="btn btn-success btn-sm" style="float:right; margin:10px; margin-left:20px" onclick="showForm()">✙ Добави нов инспектор</a>
-</div>
+<h2 class="u-margin-bottom--20">@this.ViewData["Title"]</h2>
+<div class="u-grid o-admin-all-page">
+    <div>
+        <a class="btn btn-add u-margin-left--290" onclick="showForm()">✙ Добави нов инспектор</a>
 
-<div class="row">
-    <div class="col-md-7">
-        <table class="table table-dark border border-light" style="font-weight:500; width:380px">
-            <thead>
+        <table class="e-table u-margin-top--20">
+            <thead class="e-table-head">
                 <tr>
-                    <th class=" border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
-                    <th class="border border-light text-light" scope="col" style="width:200px">Име</th>
-                    <th class="border border-light text-light" scope="col" style="width:200px">E-mail</th>
-                    <th class="border border-light text-light" scope="col" style="text-align:center; width:140px"><font size="3">Премахни инспектор</font></th>
-</thead>
+                    <th class="e-table-border e-table-cell-width--30  e-table-th--30  u-text-center" scope="col">№</th>
+                    <th class="e-table-border e-table-cell-width--200" scope="col">Име</th>
+                    <th class="e-table-border e-table-cell-width--200" scope="col">E-mail</th>
+                    <th class="e-table-border e-table-cell-width--140 u-text-center u-text-size--6" scope="col">Премахни инспектор</th>
+            </thead>
             <tbody>
                 @{var count = 1;}
                 @foreach (var item in Model.Users)
@@ -35,45 +33,47 @@
                         color = "lightblue";
                     }
 
-                <tr class="text-dark border-light" style="background-color:@color">
-                    <td class="border border-light" style="text-align:center">@count</td>
-                    <td class="border border-light">@item.Name</td>
-                    <td class="border border-light">@item.Email</td>
-                    <td class="border border-light" style="text-align:center"> <a asp-area="Administration" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger justify-content-md-center">Премахни</a></td>
-                </tr>
+                    <tr class="text-dark" style="background-color:@color">
+                        <td class="e-table-border e-table-td--30 u-text-center">@count</td>
+                        <td class="e-table-border u-padding-left--10"> @item.Name</td>
+                        <td class="e-table-border u-padding-left--10"> @item.Email</td>
+                        <td class="e-table-border u-text-center">
+                            <a asp-area="Administration" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="u-anchor-decoration--none u-text-danger">Премахни</a>
+                        </td>
+                    </tr>
 
                     count++;
                 }
             </tbody>
         </table>
     </div>
-    <div class="col-md-4">
-        <form asp-area="Administration" asp-controller="Admin" asp-action="AddAdmin" method="post" id="AddForm" style="display: none" onsubmit="return submitResult();">
-            <div class="text-center" style="margin-top:100px">
-                <h5>Добави нов инспектор</h5>
-                <div>
-                    <label for="name" style="font-size:larger">E-mail на потребителя</label>
-                </div>
-                <div>
-                    <input class="form-control-sm" asp-for="@Model.Add.Email" type="text" id="name" size="25" />
-                </div>
-                <input asp-for="@Model.Add.RecaptchaValue" type="hidden" id="RecaptchaValue" />
-                <div>
-                    <button type="submit" class="btn btn-success btn-sm m-2">✙ Добави</button>
-                </div>
-                <div>
-                    <span asp-validation-for="@Model.Add.Email" class="text-danger"></span>
-                </div>
+
+    <form asp-area="Administration" asp-controller="Admin" asp-action="AddAdmin" method="post" id="addForm"  class="u-hiden-element" onsubmit="return submitResult();">
+        <div class="u-text-center">
+            <h5>Добави нов инспектор</h5>
+            <div>
+                <label for="name" class="u-text-size--16">E-mail на потребителя</label>
             </div>
-        </form>
-    </div>
+            <div>
+                <input asp-for="@Model.Add.Email" type="text" id="name" />
+            </div>
+            <input asp-for="@Model.Add.RecaptchaValue" type="hidden" id="RecaptchaValue" />
+            <div>
+                <button type="submit" class="btn btn-add">✙ Добави</button>
+            </div>
+            <div>
+                <span asp-validation-for="@Model.Add.Email" class="u-text-danger"></span>
+            </div>
+        </div>
+    </form>
+
 </div>
 
 @section Scripts
 {
     <script>
         function showForm() {
-             $("#AddForm").show();
+            $("#addForm").show();
         }
     </script>
 

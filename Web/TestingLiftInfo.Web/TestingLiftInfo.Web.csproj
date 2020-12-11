@@ -80,6 +80,5 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\Style\Tools\" />
-    <Folder Include="wwwroot\css\Style\Settings\" />
   </ItemGroup>
 </Project>

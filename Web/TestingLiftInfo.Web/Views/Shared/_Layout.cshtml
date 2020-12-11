@@ -15,7 +15,7 @@
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
-        <link href="~/css/bootstrap-cyborg.css" rel="stylesheet" asp-append-version="true" />
+        @*<link href="~/css/bootstrap-cyborg.css" rel="stylesheet" asp-append-version="true" />*@
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     </environment>
 </head>
@@ -37,7 +37,7 @@
 
     <section class="o-main-container">
         <partial name="_CookieConsentPartial" />
-        <main role="main">
+        <main role="main" style="display: block">
             @this.RenderBody()
         </main>
     </section>

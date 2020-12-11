@@ -1,0 +1,4 @@
+﻿.o-admin-all-page {
+    grid-template-columns: 80% 40%;
+    grid-column-gap: 5em;
+}
