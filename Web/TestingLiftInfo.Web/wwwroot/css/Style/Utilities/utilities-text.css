@@ -18,6 +18,11 @@
     font-weight: 300;
 }
 
+.u-text-larger{
+    font-size:larger;
+    font-weight: 600;
+}
+
 .u-text-danger {
     color: red;
 }

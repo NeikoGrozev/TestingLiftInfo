@@ -1,0 +1,11 @@
+﻿@media (max-width: 900px) {
+    #supportCompanyName {
+        min-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    #supportCompanyName {
+        min-width: 200px;
+    }
+}

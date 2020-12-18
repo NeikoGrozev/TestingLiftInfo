@@ -10,7 +10,7 @@
 <div class="u-grid o-login-page">
     <form id="account" method="post">
         <h5>Моля, въведете вашата електронна поща и парола!</h5>
-        <hr />
+        <hr class="u-margin-top-and-bottom--20"/>
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="o-form-group">
             <label class="u-text-label" asp-for="Input.Email">Email</label>
@@ -51,7 +51,7 @@
     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div>
             <h6>Може да влезете и с Ваш акаунт!</h6>
-            <hr />
+            <hr class="u-margin-top-and-bottom--20" />
             <p>
                 @foreach (var provider in Model.ExternalLogins)
                 {

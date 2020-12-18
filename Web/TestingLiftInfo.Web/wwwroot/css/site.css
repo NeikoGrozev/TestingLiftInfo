@@ -18,8 +18,11 @@
 @import url("./Style/Objects/object-login-page.css");
 @import url("./Style/Objects/object-form-group.css");
 @import url("./Style/Objects/object-httpError-page.css");
-@import url("./Style/Objects/object-admin-all-page.css");
-@import url("./Style/Objects/object-cityAll.css");
+@import url("./Style/Objects/object-adminAll-page.css");
+@import url("./Style/Objects/object-cityAll-page.css");
+@import url("./Style/Objects/object-inspectTypesAll-page.css");
+@import url("./Style/Objects/object-manufacturersAll-page.css");
+@import url("./Style/Objects/object-supportCompaniesAll-page.css");
 
 @import url("./Style/Components/component-header.css");
 @import url("./Style/Components/component-footer.css");
@@ -33,3 +36,4 @@
 @import url("./Style/Utilities/utilities-hiden-element.css");
 @import url("./Style/Utilities/utilities-fload.css");
 @import url("./Style/Utilities/utilities-padding.css");
+@import url("./Style/Utilities/utilities-alert.css");

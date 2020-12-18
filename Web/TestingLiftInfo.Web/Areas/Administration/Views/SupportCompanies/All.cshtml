@@ -5,51 +5,52 @@
 
 @if (@TempData["CreateSupportCompany"] != null)
 {
-    <div id="newSupportCompany" class="alert alert-dismissible alert-success">@TempData["CreateSupportCompany"]</div>
+    <div id="newSupportCompany" class="u-alert u-alert-success">@TempData["CreateSupportCompany"]</div>
 }
 
-<h3>@this.ViewData["Title"]</h3>
-<div>
-    <a style="float:right" class="btn btn-success mb-3" asp-area="Administration" asp-controller="SupportCompanies" asp-action="Create">✙ Добави</a>
-</div>
+<h2>@this.ViewData["Title"]</h2>
+<div class="u-grid">
+    <div>
+        <a class="btn btn-add u-fload--right" asp-area="Administration" asp-controller="SupportCompanies" asp-action="Create">✙ Добави</a>
+    </div>
 
-<table class="table table-dark border border-light" style="font-weight:300">
-    <thead>
-        <tr>
-            <th class=" border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
-            <th class="border border-light text-light" scope="col" style="width:600px">Име</th>
-            <th class="border border-light text-light " scope="col" style="text-align:center; width:80px"><font size="3">Брой асансьори</font></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{var count = 1;}
-        @foreach (var item in Model.SupportCompanies)
-        {
-            string color = "honeydew";
-
-            if (count % 2 != 0)
-            {
-                color = "honeydew";
-            }
-            else
-            {
-                color = "lightblue";
-            }
-
-            <tr class="text-dark border-light" style="background-color:@color">
-                <td class="border border-light" style="text-align:center">@count</td>
-                <td class="border border-light">@item.Name</td>
-                <td class="border border-light" style="text-align:center">@item.Lifts.Count()</td>
-
+    <table class="e-table u-text-bold--500">
+        <thead>
+            <tr>
+                <th class="e-table-border e-table-cell-width--30 e-table-th--40 u-text-center" scope="col">№</th>
+                <th class="e-table-border e-table-cell-width--600" id="supportCompanyName" scope="col">Име</th>
+                <th class="e-table-border u-text-center e-table-cell-width--120 u-text-size--6" scope="col">Брой асансьори</th>
             </tr>
+        </thead>
+        <tbody>
+            @{var count = 1;}
+            @foreach (var item in Model.SupportCompanies)
+            {
+                string color = "honeydew";
 
-            count++;
-        }
-    </tbody>
-</table>
+                if (count % 2 != 0)
+                {
+                    color = "honeydew";
+                }
+                else
+                {
+                    color = "lightblue";
+                }
+
+                <tr style="background-color:@color">
+                    <td class="e-table-border e-table-td--30 u-text-center">@count</td>
+                    <td class="e-table-border u-padding-left--10" id="supportCompanyName">@item.Name</td>
+                    <td class="e-table-border u-text-center">@item.Lifts.Count()</td>
+                </tr>
+
+                count++;
+            }
+        </tbody>
+    </table>
+</div>
 
 <script>
     setTimeout(function () {
         $('#newSupportCompany').hide('fade');
     }, 5000);
-</script> 
+</script>

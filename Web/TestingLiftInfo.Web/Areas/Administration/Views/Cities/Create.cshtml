@@ -6,7 +6,7 @@
 
 <form asp-area="Administration" asp-controller="Cities" asp-action="Create" method="post" onsubmit="return submitResult();">
     <div class="u-text-center u-margin-top--100">
-        <label for="name" style="font-size:larger">Град: </label>
+        <label for="name" class="u-text-larger">Град: </label>
         <input asp-for="Name" type="text" />
         <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
         <button type="submit" class="btn btn-add">✙ Добави</button>

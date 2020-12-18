@@ -5,13 +5,13 @@
 <h3>Добави нов вид преглед</h3>
 
 <form asp-area="Administration" asp-controller="InspectTypes" asp-action="Create" method="post" onsubmit="return submitResult();">
-    <div class="text-center" style="margin-top:100px">
-        <label for="name" style="font-size:larger">Вид преглед: </label>
-        <input class="form-control-sm" asp-for="Name" type="text" id="name" size="25" />
+    <div class="u-text-center u-margin-top--100">
+        <label for="name" class="u-text-larger">Вид преглед: </label>
+        <input asp-for="Name" type="text"/>
         <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
-        <button type="submit" class="btn btn-success btn-sm">✙ Добави</button>
+        <button type="submit" class="btn btn-add">✙ Добави</button>
         <div>
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <span asp-validation-for="Name" class="u-text-danger"></span>
         </div>
     </div>
 </form>
@@ -22,7 +22,7 @@
 {
     <script>
         function submitResult() {
-            if (confirm("Сигурни ли сте, че искате да добавите този производител?") == false) {
+            if (confirm("Сигурни ли сте, че искате да добавите този вид преглед?") == false) {
                 return false;
             } else {
                 return true;
