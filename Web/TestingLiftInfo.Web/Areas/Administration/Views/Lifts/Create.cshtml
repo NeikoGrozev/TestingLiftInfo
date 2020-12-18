@@ -2,57 +2,57 @@
 @model TestingLiftInfo.Web.ViewModels.Administration.Lifts.BigCreateLiftViewModel
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
-<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
+<div class="o-jumbotron s-border u-margin-bottom--20 s-primary-shadow">
     <form asp-area="Administration" asp-controller="Lifts" asp-action="Create" method="post" onsubmit="return submitResult();">
-        <h3 style="margin-top:-60px">Добави нов асансьор</h3>
+        <h2 class="u-margin-bottom--20">Добави нов асансьор</h2>
 
         <div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.LiftType" for="type" style="font-size:18px">Вид на асансьорът: </label>
-                <select asp-for="CreateLiftInputModel.LiftType" id="type" class="form-control-sm border-dark" asp-items="Html.GetEnumSelectList<LiftType>()"></select>
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.LiftType" for="type">Вид на асансьорът: </label>
+                <select asp-for="CreateLiftInputModel.LiftType" id="type" class="s-border s-input-shadow" asp-items="Html.GetEnumSelectList<LiftType>()"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.NumberOfStops" for="numberOfStops" style="font-size:18px">Брой спирки: </label>
-                <input asp-for="CreateLiftInputModel.NumberOfStops" type="number" id="numberOfStops" class="form-control-sm" min="2" max="100" />
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.NumberOfStops" for="numberOfStops">Брой спирки: </label>
+                <input asp-for="CreateLiftInputModel.NumberOfStops" type="number" id="numberOfStops" class="s-input-shadow" min="2" max="100" />
             </div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.Capacity" for="capacity" style="font-size:18px">Товароподемност: </label>
-                <input asp-for="CreateLiftInputModel.Capacity" type="number" id="capacity" class="form-control-sm" min="100" max="5000" />
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.Capacity" for="capacity">Товароподемност: </label>
+                <input asp-for="CreateLiftInputModel.Capacity" type="number" id="capacity" class="s-input-shadow" min="100" max="5000" />
                 <a>кг.</a>
             </div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.DoorType" for="type" style="font-size:18px">Тип врати: </label>
-                <select asp-for="CreateLiftInputModel.DoorType" id="type" class="form-control-sm border-dark" asp-items="Html.GetEnumSelectList<DoorType>()"></select>
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.DoorType" for="type">Тип врати: </label>
+                <select asp-for="CreateLiftInputModel.DoorType" id="type" class="s-input-shadow" asp-items="Html.GetEnumSelectList<DoorType>()"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.ManufacturerId" for="manufacturer" style="font-size:18px">Производител: </label>
-                <select asp-for="CreateLiftInputModel.ManufacturerId" id="manufacturer" class="form-control-sm border-dark">
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.ManufacturerId" for="manufacturer">Производител: </label>
+                <select asp-for="CreateLiftInputModel.ManufacturerId" id="manufacturer" class="s-input-shadow">
                     @foreach (var item in Model.LiftInputDataViewModel.Manufacturers)
                     {
                         <option value="@item.Id">@item.Name</option>
                     }
                 </select>
             </div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.ProductionNumber" for="productionNumber" style="font-size:18px">Производствен №: </label>
-                <input asp-for="CreateLiftInputModel.ProductionNumber" type="text" id="productionNumber" class="form-control-sm" />
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.ProductionNumber" for="productionNumber">Производствен №: </label>
+                <input asp-for="CreateLiftInputModel.ProductionNumber" type="text" id="productionNumber" class="s-input-shadow" />
             </div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.CityId" for="city" style="font-size:18px">Град: </label>
-                <select asp-for="CreateLiftInputModel.CityId" id="city" class="form-control-sm border-dark">
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.CityId" for="city">Град: </label>
+                <select asp-for="CreateLiftInputModel.CityId" id="city" class="s-input-shadow">
                     @foreach (var item in Model.LiftInputDataViewModel.Cities)
                     {
                         <option value="@item.Id">@item.Name</option>
                     }
                 </select>
             </div>
-            <div class="form-group">
-                <label asp-for="CreateLiftInputModel.Address" for="address" style="font-size:18px">Адрес: </label>
-                <input asp-for="CreateLiftInputModel.Address" type="text" id="address" class="form-control-sm" />
+            <div class="u-margin-bottom--20">
+                <label asp-for="CreateLiftInputModel.Address" for="address">Адрес: </label>
+                <input asp-for="CreateLiftInputModel.Address" type="text" id="address" class="s-input-shadow" />
             </div>
         </div>
         <input  asp-for="CreateLiftInputModel.RecaptchaValue" type="hidden" id="RecaptchaValue"  />
-        <button type="submit" class="btn btn-success" style="margin-bottom:-70px">✙ Добави</button>
+        <button type="submit" class="btn btn-add">✙ Добави</button>
 
     </form>
 </div>

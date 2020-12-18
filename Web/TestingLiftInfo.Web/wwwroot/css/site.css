@@ -1,4 +1,6 @@
 ﻿/*@import url("./Style/Settings/settings-breakpoints.scss");*/
+@import url("./Style/Settings/settings-border.css");
+@import url("./Style/Settings/settings-shadow.css");
 
 @import url("./Style/Generics/generic-normalize.css");
 @import url("./Style/Generics/generic-fonts.css");
@@ -8,6 +10,9 @@
 @import url("./Style/Elements/element-beforeAndAfter.css");
 @import url("./Style/Elements/element-headings.css");
 @import url("./Style/Elements/element-table.css");
+@import url("./Style/Elements/element-input.css");
+@import url("./Style/Elements/element-select.css");
+@import url("./Style/Elements/element-label.css");
 
 @import url("./Style/Objects/object-row-container.css");
 @import url("./Style/Objects/object-column-container.css");
@@ -23,6 +28,7 @@
 @import url("./Style/Objects/object-inspectTypesAll-page.css");
 @import url("./Style/Objects/object-manufacturersAll-page.css");
 @import url("./Style/Objects/object-supportCompaniesAll-page.css");
+@import url("./Style/Objects/object-jumbotron.css");
 
 @import url("./Style/Components/component-header.css");
 @import url("./Style/Components/component-footer.css");
