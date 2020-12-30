@@ -12,62 +12,59 @@
 </script>
 
 
-<h4>Създаване на ревизионен акт</h4>
-<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
+<h3>Създаване на ревизионен акт</h3>
+<div class="o-jumbotron s-border u-margin-bottom--20 s-primary-shadow" id="inspectCreate">
     <form asp-area="Administration" asp-controller="Inspects" asp-action="Create" method="post" onsubmit="return submitResult();">
 
-        <div class="text-center" style="margin-top:-60px">
-            <p><font size="10">РЕВИЗИОННЕН АКТ</font></p>
+        <div class="u-text-center">
+            <p class="u-text-size--36">РЕВИЗИОННЕН АКТ</p>
         </div>
-        @*<div class="text-center" style="margin-top:-35px">
-                <p><font size="7">№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</font></p>
-            </div>*@
-        <div class="text-center" style="margin-top:-20px">
-            <p><font size="6"><b>Асансьор</b></font></p>
+        @*<div class="u-text-center">
+            <p>№ @(@Model.InspectInputDataViewModel.Lift.Inspects.Count() + 1)</p>
+        </div>*@
+        <div class="u-text-center u-margin-bottom--50">
+            <p class="u-text-size--30 text-bold--800">Асансьор</p>
         </div>
-        <div>
-            <div class="row">
-                <a class="col-md-2"></a>
-                <a class="col-md-5"><font size="5">Регистрационен №: <b>@Model.InspectInputDataViewModel.Lift.RegistrationNumber</b></font></a>
-                <a class="col-md-4"><font size="5">Производствен №: <b>@Model.InspectInputDataViewModel.Lift.ProductionNumber</b></font></a>
-            </div>
+        <div class="u-margin-bottom--20">
+            <a class="u-text-size--20">Регистрационен №: <span class="text-bold--800">@Model.InspectInputDataViewModel.Lift.RegistrationNumber</span></a>
+            <a class="u-text-size--20 u-margin-left--300" id="inspectCreate">Производствен №: <span class="text-bold--800">@Model.InspectInputDataViewModel.Lift.ProductionNumber</span></a>
         </div>
-        <div class="form-group" style="margin-top:20px">
-            <label for="inspectTypes" style="font-size:18px">Вид на прегледа: </label>
-            <select asp-for="CreateInspectInputModel.InspectTypeId" id="inspectTypes" class="form-control-sm border-dark">
+        <div class="u-margin-bottom--20">
+            <label for="inspectTypes">Вид на прегледа: </label>
+            <select asp-for="CreateInspectInputModel.InspectTypeId" id="inspectTypes">
                 @foreach (var item in Model.InspectInputDataViewModel.InspectTypes)
                 {
                     <option value="@item.Id">@item.Name</option>
                 }
             </select>
         </div>
-        <div class="form-group">
-            <label for="supportCompany" style="font-size:18px">Поддържаща фирма: </label>
-            <select asp-for="CreateInspectInputModel.SupportCompanyId" id="supportCompany" class="form-control-sm border-dark">
+        <div class="u-margin-bottom--20">
+            <label for="supportCompany">Поддържаща фирма: </label>
+            <select asp-for="CreateInspectInputModel.SupportCompanyId" id="supportCompany">
                 @foreach (var item in Model.InspectInputDataViewModel.SupportCompanies)
                 {
                     <option value="@item.Id">@item.Name</option>
                 }
             </select>
         </div>
-        <div class="form-group">
-            <label for="notes" style="font-size:18px">Забележки: </label>
-            <textarea asp-for="CreateInspectInputModel.Notes" type="text" id="notes" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="CreateInspectInputModel.Notes" class="text-danger"></span>
-            <p class="text-danger" style="margin-left:20px"><font size="3">*Полето със забележки, задължително трябва да бъде попълнено!!!</font></p>
+        <div class="u-margin-bottom--20">
+            <label for="notes">Забележки: </label>
+            <textarea asp-for="CreateInspectInputModel.Notes" type="text" id="notes"></textarea>
+            <span asp-validation-for="CreateInspectInputModel.Notes" class="u-text-danger"></span>
+            <p class="u-text-danger u-text-size--6 u-margin-left--20">*Полето със забележки, задължително трябва да бъде попълнено!!!</p>
         </div>
-        <div class="form-group">
-            <label for="prescriptions" style="font-size:18px">Предписания: </label>
-            <textarea asp-for="CreateInspectInputModel.Prescriptions" type="text" id="prescriptions" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="CreateInspectInputModel.Prescriptions" class="text-danger"></span>
-            <p class="text-danger" style="margin-left:20px"><font size="3">*Полето със предписания, задължително трябва да бъде попълнено!!!</font></p>
+        <div class="u-margin-bottom--20">
+            <label for="prescriptions">Предписания: </label>
+            <textarea asp-for="CreateInspectInputModel.Prescriptions" type="text" id="prescriptions"></textarea>
+            <span asp-validation-for="CreateInspectInputModel.Prescriptions" class="u-text-danger"></span>
+            <p class="u-text-danger u-text-size--6 u-margin-left--20">*Полето със предписания, задължително трябва да бъде попълнено!!!</p>
         </div>
-        <div class="form-group">
+        <div>
             <input hidden asp-for="CreateInspectInputModel.LiftId" value="@Model.InspectInputDataViewModel.Lift.Id" />
         </div>
         <input asp-for="CreateInspectInputModel.RecaptchaValue" type="hidden" id="RecaptchaValue" />
 
-        <button type="submit" class="btn btn-success" style="margin-bottom:-70px">✙ Добави</button>
+        <button type="submit" class="btn btn-add">✙ Добави</button>
     </form>
 </div>
 

@@ -4,35 +4,35 @@
     this.ViewData["Title"] = "Информация за ревизионния акт";
 }
 
-<h3>@this.ViewData["Title"]</h3>
+<h2>@this.ViewData["Title"]</h2>
 
-<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
+<div class="o-jumbotron s-border u-margin-bottom--20 s-primary-shadow">
     <div>
-        <div style="margin-top:-60px">
-            <h5>Асансьор с рег. № @Model.Lift.RegistrationNumber</h5>
+        <div>
+            <h3 class="u-margin-bottom--20">Асансьор с рег. № @Model.Lift.RegistrationNumber</h3>
         </div>
         <div>
-            <label style="font-size:18px">Инспектор: </label>
-            <a style="font-size:18px"><b>@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</b></a>
+            <label class="u-text-size--18 ">Инспектор: </label>
+            <a class="u-text-size--18 text-bold--700 u-text-italic">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
         </div>
         <div>
-            <label style="font-size:18px">Прегледа е извършен на дата: </label>
-            <a style="font-size:18px"><b>@Model.CreatedOn.ToString("dd.MM.yyyy г.")</b></a>
+            <label class="u-text-size--18">Прегледа е извършен на дата: </label>
+            <a class="u-text-size--18 text-bold--700 u-text-italic">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
         </div>
         <div>
-            <label style="font-size:18px">Вид на прегледа: </label>
-            <a style="font-size:18px"><b>@Model.InspectType.Name</b></a>
+            <label class="u-text-size--18">Вид на прегледа: </label>
+            <a class="u-text-size--18 text-bold--700 u-text-italic">@Model.InspectType.Name</a>
         </div>
         <div>
-            <label style="font-size:18px">Забележки: </label>
-            <a style="font-size:18px"><b>@Html.Raw(Model.Notes)</b></a>
+            <label class="u-text-size--18">Забележки: </label>
+            <a class="u-text-size--18 text-bold--700 u-text-italic">@Html.Raw(Model.Notes)</a>
         </div>
         <div>
-            <label style="font-size:18px">Предписания: </label>
-            <a style="font-size:18px"><b>@Html.Raw(Model.Prescriptions)</b></a>
+            <label class="u-text-size--18">Предписания: </label>
+            <a class="u-text-size--18 text-bold--700 u-text-italic">@Html.Raw(Model.Prescriptions)</a>
         </div>
-        <div style="margin-top: 30px">
-            <a class="btn btn-success" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@Model.Lift.Id"><i class="fas fa-arrow-circle-left"></i> Назад</a>
+        <div class="u-margin-top--30">
+            <a class="btn btn-orange" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@Model.Lift.Id"><i class="fas fa-arrow-circle-left"></i> Назад</a>
         </div>
     </div>
 </div>

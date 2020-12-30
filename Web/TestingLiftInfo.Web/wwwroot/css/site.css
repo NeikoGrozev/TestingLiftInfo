@@ -29,6 +29,11 @@
 @import url("./Style/Objects/object-manufacturersAll-page.css");
 @import url("./Style/Objects/object-supportCompaniesAll-page.css");
 @import url("./Style/Objects/object-jumbotron.css");
+@import url("./Style/Objects/object-inspectCard.css");
+@import url("./Style/Objects/object-liftDetail-page.css");
+@import url("./Style/Objects/object-inspectCreate-page.css");
+@import url("./Style/Objects/object-liftAll-and-liftSearch-page.css");
+@import url("./Style/Objects/object-card.css");
 
 @import url("./Style/Components/component-header.css");
 @import url("./Style/Components/component-footer.css");
@@ -43,3 +48,5 @@
 @import url("./Style/Utilities/utilities-fload.css");
 @import url("./Style/Utilities/utilities-padding.css");
 @import url("./Style/Utilities/utilities-alert.css");
+@import url("./Style/Utilities/utilities-pagination.css");
+@import url("./Style/Utilities/utilities-flex.css");

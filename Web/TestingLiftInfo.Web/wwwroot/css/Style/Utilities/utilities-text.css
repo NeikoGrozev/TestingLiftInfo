@@ -1,5 +1,9 @@
-﻿.u-text-bold--500{
+﻿.u-text-bold--500 {
     font-weight: 500 !important;
+}
+
+.text-bold--700 {
+    font-weight: 700 !important;
 }
 
 .text-bold--800 {
@@ -9,8 +13,29 @@
 .u-text-size--6 {
     font-size: 6px;
 }
+
+.u-text-size--12 {
+    font-size: 12px;
+}
+
 .u-text-size--16 {
     font-size: 16px;
+}
+
+.u-text-size--18 {
+    font-size: 18px;
+}
+
+.u-text-size--20 {
+    font-size: 20px;
+}
+
+.u-text-size--30 {
+    font-size: 30px;
+}
+
+.u-text-size--36 {
+    font-size: 36px;
 }
 
 .text-small {
@@ -18,8 +43,8 @@
     font-weight: 300;
 }
 
-.u-text-larger{
-    font-size:larger;
+.u-text-larger {
+    font-size: larger;
     font-weight: 600;
 }
 
@@ -34,4 +59,16 @@
 
 .u-text-center {
     text-align: center;
+}
+
+.u-text-underline {
+    text-decoration: underline;
+}
+
+.u-text-italic {
+    font-style: italic;
+}
+
+.u-text-family-comicSans {
+    font-family: 'Comic Sans MS';
 }

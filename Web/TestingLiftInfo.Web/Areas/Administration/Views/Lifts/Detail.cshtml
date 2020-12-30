@@ -6,101 +6,99 @@
 
 <h3>@this.ViewData["Title"]</h3>
 
-<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
-    <div class="row">
-        <div class="col-md-5">
-            <div style="margin-top:-60px">
-                <h5>Асансьор с рег. № @Model.RegistrationNumber</h5>
-            </div>
-            <div>
-                <label style="font-size:18px">Статус: </label>
+<div class="o-jumbotron s-border u-margin-bottom--20 s-primary-shadow">
+    <h3 class="u-margin-bottom--20">Асансьор с рег. № @Model.RegistrationNumber</h3>
+    <div class="u-grid u-grid--col u-grid-gap--5" id="detailBlock">
+        <div>
+            <div class="u-margin-bottom--10">
+                <label>Статус: </label>
                 @if (Model.IsDeleted == false)
                 {
-                    <a style="font-size:18px"><b>Активен</b></a>
+                    <a class="u-text-size--18"><b>Активен</b></a>
                 }
                 else
                 {
-                    <a style="font-size:18px"><b>Неактивен</b></a>
+                    <a class="u-text-size--18"><b>Неактивен</b></a>
 
                 }
             </div>
-            <div>
-                <label style="font-size:18px">Регистриран на: </label>
-                <a style="font-size:18px"><b>@Model.CreatedOn.ToString("dd.MM.yyyy г.")</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Регистриран на: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
             </div>
             @if (Model.DeletedOn != null)
             {
-                <div>
-                    <label style="font-size:18px">Свален от регистрация на: </label>
-                    <a style="font-size:18px"><b>@Model.DeletedOn.GetValueOrDefault().ToString("dd.MM.yyyy г.")</b></a>
-                    <a style="font-size:18px"><b></b></a>
+                <div class="u-margin-bottom--10">
+                    <label>Свален от регистрация на: </label>
+                    <a class="u-text-size--18 text-bold--800">@Model.DeletedOn.GetValueOrDefault().ToString("dd.MM.yyyy г.")</a>
                 </div>
             }
-            <div>
-                <label style="font-size:18px">Вид на асансьорът: </label>
-                <a style="font-size:18px"><b>@Model.LiftType</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Вид на асансьорът: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.LiftType</a>
             </div>
-            <div>
-                <label style="font-size:18px">Брой спирки: </label>
-                <a style="font-size:18px"><b>@Model.NumberOfStops</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Брой спирки: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.NumberOfStops</a>
             </div>
-            <div>
-                <label style="font-size:18px">Товароподемност: </label>
-                <a style="font-size:18px"><b>@Model.Capacity кг.</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Товароподемност: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.Capacity кг.</a>
             </div>
-            <div>
-                <label style="font-size:18px">Тип врати: </label>
-                <a style="font-size:18px"><b>@Model.DoorType</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Тип врати: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.DoorType</a>
             </div>
-            <div>
-                <label style="font-size:18px">Регистриран от: </label>
-                <a style="font-size:18px"><b>@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Регистриран от: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
             </div>
-            <div>
-                <label style="font-size:18px">Производител: </label>
-                <a style="font-size:18px"><b>@Model.ManufacturerName</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Производител: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.ManufacturerName</a>
             </div>
-            <div>
-                <label style="font-size:18px">Производствен №: </label>
-                <a style="font-size:18px"><b>@Model.ProductionNumber</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Производствен №: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.ProductionNumber</a>
             </div>
-            <div>
-                <label style="font-size:18px">Адрес: </label>
-                <a style="font-size:18px"><b>гр. @Model.CityName, @Model.Address</b></a>
+            <div class="u-margin-bottom--10">
+                <label>Адрес: </label>
+                <a class="u-text-size--18 text-bold--800">гр. @Model.CityName, @Model.Address</a>
             </div>
-            <div>
-                <label style="font-size:18px">Поддържаща фирма: </label>
-                <a style="font-size:18px"><b>@Model.SupportCompanyName</b></a>
+            <div class="u-margin-bottom--20">
+                <label>Поддържаща фирма: </label>
+                <a class="u-text-size--18 text-bold--800">@Model.SupportCompanyName</a>
             </div>
 
-            <div>
-                <a class="btn btn-success" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
+            <div class="u-margin-bottom--20">
+                <a class="btn btn-deepskyblue" id="detailBlock" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
                 @if (@Model.IsDeleted == false)
                 {
-                    <a class="btn btn-danger" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
+                    <a class="btn btn-add"  id="detailBlock" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
                 }
             </div>
             @if (@Model.IsDeleted == false)
             {
-                <div>
-                    <a class="btn btn-dark" style="margin-top:10px" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id"><i class="far fa-trash-alt"></i> Свали от регистрация</a>
+                <div class="u-margin-bottom--20">
+                    <a class="btn btn-red" id="detailBlock" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id"><i class="far fa-trash-alt"></i> Свали от регистрация</a>
                 </div>
             }
         </div>
-        <div class="col-md-1" style="margin-top:-40px">
-            <div class="card" style="width: 12rem; background-color:#d5f5b9">
-                <div class="card-header text-center">
+        <div>
+            <div class="o-inspect-card">
+                <div class="o-inspect-card--header u-text-center">
                     Ревизионни актове
                 </div>
-                <ul class="list-group list-group-flush">
+                <ul class="o-inspect-card--body">
                     @foreach (var item in Model.Inspects.OrderBy(x => x.CreatedOn))
                     {
-                        <li class="list-group-item text-center" style="background-color:cornsilk">
+                        <li class="u-text-center">
                             <a href="/Administration/Inspects/Detail/@item.Id">@item.CreatedOn.ToString("dd.MM.yyyy г.")</a>
                         </li>
                     }
                 </ul>
             </div>
+                <p class="u-text-size--16 u-text-bold--500 u-text-danger">Общ брой: @Model.Inspects.Count</p> 
         </div>
     </div>
 </div>

@@ -1,0 +1,33 @@
+﻿#inspectCreate{
+    width: 1000px;
+}
+
+@media (max-width: 1200px) {
+    #inspectCreate {
+        width: 800px;
+        margin-left: 0;
+        display: block;
+    }
+}
+
+@media (max-width: 1000px) {
+    #inspectCreate {
+        width: 600px;
+    }
+}
+
+@media (max-width: 750px) {
+    #inspectCreate {
+        width: 450px;
+    }
+}
+
+@media (max-width: 520px) {
+    #inspectCreate {
+        width: 350px;
+    }
+
+        #inspectCreate #inspectTypes{
+            width: 250px;
+        }
+}

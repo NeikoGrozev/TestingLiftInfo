@@ -1,4 +1,4 @@
-﻿.btn {
+﻿.btn, button {
     box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
     border-radius: 100px;
     border: none;
@@ -49,6 +49,16 @@
     .btn-deepskyblue:hover {
         cursor: pointer;
         color: dimgray;
+    }
+
+.btn-red {
+    background-color: red;
+    color: white;
+}
+
+    .btn-red:hover {
+        cursor: pointer;
+        color: orange;
     }
 
 .btn-facebook {

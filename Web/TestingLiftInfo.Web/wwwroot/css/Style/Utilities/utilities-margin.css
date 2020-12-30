@@ -1,23 +1,59 @@
-﻿.u-margin-top-and-bottom--20 {
+﻿.u-margin-top-and-bottom--10 {
+    margin: 10px 0;
+}
+
+.u-margin-top-and-bottom--20 {
     margin: 20px 0;
+}
+
+.u-margin-top-and-bottom--40-20 {
+    margin: 40px 0 20px 0;
+}
+
+.u-margin-top--10 {
+    margin-top: 10px;
 }
 
 .u-margin-top--20 {
     margin-top: 20px;
 }
 
+.u-margin-top--30 {
+    margin-top: 30px;
+}
+
+.u-margin-top--50 {
+    margin-top: 50px;
+}
+
 .u-margin-top--100 {
     margin-top: 100px;
+}
+
+.u-margin-bottom--10 {
+    margin-bottom: 10px;
 }
 
 .u-margin-bottom--20 {
     margin-bottom: 20px;
 }
 
+.u-margin-bottom--50 {
+    margin-bottom: 50px;
+}
+
 .u-margin-bottom--100 {
     margin-bottom: 100px;
 }
 
+.u-margin-left--20 {
+    margin-left: 20px;
+}
+
 .u-margin-left--290 {
     margin-left: 290px;
+}
+
+.u-margin-left--300 {
+    margin-left: 300px;
 }

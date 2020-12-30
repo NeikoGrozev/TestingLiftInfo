@@ -2,27 +2,23 @@
 @model TestingLiftInfo.Web.ViewModels.Follows.CreateFollowInputModel
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
-<script data-ad-client="ca-pub-1109472414906000" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<h2>Последвай нов асансьор</h2>
 
-<h3>Последвай нов асансьор</h3>
-
-<div class="alert alert-primary" style="margin-top:100px">
+<div class="u-margin-top--100">
     <form asp-area="" asp-controller="Follows" asp-action="Create" method="post" onsubmit="return submitResult();">
-        <div class="text-center">
-            <label for="name" style="font-size:larger">Регистрационен №: </label>
-            <input class="form-control-sm" asp-for="RegistrationNumber" type="text" id="name" size="25" />
+        <div class="u-text-center">
+            <label for="name" class="u-text-larger">Регистрационен №: </label>
+            <input asp-for="RegistrationNumber" type="text" id="name" size="25" />
             <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
 
-            <button type="submit" class="btn btn-success btn-sm">✙ Последвай</button>
+            <button type="submit" class="btn btn-green">✙ Последвай</button>
         </div>
     </form>
 </div>
 
-<div class="text-center" style="margin-top:50px; color:crimson">
-    <a><font size="6"><i>Забележка: Може да следите до @GlobalConstants.LimitFollowLifts асансьора!</i></font></a>
+<div class="u-text-center u-margin-top--50 u-text-danger" >
+    <a class="u-text-size--20 u-text-italic">Забележка: Може да следите до @GlobalConstants.LimitFollowLifts асансьора!</a>
 </div>
-
-<script data-ad-client="ca-pub-1109472414906000" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 @section Scripts
 {

@@ -7,38 +7,37 @@
 
 @if (@TempData["CreateLift"] != null)
 {
-    <div id="newLift" class="alert alert-dismissible alert-success">@TempData["CreateLift"]</div>
+    <div id="newLift" class="u-alert u-alert-success">@TempData["CreateLift"]</div>
 }
 
-<h3>@this.ViewData["Title"]</h3>
+<h2>@this.ViewData["Title"]</h2>
 
-<div class="row">
-    <form asp-area="Administration" asp-controller="Lifts" asp-action="Search" class="col-md-11" method="post">
-        <input asp-for="SearchLiftViewModel.RegistrationNumber" type="text" class="form-control-sm text-center" placeholder="Търси по рег. №" size="25" />
-        <input asp-for="SearchLiftViewModel.Manufacturer" type="text" class="form-control-sm text-center" placeholder="Търси по произодител" size="25" />
-        <input asp-for="SearchLiftViewModel.City" type="text" class="form-control-sm text-center" placeholder="Търси по град или адрес" size="25" />
-        <select asp-for="SearchLiftViewModel.IsDeleted" class="form-control-sm text-center">
+<div class="u-grid u-grid--col">
+    <form asp-area="Administration" asp-controller="Lifts" asp-action="Search">
+        <input asp-for="SearchLiftViewModel.RegistrationNumber" type="text" class="s-input-shadow u-text-center u-text-italic" placeholder="Търси по рег. №" />
+        <input asp-for="SearchLiftViewModel.Manufacturer" type="text" class="s-input-shadow u-text-center u-text-italic" placeholder="Търси по произодител" size="25" />
+        <input asp-for="SearchLiftViewModel.City" type="text" class="s-input-shadow u-text-center u-text-italic" placeholder="Търси по град или адрес" size="25" />
+        <select asp-for="SearchLiftViewModel.IsDeleted" class="s-border s-input-shadow">
             <option value="false">✅ Активни</option>
             <option value="true">⛔ Неактивни</option>
         </select>
-        <button type="submit" class="btn btn-outline-primary btn-sm" style="margin-bottom:2px; height:28px"><b><i class="fas fa-search"></i> Търси</b></button>
+        <button type="submit" class="btn btn-deepskyblue"><i class="fas fa-search"></i> Търси</button>
     </form>
     <div>
-        <a style="float:right" class=" btn btn-success btn-sm" asp-area="Administration" asp-controller="Lifts" asp-action="Create">✙ Добави</a>
+        <a style="float:right" class="btn btn-add" asp-area="Administration" asp-controller="Lifts" asp-action="Create">✙ Добави</a>
     </div>
 </div>
-<p></p>
-<table class="table table-dark border border-light" style="font-weight:300">
+<table class="e-table u-text-bold--500 u-margin-top-and-bottom--20">
     <thead>
         <tr>
-            <th class="border border-light text-light" scope="col" style="text-align:center; width:30px">№</th>
-            <th class="border border-light text-light" scope="col" style="text-align:center; width:30px">Статус</th>
-            <th class="border border-light text-light" scope="col" style="text-align:center; width:80px">Рег. №</th>
-            <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Тип</th>
-            <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Спирки</th>
-            <th class="border border-light text-light" scope="col" style="text-align:center; width:60px">Товароподемност</th>
-            <th class="border border-light text-light" scope="col" style="text-align: center ; width:60px">Производител</th>
-            <th class="border border-light text-light" scope="col" style="text-align: center">Адрес</th>
+            <th class="e-table-border e-table-cell-width--40 u-text-center e-table-th--40" scope="col">№</th>
+            <th class="e-table-border e-table-cell-width--60 u-text-center" scope="col">Статус</th>
+            <th class="e-table-border e-table-cell-width--100 u-text-center" scope="col">Рег. №</th>
+            <th class="e-table-border e-table-cell-width--100 u-text-center" scope="col" id="liftType">Тип</th>
+            <th class="e-table-border e-table-cell-width--60 u-text-center" scope="col">Спирки</th>
+            <th class="e-table-border e-table-cell-width--135 u-text-center" scope="col" id="liftCapacity">Товароподемност</th>
+            <th class="e-table-border e-table-cell-width--120 u-text-center" scope="col" id="liftManufacturer">Производител</th>
+            <th class="e-table-border u-text-center e-table-cell-width--500" scope="col" id="liftAddres">Адрес</th>
         </tr>
     </thead>
     <tbody>
@@ -58,26 +57,26 @@
                 color = "lightblue";
             }
 
-            <tr class=" text-dark border-light" style="background-color:@color">
-                <td class="border border-light" style="text-align:center">@count</td>
+            <tr style="background-color:@color">
+                <td class="e-table-border u-text-center e-table-td--30">@count</td>
 
                 @if (item.IsDeleted == false)
                 {
-                    <td class="border border-light" style="text-align:center" title="Активен">✅</td>
+                    <td class="e-table-border u-text-center" title="Активен">✅</td>
                 }
                 else
                 {
-                    <td class="border border-light" style="text-align:center" title="Неактивен">⛔</td>
+                    <td class="e-table-border u-text-center" title="Неактивен">⛔</td>
                 }
 
-                <td class="border border-light">
-                    <a href="/Administration/Lifts/Detail/@item.Id" class="text-danger" style="text-align:center">@item.RegistrationNumber</a>
+                <td class="e-table-border u-text-center">
+                    <a href="/Administration/Lifts/Detail/@item.Id" class="u-text-danger u-anchor-decoration--none">@item.RegistrationNumber</a>
                 </td>
-                <td class="border border-light">@item.LiftType</td>
-                <td class="border border-light" style="text-align:center">@item.NumberOfStops</td>
-                <td class="border border-light" style="text-align:center">@item.Capacity</td>
-                <td class="border border-light" style="text-align:center">@item.ManufacturerName</td>
-                <td class="border border-light">гр. @item.CityName, @item.Address</td>
+                <td class="e-table-border u-text-center" id="liftType">@item.LiftType</td>
+                <td class="e-table-border u-text-center">@item.NumberOfStops</td>
+                <td class="e-table-border u-text-center" id="liftCapacity">@item.Capacity</td>
+                <td class="e-table-border u-text-center" id="liftManufacturer">@item.ManufacturerName</td>
+                <td class="e-table-border u-padding-left--5">гр. @item.CityName, @item.Address</td>
             </tr>
 
             count++;
@@ -85,52 +84,48 @@
     </tbody>
 </table>
 
-<div class="row">
-    <div class="col-md-10">
-        <nav class="row-cols-5">
-            @{var currentPage = Model.GetAllLiftViewModel.CurrentPage; }
-            @{var counterPage = Model.GetAllLiftViewModel.PagesCount; }
-            <ul class="pagination  pagination-sm justify-content-start">
-                @if (currentPage == 1)
-                {
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Previous</a>
-                    </li>
-                }
-                else
-                {
-                    <li class="page-item">
-                        <a class="page-link" asp-action="All" asp-route-page="(@currentPage - 1)">Previous</a>
-                    </li>
-                }
+<div class="u-grid u-grid--col">
+    <nav>
+        @{var currentPage = Model.GetAllLiftViewModel.CurrentPage; }
+        @{var counterPage = Model.GetAllLiftViewModel.PagesCount; }
+        <ul class="pagination  pagination-sm">
+            @if (currentPage == 1)
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Предишна</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="All" asp-route-page="(@currentPage - 1)">Предишна</a>
+                </li>
+            }
 
-                @for (int i = 1; i <= counterPage; i++)
-                {
-                    var active = i == currentPage ? "active" : string.Empty;
-                    <li class="page-item @active">
-                        <a class="page-link" asp-action="All" asp-route-page="@i">@i</a>
-                    </li>
-                }
+            @for (int i = 1; i <= counterPage; i++)
+            {
+                var active = i == currentPage ? "active" : string.Empty;
+                <li class="page-item @active">
+                    <a class="page-link" asp-action="All" asp-route-page="@i">@i</a>
+                </li>
+            }
 
-                @if (currentPage == counterPage)
-                {
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                }
-                else
-                {
-                    <li class="page-item">
-                        <a class="page-link" asp-action="All" asp-route-page="@(currentPage + 1)">Next</a>
-                    </li>
-                }
-            </ul>
-
-        </nav>
-    </div>
-
-    <div class="col-md-2">
-        <a><b>Общ брой: @Model.GetAllLiftViewModel.CountAllLifts</b></a>
+            @if (currentPage == counterPage)
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Следваща</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="All" asp-route-page="@(currentPage + 1)">Следваща</a>
+                </li>
+            }
+        </ul>
+    </nav>
+    <div>
+        <a style="float:right"><b>Общ брой: @Model.GetAllLiftViewModel.CountAllLifts</b></a>
     </div>
 </div>
 

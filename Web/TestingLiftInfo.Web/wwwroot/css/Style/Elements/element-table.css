@@ -23,8 +23,24 @@
     min-width: 30px;
 }
 
+.e-table-cell-width--40 {
+    min-width: 40px;
+}
+
+.e-table-cell-width--60 {
+    min-width: 60px;
+}
+
+.e-table-cell-width--100 {
+    min-width: 100px;
+}
+
 .e-table-cell-width--120 {
     min-width: 120px;
+}
+
+.e-table-cell-width--135 {
+    min-width: 135px;
 }
 
 .e-table-cell-width--140 {
@@ -33,6 +49,10 @@
 
 .e-table-cell-width--200 {
     min-width: 200px;
+}
+
+.e-table-cell-width--500 {
+    min-width: 500px;
 }
 
 .e-table-cell-width--600 {

@@ -1,37 +1,37 @@
 ﻿@using TestingLiftInfo.Common
 @model TestingLiftInfo.Web.ViewModels.Follows.AllFollowLiftsViewModel
 
-<div class="text-center" style="margin-top:10px">
-    <h3>Следените от Вас асансьори</h3>
+<div class="u-text-center u-margin-top--10">
+    <h2>Следените от Вас асансьори</h2>
 </div>
 
-<div class="row">
+<div class="u-flex u-flex-flow">
     @foreach (var item in Model.Lifts)
     {
-        <div class="col-md-4" style="margin-top:50px">
-            <div class="card" style="width: 21rem; height:16rem; background-color:lightblue">
-                <div class="card-body">
-                    <a asp-area="" asp-controller="Follows" asp-action="Delete" asp-route-id="@item.Id" class="card-link" onclick="return submitResult();"><i class="far fa-times-circle" style="margin-left:280px; color:black" title="Спри следенето"></i></a>
-                    <h4 style="text-align:center; margin-top:-10px">Асансьор</h4>
-                    <p class="card-title"><font size="5"><b>Регистрационнен № @item.RegistrationNumber</b></font></p>
+        <div class="u-margin-top--50">
+            <div class="o-card">
+                <div class="o-card-body">
+                    <a asp-area="" asp-controller="Follows" asp-action="Delete" asp-route-id="@item.Id" class="o-card-delete" onclick="return submitResult();"><i class="far fa-times-circle" title="Спри следенето"></i></a>
+                    <h3 class="u-text-center u-margin-bottom--10 u-margin-top--20">Асансьор</h3>
+                    <p class="o-card-title u-text-size--16"><b>Регистрационнен № @item.RegistrationNumber</b></p>
                     @{var inspect = item.Inspects.Select(x => x.CreatedOn).FirstOrDefault().AddYears(1); }
                     @if (inspect <= DateTime.UtcNow.AddYears(1) && inspect >= DateTime.UtcNow)
                     {
-                        <h6 class="card-subtitle mb-2">Статус: <font style="font-family:'Comic Sans MS'"><i>Има валиден преглед!</i></font></h6>
-                        <h6 class="card-subtitle mb-2">Валиден до: <font style="font-family:'Comic Sans MS'"><i>@inspect.ToString("dd.MM.yyyy г.")</i></font></h6>
+                        <h5 class="o-card-subtitle">Статус: <span class="u-text-family-comicSans u-text-italic">Има валиден преглед!</span></h5>
+                        <h5 class="o-card-subtitle">Валиден до: <span class="u-text-family-comicSans u-text-italic">@inspect.ToString("dd.MM.yyyy г.")</span></h5>
                     }
                     else
                     {
-                        <h6 class="card-subtitle mb-2">
-                            Статус: <font style="color: red; font-family: 'Comic Sans MS'">Няма валиден преглед!</font>
-                        </h6>
+                        <h5 class="o-card-subtitle">
+                            Статус: <span class="u-text-family-comicSans u-text-danger">Няма валиден преглед!</span>
+                        </h5>
                         @if (inspect >= DateTime.UtcNow.AddYears(-2))
                         {
-                            <h6 class="card-subtitle mb-2">Валиден до: <font style="color:red; font-family:'Comic Sans MS'"><i>@inspect.ToString("dd.MM.yyyy г.")</i></font></h6>
+                            <h5 class="o-card-subtitle">Валиден до: <span class="u-text-family-comicSans u-text-italic u-text-danger">@inspect.ToString("dd.MM.yyyy г.")</span></h5>
                         }
                     }
-                    <p class="card-text"><b>Адрес: </b><i>гр. @item.CityName, @item.Address</i></p>
-                    <a class="card-link" style="color:#070cb5" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@item.Id">Повече информация...</a>
+                    <p class="u-margin-top-and-bottom--10"><span class="text-bold--700">Адрес: </span><span class="u-text-italic">гр. @item.CityName, @item.Address</span></p>
+                    <a class="o-card-link" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@item.Id">Повече информация...</a>
                 </div>
             </div>
         </div>
@@ -41,8 +41,8 @@
 
 @if (Model.Lifts.Count < GlobalConstants.LimitFollowLifts)
 {
-    <div class="text-center" style="margin-top:50px">
-        <a class="btn btn-success" asp-area="" asp-controller="Follows" asp-action="Create">Последвай нов асансьор 😉</a>
+    <div class="u-text-center u-margin-top--50">
+        <a class="btn btn-deepskyblue" asp-area="" asp-controller="Follows" asp-action="Create">Последвай нов асансьор 😉</a>
     </div>
 }
 
