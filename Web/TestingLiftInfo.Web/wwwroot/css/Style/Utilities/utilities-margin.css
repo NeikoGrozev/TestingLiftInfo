@@ -6,6 +6,10 @@
     margin: 20px 0;
 }
 
+.u-margin-top-and-bottom--50 {
+    margin: 50px 0;
+}
+
 .u-margin-top-and-bottom--40-20 {
     margin: 40px 0 20px 0;
 }

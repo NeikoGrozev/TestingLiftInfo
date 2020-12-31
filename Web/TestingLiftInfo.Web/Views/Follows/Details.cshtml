@@ -4,61 +4,68 @@
     this.ViewData["Title"] = "Допълнителна информация";
 }
 
-<h3>@this.ViewData["Title"]</h3>
+<h2>@this.ViewData["Title"]</h2>
 
-<div class="jumbotron border border-primary shadow-lg" style="background-color:#e4f6d4">
-    <div class="row">
-        <div class="col-md-5">
-            <div style="margin-top:-60px">
-                <h5>Асансьор с рег. № @Model.RegistrationNumber</h5>
+<div class="o-jumbotron s-border u-margin-bottom--20 s-primary-shadow">
+    <h3>Асансьор с рег. № @Model.RegistrationNumber</h3>
+    <div class="u-grid u-grid--col u-grid-gap--5" id="detailBlock">
+        <div class="u-margin-top-and-bottom--20">
+            <div>
+                <label class="u-text-size--18">Статус: </label>
+                <a class="u-text-size--18 text-bold--800 u-text-italic">Активен</a>
             </div>
             <div>
-                <label style="font-size:18px">Статус: </label>
-                <a style="font-size:18px"><b>Активен</b></a>
+                <label class="u-text-size--18">Вид на асансьорът: </label>
+                <a class="u-text-size--18 text-bold--800 u-text-italic">@Model.LiftType</a>
             </div>
             <div>
-                <label style="font-size:18px">Вид на асансьорът: </label>
-                <a style="font-size:18px"><b>@Model.LiftType</b></a>
+                <label class="u-text-size--18">Брой спирки: </label>
+                <a class="u-text-size--18 text-bold--800 u-text-italic">@Model.NumberOfStops</a>
             </div>
             <div>
-                <label style="font-size:18px">Брой спирки: </label>
-                <a style="font-size:18px"><b>@Model.NumberOfStops</b></a>
+                <label class="u-text-size--18">Производител: </label>
+                <a class="u-text-size--18 text-bold--800 u-text-italic">@Model.ManufacturerName</a>
             </div>
             <div>
-                <label style="font-size:18px">Производител: </label>
-                <a style="font-size:18px"><b>@Model.ManufacturerName</b></a>
+                <label class="u-text-size--18">Производствен №: </label>
+                <a class="u-text-size--18 text-bold--800 u-text-italic">@Model.ProductionNumber</a>
             </div>
             <div>
-                <label style="font-size:18px">Производствен №: </label>
-                <a style="font-size:18px"><b>@Model.ProductionNumber</b></a>
+                <label class="u-text-size--18">Адрес: </label>
+                <a class="u-text-size--18 text-bold--800 u-text-italic">гр. @Model.CityName, @Model.Address</a>
             </div>
             <div>
-                <label style="font-size:18px">Адрес: </label>
-                <a style="font-size:18px"><b>гр. @Model.CityName, @Model.Address</b></a>
-            </div>
-            <div>
-                <label style="font-size:18px">Поддържаща фирма: </label>
-                <a style="font-size:18px"><b>@Model.SupportCompanyName</b></a>
+                <label class="u-text-size--18">Поддържаща фирма: </label>
+                <a class="u-text-size--18 text-bold--800 u-text-italic">@Model.SupportCompanyName</a>
             </div>
 
-            <div>
-                <a class="btn btn-success" asp-area="" asp-controller="Follows" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
-            </div>
+
         </div>
-        <div class="col-md-1" style="margin-top:-40px">
-            <div class="card" style="width: 12rem; background-color:#d5f5b9">
-                <div class="card-header text-center">
+        <div class="u-margin-top-and-bottom--20">
+            <div class="o-inspect-card">
+                <div class="o-inspect-card--header u-text-center">
                     Ревизионни актове
                 </div>
-                <ul class="list-group list-group-flush">
-                    @foreach (var item in Model.Inspects.OrderBy(x => x.CreatedOn))
+                <ul class="o-inspect-card--body">
+                    @if (Model.Inspects.Count > 0)
                     {
-                        <li class="list-group-item text-center" style="background-color:cornsilk">
-                            <a href="/Follows/InspectDetails/@item.Id" >@item.CreatedOn.ToString("dd.MM.yyyy г.")</a>
-                        </li>
+                        @foreach (var item in Model.Inspects.OrderBy(x => x.CreatedOn))
+                        {
+                            <li class="u-text-center">
+                                <a href="/Follows/InspectDetails/@item.Id">@item.CreatedOn.ToString("dd.MM.yyyy г.")</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="u-text-center u-text-danger">Няма извършени прегледи на този асансьор!</li>
                     }
                 </ul>
             </div>
         </div>
+    </div>
+
+    <div>
+        <a class="btn btn-back" asp-area="" asp-controller="Follows" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
     </div>
 </div>

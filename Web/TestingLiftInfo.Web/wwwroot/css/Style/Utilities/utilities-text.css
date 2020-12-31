@@ -30,6 +30,11 @@
     font-size: 20px;
 }
 
+.u-text-size--26 {
+    font-size: 26px;
+}
+
+
 .u-text-size--30 {
     font-size: 30px;
 }
@@ -50,6 +55,10 @@
 
 .u-text-danger {
     color: red;
+}
+
+.u-text-ok{
+    color: #2abe12;
 }
 
 .u-text-label {

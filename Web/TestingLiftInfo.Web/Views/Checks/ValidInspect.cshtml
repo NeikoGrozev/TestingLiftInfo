@@ -1,29 +1,29 @@
 ﻿@model TestingLiftInfo.Web.ViewModels.Checks.CheckOutputViewModel
 
-<div class="text-center" style="margin-top:100px">
-    <p><font size="8"><b>Проверка на асансьор с регистрационен № @Model.RegistrationNumber</b></font></p>
+<div class="u-text-center u-margin-top--100">
+    <h1 class="u-margin-bottom--50">Проверка на асансьор с регистрационен № @Model.RegistrationNumber</h1>
 
     @if (Model.Date == null)
     {
-        <p><font size="6" style="color:red">Асансьорът не е регистриран в нашата система!!!</font></p>
+        <p class="u-text-danger u-text-size--30">Асансьорът не е регистриран в нашата система!!!</p>
 
     }
     else if (Model.Date.GetValueOrDefault().AddYears(1) <= DateTime.UtcNow.AddYears(1) && Model.Date.GetValueOrDefault().AddYears(1) >= DateTime.UtcNow 
         || Model.Date.GetValueOrDefault().AddDays(-1) <= DateTime.UtcNow && Model.Date.GetValueOrDefault().AddDays(-1) >= DateTime.UtcNow.AddDays(-2))
     {
-        <p><font size="6"><b>Статус: </b><font style="font-family:'Comic Sans MS'"><i>Има валиден преглед!</i></font></font></p>
-        <p><font size="6"><b>Валиден до: </b><font style="font-family:'Comic Sans MS'"><i>@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</i></font></font></p>
+        <p class="u-text-size--26"><span class="text-bold--700">Статус: </span><span  class="u-text-family-comicSans u-text-italic u-text-ok">Има валиден преглед!</span></p>
+        <p class="u-text-size--26"><span class="text-bold--700">Валиден до: </span><span class="u-text-family-comicSans u-text-italic">@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</span></p>
     }
     else
     {
-        <p><font size="6"><b>Статус: </b><font style="color: red; font-family: 'Comic Sans MS'">Няма валиден преглед!</font></font></p>
+        <p class="u-text-size--26"><span class="text-bold--700">Статус: </span><font class="u-text-family-comicSans u-text-danger">Няма валиден преглед!</font></p>
 
         @if (Model.Date.GetValueOrDefault().AddYears(1) >= DateTime.UtcNow.AddYears(-2))
         {
-            <p><font size="6"><b>Валиден до: </b><font style="color:red; font-family:'Comic Sans MS'"><i>@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</i></font></font></p>
+            <p class="u-text-size--26"><span class="text-bold--700">Валиден до: </span><span  class="u-text-family-comicSans u-text-italic u-text-danger">@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</span></p>
         }
     }
 </div>
-<div class="text-center" style="margin-top:50px">
-    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg">Върни ме в Началото 😉</a>
+<div class="u-text-center u-margin-top--50">
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-back">Върни ме в Началото 😉</a>
 </div>
