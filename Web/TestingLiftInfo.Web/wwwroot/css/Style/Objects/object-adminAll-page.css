@@ -2,3 +2,22 @@
     grid-template-columns: 80% 40%;
     grid-column-gap: 5em;
 }
+
+@media (max-width: 1200px){
+    .o-admin-all-page {
+        grid-template-columns: none;
+        grid-template-rows: 80% 20%;
+        grid-column-gap: 0em;
+        grid-row-gap: 1em;
+    }
+}
+
+@media (max-width: 600px) {
+    #adminAllName, #adminAllEmail{
+        min-width: 150px;
+    }
+
+    #adminAllDelete{
+        min-width: 80px;
+    }
+}

@@ -25,12 +25,22 @@
             <div>
                 <a class="c-header--brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.Logo</a>
             </div>
-            <nav class="o-row-container">
+            <nav class="o-row-container u-hiden-element">
                 <ul class="o-row-container c-header--ul-container">
                     <li>
                         <partial name="_LoginPartial" />
                     </li>
                 </ul>
+            </nav>
+
+            <div id="toggle" class="u-hiden-element">
+                <div class="toggle-one"></div>
+                <div class="toggle-two"></div>
+                <div class="toggle-three"></div>
+            </div>
+
+            <nav class="o-mobile-nav u-hiden-element">
+                <partial name="_LoginPartialMobile" />
             </nav>
         </section>
     </header>
@@ -44,7 +54,7 @@
 
     <footer class="o-row-container c-footer">
         <div class="o-row-container">
-            <p class="c-footer--p">&copy; @DateTime.Now.Year - @GlobalConstants.Logo - <a class="c-footer--a" href="https://github.com/NeikoGrozev/TestingLiftInfo">Open source system</a></p>
+            <p class="c-footer--p">&copy; 2020-@DateTime.Now.Year - @GlobalConstants.Logo - <a class="c-footer--a" href="https://github.com/NeikoGrozev/TestingLiftInfo">Open source system</a></p>
         </div>
         <div class="o-row-container">
             <ul class="c-footer--ul-container o-row-container">
@@ -69,6 +79,9 @@
             <a class="c-footer--a" asp-area="" asp-controller="Home" asp-action="Privacy">Политика за поверителност</a>
         </div>
     </footer>
+ 
+    <script src="~/js/mainMenu.js"></script>
+    <script src="~/js/mobileMenu.js"></script>
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>

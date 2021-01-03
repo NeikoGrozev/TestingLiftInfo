@@ -41,3 +41,14 @@
 .c-footer--p {
     margin: 0;
 }
+
+@media (max-width: 500px){
+    .c-footer--li{
+        padding: 0 5px;
+
+    }
+
+    .c-footer--dividing-line:after{
+        right: -5px;
+    }
+}

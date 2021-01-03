@@ -1,0 +1,77 @@
+﻿@using TestingLiftInfo.Common
+@using TestingLiftInfo.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{var user = this.UserManager.FindByEmailAsync(this.User.Identity.Name); }
+
+<ul class="o-mobile-ul">
+    @if (this.SignInManager.IsSignedIn(this.User))
+    {
+        <li class="o-mobile-li">
+            <a class="o-mobile-a" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
+        </li>
+
+        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li class="o-mobile-li">
+                <a class="o-mobile-a" asp-area="Administration" asp-controller="Admin" asp-action="All" title="Инспектори">Инспектори</a>
+            </li>
+
+            <li class="o-mobile-li">
+                <a class="o-mobile-a" @*href=""*@ id="mobileLifts">Асансьори</a>
+            </li>
+            <li class="o-mobile-li u-hiden-element" id="mobileLiftsHiden">
+                <a class="o-mobile-a u-padding-left--50" asp-area="Administration" asp-controller="Lifts" asp-action="Create" title="Създай нов">Създай нов</a>
+            </li>
+            <li class="o-mobile-li u-hiden-element" id="mobileLiftsHiden">
+                <a class="o-mobile-a u-padding-left--50" asp-area="Administration" asp-controller="Lifts" asp-action="All" title="Регистър">Регистър</a>
+            </li>
+
+            <li class="o-mobile-li" id="mobileAdministration">
+                <a class="o-mobile-a" @*href=""*@>Администрация</a>
+            </li>
+            <li class="o-mobile-li u-hiden-element" id="mobileAdministrationHiden">
+                <a class="o-mobile-a u-padding-left--50" asp-area="Administration" asp-controller="Cities" asp-action="All" title="Градове">Градове</a>
+            </li>
+            <li class="o-mobile-li u-hiden-element" id="mobileAdministrationHiden">
+                <a class="o-mobile-a u-padding-left--50" asp-area="Administration" asp-controller="Manufacturers" asp-action="All" title="Производители">Производители</a>
+            </li>
+            <li class="o-mobile-li u-hiden-element" id="mobileAdministrationHiden">
+                <a class="o-mobile-a u-padding-left--50" asp-area="Administration" asp-controller="InspectTypes" asp-action="All" title="Поддържащи фирми">Видове прегледи</a>
+            </li>
+            <li class="o-mobile-li u-hiden-element" id="mobileAdministrationHiden">
+                <a class="o-mobile-a u-padding-left--50" asp-area="Administration" asp-controller="SupportCompanies" asp-action="All" title="Поддържащи фирми">Поддържащи фирми</a>
+            </li>
+
+        }
+        else if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li class="o-mobile-li">
+                <a class="o-mobile-a" asp-area="" asp-controller="Follows" asp-action="Create">Последвай</a>
+            </li>
+            <li class="o-mobile-li">
+                <a class="o-mobile-a" asp-area="" asp-controller="Follows" asp-action="All">Мойте асансьори</a>
+            </li>
+        }
+
+        <li class="o-mobile-li">
+            <a class="@*o-mobile--hello-username*@ o-mobile-a" asp-area="Identity" asp-page="/Account/Manage/Index" title="Потребител">Профил@*Здравей, @user.Result.Name*@</a>
+        </li>
+
+        <li class="o-mobile-li">
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                <button type="submit" class="o-mobile--btn-logout">Изход</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="c-header--li">
+            <a class="o-mobile--btn" asp-area="Identity" asp-page="/Account/Register" style="font-size:larger">РЕГИСТРАЦИЯ</a>
+        </li>
+        <li class="c-header--li">
+            <a class="o-mobile--btn" asp-area="Identity" asp-page="/Account/Login" style="font-size:larger">ВХОД</a>
+        </li>
+    }
+</ul>

@@ -1,4 +1,13 @@
-﻿.o-login-page{
-    grid-template-columns: 50% 50%;
+﻿.o-login-page {
+    grid-template-columns: 50% auto;
     grid-column-gap: 10em;
+}
+
+@media (max-width: 900px) {
+    .o-login-page {
+        grid-template-columns: none;
+        grid-template-rows: 50% auto;
+        grid-column-gap: 0em;
+        grid-row-gap: 7em;
+    }
 }

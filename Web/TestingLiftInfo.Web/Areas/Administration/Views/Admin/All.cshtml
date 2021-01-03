@@ -6,68 +6,70 @@
 }
 
 <h2 class="u-margin-bottom--20">@this.ViewData["Title"]</h2>
-<div class="u-grid o-admin-all-page">
+<section class="u-grid">
     <div>
-        <a class="btn btn-add u-margin-left--290" onclick="showForm()">✙ Добави нов инспектор</a>
-
-        <table class="e-table u-margin-top--20">
-            <thead class="e-table-head">
-                <tr>
-                    <th class="e-table-border e-table-cell-width--30  e-table-th--30  u-text-center" scope="col">№</th>
-                    <th class="e-table-border e-table-cell-width--200" scope="col">Име</th>
-                    <th class="e-table-border e-table-cell-width--200" scope="col">E-mail</th>
-                    <th class="e-table-border e-table-cell-width--140 u-text-center u-text-size--6" scope="col">Премахни инспектор</th>
-            </thead>
-            <tbody>
-                @{var count = 1;}
-                @foreach (var item in Model.Users)
-                {
-                    string color = "honeydew";
-
-                    if (count % 2 != 0)
-                    {
-                        color = "honeydew";
-                    }
-                    else
-                    {
-                        color = "lightblue";
-                    }
-
-                    <tr class="text-dark" style="background-color:@color">
-                        <td class="e-table-border e-table-td--30 u-text-center">@count</td>
-                        <td class="e-table-border u-padding-left--10"> @item.Name</td>
-                        <td class="e-table-border u-padding-left--10"> @item.Email</td>
-                        <td class="e-table-border u-text-center">
-                            <a asp-area="Administration" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="u-anchor-decoration--none u-text-danger">Премахни</a>
-                        </td>
-                    </tr>
-
-                    count++;
-                }
-            </tbody>
-        </table>
+        <a class="btn btn-add u-fload--left" onclick="showForm()">✙ Добави нов инспектор</a>
     </div>
+    <div class="u-grid o-admin-all-page">
+        <div>
+            <table class="e-table u-margin-top--20">
+                <thead class="e-table-head">
+                    <tr>
+                        <th class="e-table-border e-table-cell-width--30  e-table-th--30  u-text-center" scope="col">№</th>
+                        <th class="e-table-border e-table-cell-width--200" scope="col" id="adminAllName">Име</th>
+                        <th class="e-table-border e-table-cell-width--200" scope="col" id="adminAllEmail">E-mail</th>
+                        <th class="e-table-border e-table-cell-width--140 u-text-center u-text-size--6" scope="col" id="adminAllDelete">Премахни инспектор</th>
+                </thead>
+                <tbody>
+                    @{var count = 1;}
+                    @foreach (var item in Model.Users)
+                    {
+                        string color = "honeydew";
 
-    <form asp-area="Administration" asp-controller="Admin" asp-action="AddAdmin" method="post" id="addForm"  class="u-hiden-element" onsubmit="return submitResult();">
-        <div class="u-text-center">
-            <h5>Добави нов инспектор</h5>
-            <div>
-                <label for="name" class="u-text-size--16">E-mail на потребителя</label>
-            </div>
-            <div>
-                <input asp-for="@Model.Add.Email" type="text" id="name" />
-            </div>
-            <input asp-for="@Model.Add.RecaptchaValue" type="hidden" id="RecaptchaValue" />
-            <div>
-                <button type="submit" class="btn btn-add">✙ Добави</button>
-            </div>
-            <div>
-                <span asp-validation-for="@Model.Add.Email" class="u-text-danger"></span>
-            </div>
+                        if (count % 2 != 0)
+                        {
+                            color = "honeydew";
+                        }
+                        else
+                        {
+                            color = "lightblue";
+                        }
+
+                        <tr class="text-dark" style="background-color:@color">
+                            <td class="e-table-border e-table-td--30 u-text-center">@count</td>
+                            <td class="e-table-border u-padding-left--10"> @item.Name</td>
+                            <td class="e-table-border u-padding-left--10"> @item.Email</td>
+                            <td class="e-table-border u-text-center">
+                                <a asp-area="Administration" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="u-anchor-decoration--none u-text-danger">Премахни</a>
+                            </td>
+                        </tr>
+
+                        count++;
+                    }
+                </tbody>
+            </table>
         </div>
-    </form>
 
-</div>
+        <form asp-area="Administration" asp-controller="Admin" asp-action="AddAdmin" method="post" id="addForm" class="u-hiden-element" onsubmit="return submitResult();">
+            <div class="u-text-center">
+                <h5>Добави нов инспектор</h5>
+                <div>
+                    <label for="name" class="u-text-size--16">E-mail на потребителя</label>
+                </div>
+                <div>
+                    <input asp-for="@Model.Add.Email" type="text" id="name" />
+                </div>
+                <input asp-for="@Model.Add.RecaptchaValue" type="hidden" id="RecaptchaValue" />
+                <div>
+                    <button type="submit" class="btn btn-add">✙ Добави</button>
+                </div>
+                <div>
+                    <span asp-validation-for="@Model.Add.Email" class="u-text-danger"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
 
 @section Scripts
 {

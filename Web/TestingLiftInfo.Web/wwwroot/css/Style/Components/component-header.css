@@ -2,6 +2,7 @@
     width: 100%;
     min-height: 60px;
     background-color: deepskyblue;
+    position: relative;
 }
 
 .c-header--navigation {
@@ -18,7 +19,7 @@
     padding: 0 30px 0 10px;
 }
 
-    .c-header--navigation nav {
+    .c-header--navigation nav .o-row-container {
         height: 100%;
     }
 
@@ -105,4 +106,18 @@
         color: forestgreen;
         box-shadow: 3px 3px 4px 0px rgba(48,193,60,0.89);
         text-decoration: none !important;
+    }
+
+    @media (max-width: 1200px){
+        .c-header--li{
+            margin: 0 5px;
+        }
+
+        .c-header--navigation{
+            padding: 0 5px 0 5px;
+        }
+
+        .c-header--hello-username{
+            margin: 0 5px;
+        }
     }

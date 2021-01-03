@@ -1,3 +1,7 @@
 ﻿.u-fload--right{
     float: right;
 }
+
+.u-fload--left {
+    float: left;
+}

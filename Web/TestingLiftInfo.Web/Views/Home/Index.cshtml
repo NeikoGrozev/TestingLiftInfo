@@ -4,24 +4,23 @@
     this.ViewData["Title"] = "Home Page";
 }
 <article class="o-index-page">
-    <section class="o-column-container o-index-page-title">
+    <section class="o-column-container o-index-page-title u-text-center">
         <p>Здравейте и добре дошли в информационната система</p>
         <h1>@GlobalConstants.Logo!</h1>
     </section>
-    <section class="o-index-page-input-container">
-        <section>
+    <section class="o-index-page-input-container u-flex u-flex-flow u-justify-content--center">
+        <section class="u-margin-top--30">
             <div>
                 <p>Тук може да намерите пълната информация</p>
                 <p>за</p>
                 <p>техническите прегледи на Вашия асансьор!</p>
                 <p>Влез в системата...</p>
-
             </div>
 
             <a class="btn btn-orange" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i> ВХОД</a>
         </section>
 
-        <form asp-area="" asp-controller="Checks" asp-action="ValidInspect" method="post">
+        <form asp-area="" asp-controller="Checks" asp-action="ValidInspect" method="post" class="u-margin-top--30">
             <div>
                 <p class="text-bold--800">Бързо търсене без регистрация!!!</p>
                 <p>Провери валидността на техническия преглед!</p>

@@ -1,6 +1,7 @@
 ﻿/*@import url("./Style/Settings/settings-breakpoints.scss");*/
 @import url("./Style/Settings/settings-border.css");
 @import url("./Style/Settings/settings-shadow.css");
+@import url("./Style/Settings/setings-animation.css");
 
 @import url("./Style/Generics/generic-normalize.css");
 @import url("./Style/Generics/generic-fonts.css");
@@ -34,6 +35,7 @@
 @import url("./Style/Objects/object-inspectCreate-page.css");
 @import url("./Style/Objects/object-liftAll-and-liftSearch-page.css");
 @import url("./Style/Objects/object-card.css");
+@import url("./Style/Objects/object-mobileMenu.css");
 
 @import url("./Style/Components/component-header.css");
 @import url("./Style/Components/component-footer.css");
