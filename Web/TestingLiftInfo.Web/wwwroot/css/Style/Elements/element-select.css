@@ -5,4 +5,9 @@
     padding: 2px 5px;
     height: 30px;
     vertical-align: middle;
+    max-width: 280px;
+}
+
+option{
+    max-width: 280px;
 }

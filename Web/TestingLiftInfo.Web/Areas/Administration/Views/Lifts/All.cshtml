@@ -24,7 +24,7 @@
         <button type="submit" class="btn btn-deepskyblue"><i class="fas fa-search"></i> Търси</button>
     </form>
     <div>
-        <a style="float:right" class="btn btn-add" asp-area="Administration" asp-controller="Lifts" asp-action="Create">✙ Добави</a>
+        <a class="btn btn-add u-fload--right" asp-area="Administration" asp-controller="Lifts" asp-action="Create">✙ Добави</a>
     </div>
 </div>
 <table class="e-table u-text-bold--500 u-margin-top-and-bottom--20">
@@ -34,7 +34,7 @@
             <th class="e-table-border e-table-cell-width--60 u-text-center" scope="col">Статус</th>
             <th class="e-table-border e-table-cell-width--100 u-text-center" scope="col">Рег. №</th>
             <th class="e-table-border e-table-cell-width--100 u-text-center" scope="col" id="liftType">Тип</th>
-            <th class="e-table-border e-table-cell-width--60 u-text-center" scope="col">Спирки</th>
+            <th class="e-table-border e-table-cell-width--60 u-text-center" scope="col" id="liftNumberOfStops">Спирки</th>
             <th class="e-table-border e-table-cell-width--135 u-text-center" scope="col" id="liftCapacity">Товароподемност</th>
             <th class="e-table-border e-table-cell-width--120 u-text-center" scope="col" id="liftManufacturer">Производител</th>
             <th class="e-table-border u-text-center e-table-cell-width--500" scope="col" id="liftAddres">Адрес</th>
@@ -73,7 +73,7 @@
                     <a href="/Administration/Lifts/Detail/@item.Id" class="u-text-danger u-anchor-decoration--none">@item.RegistrationNumber</a>
                 </td>
                 <td class="e-table-border u-text-center" id="liftType">@item.LiftType</td>
-                <td class="e-table-border u-text-center">@item.NumberOfStops</td>
+                <td class="e-table-border u-text-center" id="liftNumberOfStops">@item.NumberOfStops</td>
                 <td class="e-table-border u-text-center" id="liftCapacity">@item.Capacity</td>
                 <td class="e-table-border u-text-center" id="liftManufacturer">@item.ManufacturerName</td>
                 <td class="e-table-border u-padding-left--5">гр. @item.CityName, @item.Address</td>

@@ -1,23 +1,18 @@
-﻿.o-admin-all-page {
-    grid-template-columns: 80% 40%;
-    grid-column-gap: 5em;
-}
+﻿@media (min-width: 960px) {
 
-@media (max-width: 1200px){
-    .o-admin-all-page {
-        grid-template-columns: none;
-        grid-template-rows: 80% 20%;
-        grid-column-gap: 0em;
-        grid-row-gap: 1em;
+    #addForm{
+        margin-top: 0;
     }
 }
 
 @media (max-width: 600px) {
-    #adminAllName, #adminAllEmail{
-        min-width: 150px;
+    #adminAllName,
+    #adminAllEmail{
+        min-width: 110px;
+        max-width: 110px;
     }
 
-    #adminAllDelete{
+    #adminAllDelete {
         min-width: 80px;
     }
 }

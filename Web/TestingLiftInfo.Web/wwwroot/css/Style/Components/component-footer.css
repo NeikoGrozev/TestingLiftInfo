@@ -4,6 +4,7 @@
     justify-content: space-around;
     align-items: center;
     background-color: slategrey;
+    margin-top: 20px;
 }
 
 .c-footer--ul-container {
@@ -44,11 +45,19 @@
 
 @media (max-width: 500px){
     .c-footer--li{
-        padding: 0 5px;
+        padding: 0 3px;
 
     }
 
     .c-footer--dividing-line:after{
-        right: -5px;
+        right: -2px;
+    }
+
+    .c-footer--a{
+        font-size: 12px;
+    }
+
+    .c-footer--dividing-line:after{
+        height: 10px
     }
 }

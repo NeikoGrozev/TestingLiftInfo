@@ -90,3 +90,25 @@
         cursor: pointer;
         color: black;
     }
+
+.btn-accept-policy {
+    color: springgreen;
+    background-color: darkorange;
+}
+
+    .btn-accept-policy:hover {
+        cursor: pointer;
+    }
+
+.btn-manage {
+    font-size: 20px;
+    padding: 10px 20px;
+    list-style: none;
+    border-radius: 5px;
+    background-color: dodgerblue;
+}
+
+    .btn-manage a:hover {
+        cursor: pointer;
+        color: crimson;
+    }

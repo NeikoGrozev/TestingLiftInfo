@@ -16,7 +16,21 @@ function clickToggle(e) {
     }
 }
 
+let mainSection = document.querySelector('.o-main-container');
+mainSection.addEventListener('click', closeToggle);
+
+function closeToggle(e) {
+    if (toggle.getAttribute('class').includes('on')) {
+        toggle.classList.remove('on');
+        hideMobileMenu();
+    }
+};
+
 let navigationMobile = document.querySelector('header .o-mobile-nav');
+let mobileLifts = document.querySelector('#mobileLifts');
+let mobileLiftsHiden = document.querySelectorAll('#mobileLiftsHiden');
+let mobileAdministration = document.querySelector('#mobileAdministration');
+let mobileAdministrationHiden = document.querySelectorAll('#mobileAdministrationHiden');
 
 function unhideMobileMenu() {
     navigationMobile.style.display = 'block';
@@ -24,10 +38,16 @@ function unhideMobileMenu() {
 
 function hideMobileMenu() {
     navigationMobile.style.display = 'none';
+
+    if (mobileLiftsHiden[0].style.display == 'flex') {
+        mobileLiftsHiden.forEach(x => x.style.display = 'none');
+    }
+
+    if (mobileAdministrationHiden[0].style.display == 'flex') {
+        mobileAdministrationHiden.forEach(x => x.style.display = 'none');
+    }
 }
 
-let mobileLifts = document.querySelector('#mobileLifts');
-let mobileLiftsHiden = document.querySelectorAll('#mobileLiftsHiden');
 mobileLifts.addEventListener('click', hidenLiftsMenu)
 
 function hidenLiftsMenu(e) {
@@ -39,8 +59,6 @@ function hidenLiftsMenu(e) {
     }
 }
 
-let mobileAdministration = document.querySelector('#mobileAdministration');
-let mobileAdministrationHiden = document.querySelectorAll('#mobileAdministrationHiden');
 mobileAdministration.addEventListener('click', hidenAdministrationMenu)
 
 function hidenAdministrationMenu(e) {

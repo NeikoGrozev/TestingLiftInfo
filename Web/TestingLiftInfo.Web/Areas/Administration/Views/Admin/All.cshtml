@@ -10,7 +10,7 @@
     <div>
         <a class="btn btn-add u-fload--left" onclick="showForm()">✙ Добави нов инспектор</a>
     </div>
-    <div class="u-grid o-admin-all-page">
+    <div class="o-row-container">
         <div>
             <table class="e-table u-margin-top--20">
                 <thead class="e-table-head">
@@ -18,7 +18,7 @@
                         <th class="e-table-border e-table-cell-width--30  e-table-th--30  u-text-center" scope="col">№</th>
                         <th class="e-table-border e-table-cell-width--200" scope="col" id="adminAllName">Име</th>
                         <th class="e-table-border e-table-cell-width--200" scope="col" id="adminAllEmail">E-mail</th>
-                        <th class="e-table-border e-table-cell-width--140 u-text-center u-text-size--6" scope="col" id="adminAllDelete">Премахни инспектор</th>
+                        <th class="e-table-border e-table-cell-width--140 u-text-center u-text-size--8" scope="col" id="adminAllDelete">Премахни инспектор</th>
                 </thead>
                 <tbody>
                     @{var count = 1;}
@@ -37,8 +37,8 @@
 
                         <tr class="text-dark" style="background-color:@color">
                             <td class="e-table-border e-table-td--30 u-text-center">@count</td>
-                            <td class="e-table-border u-padding-left--10"> @item.Name</td>
-                            <td class="e-table-border u-padding-left--10"> @item.Email</td>
+                            <td class="e-table-border u-padding-left--5"> @item.Name</td>
+                            <td class="e-table-border u-padding-left--5"> @item.Email</td>
                             <td class="e-table-border u-text-center">
                                 <a asp-area="Administration" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="u-anchor-decoration--none u-text-danger">Премахни</a>
                             </td>
@@ -50,22 +50,20 @@
             </table>
         </div>
 
-        <form asp-area="Administration" asp-controller="Admin" asp-action="AddAdmin" method="post" id="addForm" class="u-hiden-element" onsubmit="return submitResult();">
-            <div class="u-text-center">
-                <h5>Добави нов инспектор</h5>
-                <div>
-                    <label for="name" class="u-text-size--16">E-mail на потребителя</label>
-                </div>
-                <div>
-                    <input asp-for="@Model.Add.Email" type="text" id="name" />
-                </div>
-                <input asp-for="@Model.Add.RecaptchaValue" type="hidden" id="RecaptchaValue" />
-                <div>
-                    <button type="submit" class="btn btn-add">✙ Добави</button>
-                </div>
-                <div>
-                    <span asp-validation-for="@Model.Add.Email" class="u-text-danger"></span>
-                </div>
+        <form asp-area="Administration" asp-controller="Admin" asp-action="AddAdmin" method="post" id="addForm" class="u-hiden-element u-text-center u-margin--50" onsubmit="return submitResult();">
+            <h5>Добави нов инспектор</h5>
+            <div>
+                <label for="name" class="u-text-size--16">E-mail на потребителя:</label>
+            </div>
+            <div>
+                <input asp-for="@Model.Add.Email" type="text" id="name" />
+            </div>
+            <input asp-for="@Model.Add.RecaptchaValue" type="hidden" id="RecaptchaValue" />
+            <div>
+                <button type="submit" class="btn btn-add">✙ Добави</button>
+            </div>
+            <div>
+                <span asp-validation-for="@Model.Add.Email" class="u-text-danger"></span>
             </div>
         </form>
     </div>
@@ -74,8 +72,11 @@
 @section Scripts
 {
     <script>
+
+        let form = document.querySelector('#addForm');
+
         function showForm() {
-            $("#addForm").show();
+            form.style.display = 'block';
         }
     </script>
 

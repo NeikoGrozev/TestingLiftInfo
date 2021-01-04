@@ -19,6 +19,11 @@
         [HttpPost]
         public async Task<IActionResult> ValidInspect(InputCheckViewModel model)
         {
+            if (model.RegistrationNumber == null)
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
+
             var date = await this.checksService.GetValidInspect(model.RegistrationNumber);
 
             var viewModel = new CheckOutputViewModel()

@@ -11,3 +11,11 @@
     background-color: lightgreen;
     border-color: forestgreen;
 }
+
+.u-alert-info {
+    color: #808080;
+    background-color: #00FE9A;
+    border-color: #808080;
+    z-index: 10;
+    top: 55px;
+}
