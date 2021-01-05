@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-
+    using TestingLiftInfo.Common;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Manufacturers;
 
@@ -49,6 +49,36 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Detail(string id)
+        {
+            var manufacturer = await this.manufacturerService.GetCurrentManufacturer(id);
+
+            var viewModel = new EditManufacturerViewModel
+            {
+                ManufacturerDetail = manufacturer,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromForm] EditManufacturerViewModel model)
+        {
+            var isCreate = false;
+
+            if (GlobalConstants.Editors.Contains(this.User.Identity.Name))
+            {
+                isCreate = await this.manufacturerService.EditManufacturer(model.Id, model.Name);
+            }
+
+            if (isCreate)
+            {
+                this.TempData["EditManufacturer"] = $"Произовдител {model.Name} е редактиран!";
+            }
+
+            return this.RedirectToAction("All");
         }
     }
 }

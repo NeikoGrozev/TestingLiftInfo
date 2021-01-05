@@ -61,5 +61,27 @@
 
             return manufacturers;
         }
+
+
+        public async Task<ManufacturerDetailViewModel> GetCurrentManufacturer(string id)
+        {
+            var city = await this.manufacturerRepository
+                .All()
+                .Where(x => x.Id == id)
+                .To<ManufacturerDetailViewModel>()
+                .FirstOrDefaultAsync();
+
+            return city;
+        }
+
+        public async Task<bool> EditManufacturer(string id, string name)
+        {
+            var city = this.manufacturerRepository.All().FirstOrDefault(x => x.Id == id);
+            city.Name = name;
+            this.manufacturerRepository.Update(city);
+            await this.manufacturerRepository.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

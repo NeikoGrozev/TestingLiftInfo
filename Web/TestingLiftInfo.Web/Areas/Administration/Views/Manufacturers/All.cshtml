@@ -9,6 +9,11 @@
     <div id="newManufacturer" class="u-alert u-alert-success">@TempData["CreateManufacturer"]</div>
 }
 
+@if (@TempData["EditManufacturer"] != null)
+{
+    <div id="editManufacturer" class="u-alert u-alert-success">@TempData["EditManufacturer"]</div>
+}
+
 <h2>@this.ViewData["Title"]</h2>
 <div class="u-grid">
     <div>
@@ -40,7 +45,9 @@
 
                 <tr style="background-color:@color">
                     <td class="e-table-border e-table-td--30 u-text-center">@count</td>
-                    <td class="e-table-border u-padding-left--10" id="manufacturerName">@item.Name</td>
+                    <td class="e-table-border u-padding-left--10" id="manufacturerName">
+                        <a class="u-text-dark u-anchor-decoration--none u-anchor-hover--red" href="/Administration/Manufacturers/Detail/@item.Id">@item.Name</a>
+                    </td>
                     <td class="e-table-border u-text-center">@item.Lifts.Count()</td>
                 </tr>
 
@@ -53,5 +60,9 @@
 <script>
     setTimeout(function () {
         $('#newManufacturer').hide('fade');
+    }, 5000);
+
+    setTimeout(function () {
+        $('#editManufacturer').hide('fade');
     }, 5000);
 </script>

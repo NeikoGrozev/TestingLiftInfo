@@ -13,5 +13,9 @@
         Task<ICollection<Manufacturer>> GetAllManufacturers();
 
         Task<ICollection<ManufacturerDetailViewModel>> GetAllManufacturersForViewModel();
+
+        Task<ManufacturerDetailViewModel> GetCurrentManufacturer(string id);
+
+        Task<bool> EditManufacturer(string id, string name);
     }
 }
