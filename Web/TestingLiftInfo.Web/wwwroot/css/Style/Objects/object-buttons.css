@@ -112,3 +112,13 @@
         cursor: pointer;
         color: crimson;
     }
+
+.btn-edit {
+    color: greenyellow;
+    background-color: darkorange;
+}
+
+.btn-edit:hover{
+    cursor: pointer;
+    color: green;
+}

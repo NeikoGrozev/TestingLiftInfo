@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-
+    using TestingLiftInfo.Common;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Cities;
 
@@ -22,7 +22,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateCityInputModel model)
+        public async Task<IActionResult> Create([FromForm] CreateCityInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -48,6 +48,36 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Detail(string id)
+        {
+            var city = await this.cityService.GetCurrentCity(id);
+
+            var viewModel = new EditCityViewModel
+            {
+                CityDetail = city,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromForm] EditCityViewModel model)
+        {
+            var isCreate = false;
+
+            if (GlobalConstants.Editors.Contains(this.User.Identity.Name))
+            {
+                isCreate = await this.cityService.EditCity(model.Id, model.Name);
+            }
+
+            if (isCreate)
+            {
+                this.TempData["EditCity"] = $"гр.{model.Name} е редактиран!";
+            }
+
+            return this.RedirectToAction("All");
         }
     }
 }

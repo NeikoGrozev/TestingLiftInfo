@@ -9,6 +9,11 @@
     <div id="newCity" class="u-alert u-alert-success">@TempData["CreateCity"]</div>
 }
 
+@if (@TempData["EditCity"] != null)
+{
+    <div id="editCity" class="u-alert u-alert-success">@TempData["EditCity"]</div>
+}
+
 <h2>@this.ViewData["Title"]</h2>
 <div class="u-grid">
     <div>
@@ -40,7 +45,9 @@
 
                 <tr style="background-color:@color">
                     <td class="e-table-border e-table-td--30 u-text-center">@count</td>
-                    <td class="e-table-border u-padding-left--10">@item.Name</td>
+                    <td class="e-table-border u-padding-left--10">
+                        <a class="u-text-dark u-anchor-decoration--none u-anchor-hover--red" href="/Administration/Cities/Detail/@item.Id">@item.Name</a>
+                    </td>
                     <td class="e-table-border u-text-center">@item.Lifts.Count()</td>
                 </tr>
 
@@ -54,5 +61,9 @@
 <script>
     setTimeout(function () {
         $('#newCity').hide('fade');
+    }, 5000);
+
+    setTimeout(function () {
+        $('#editCity').hide('fade');
     }, 5000);
 </script> 

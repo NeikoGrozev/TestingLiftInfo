@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
@@ -63,6 +64,27 @@
                 .ToListAsync();
 
             return cities;
+        }
+
+        public async Task<CityDetailViewModel> GetCurrentCity(string id)
+        {
+            var city = await this.cityRepository
+                .All()
+                .Where(x => x.Id == id)
+                .To<CityDetailViewModel>()
+                .FirstOrDefaultAsync();
+
+            return city;
+        }
+
+        public async Task<bool> EditCity(string id, string name)
+        {
+            var city = this.cityRepository.All().FirstOrDefault(x => x.Id == id);
+            city.Name = name;
+            this.cityRepository.Update(city);
+            await this.cityRepository.SaveChangesAsync();
+
+            return true;
         }
     }
 }

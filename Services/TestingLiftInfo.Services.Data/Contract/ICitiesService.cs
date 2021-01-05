@@ -13,5 +13,9 @@
         Task<ICollection<City>> GetAllCity();
 
         Task<ICollection<CityDetailViewModel>> GetAllCityForViewModel();
+
+        Task<CityDetailViewModel> GetCurrentCity(string id);
+
+        Task<bool> EditCity(string id, string name);
     }
 }

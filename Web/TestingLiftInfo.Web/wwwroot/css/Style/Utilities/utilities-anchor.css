@@ -1,3 +1,7 @@
 ﻿.u-anchor-decoration--none {
     text-decoration: none;
 }
+
+.u-anchor-hover--red:hover{
+    color: red;
+}
