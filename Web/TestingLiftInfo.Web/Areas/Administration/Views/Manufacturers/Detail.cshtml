@@ -1,0 +1,40 @@
+﻿@model TestingLiftInfo.Web.ViewModels.Administration.Manufacturers.EditManufacturerViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+
+<h3>Редактиране на производител @Model.ManufacturerDetail.Name</h3>
+
+<form asp-area="Administration" asp-controller="Manufacturers" asp-action="Edit" method="post" onsubmit="return submitResult();">
+    <div class="u-text-center u-margin-top--100">
+        <input asp-for="Id" type="hidden" value="@Model.ManufacturerDetail.Id" />
+        <label for="name" class="u-text-larger">Град: </label>
+        <input asp-for="Name" type="text" value="@Model.ManufacturerDetail.Name" />
+        <input asp-for="RecaptchaValue" type="hidden" id="RecaptchaValue" />
+        <button type="submit" class="btn btn-edit">Редактирай</button>
+        <div>
+            <span asp-validation-for="Name" class="u-text-danger"></span>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да редактирате този производител?") == false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'createCity' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

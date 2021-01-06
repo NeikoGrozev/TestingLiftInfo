@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-
+    using TestingLiftInfo.Common;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies;
 
@@ -22,7 +22,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateSupportCompanyInputModel model)
+        public async Task<IActionResult> Create([FromForm] CreateSupportCompanyInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -48,6 +48,36 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Detail(string id)
+        {
+            var company = await this.supportCompanyService.GetCurrentSupportCompany(id);
+
+            var viewModel = new EditSupportCompanyViewModel
+            {
+                SupportCompanyDetails = company,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromForm] EditSupportCompanyViewModel model)
+        {
+            var isCreate = false;
+
+            if (GlobalConstants.Editors.Contains(this.User.Identity.Name))
+            {
+                isCreate = await this.supportCompanyService.EditSupportCompany(model.Id, model.Name);
+            }
+
+            if (isCreate)
+            {
+                this.TempData["EditSupportCompany"] = $"Поддържащата фирма {model.Name} е редактирана!";
+            }
+
+            return this.RedirectToAction("All");
         }
     }
 }

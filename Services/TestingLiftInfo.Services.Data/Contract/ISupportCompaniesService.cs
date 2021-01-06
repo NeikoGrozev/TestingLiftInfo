@@ -13,5 +13,9 @@
         Task<ICollection<SupportCompany>> GetAll();
 
         Task<ICollection<SupportCompanyDetailsViewModel>> GetAllCompanies();
+
+        Task<SupportCompanyDetailsViewModel> GetCurrentSupportCompany(string id);
+
+        Task<bool> EditSupportCompany(string id, string name);
     }
 }

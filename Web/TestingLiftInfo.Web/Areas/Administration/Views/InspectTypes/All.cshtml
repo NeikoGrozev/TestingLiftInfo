@@ -4,6 +4,16 @@
     this.ViewData["Title"] = "Видове прегледи";
 }
 
+@if (@TempData["CreateInspectType"] != null)
+{
+    <div id="newInspectType" class="u-alert u-alert-success">@TempData["CreateCity"]</div>
+}
+
+@if (@TempData["EditInspectType"] != null)
+{
+    <div id="editInspectType" class="u-alert u-alert-success">@TempData["EditInspectType"]</div>
+}
+
 <h2>@this.ViewData["Title"]</h2>
 <div class="u-grid">
     <div>
@@ -35,7 +45,9 @@
 
                 <tr class="text-dark border-light" style="background-color:@color">
                     <td class="e-table-border e-table-td--30 u-text-center">@count</td>
-                    <td class="e-table-border u-padding-left--10">@item.Name</td>
+                    <td class="e-table-border u-padding-left--10">
+                        <a class="u-text-dark u-anchor-decoration--none u-anchor-hover--red" href="/Administration/InspectTypes/Detail/@item.Id">@item.Name</a>
+                    </td>
                     <td class="e-table-border u-text-center">@item.Inspects.Count()</td>
 
                 </tr>
@@ -45,3 +57,13 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    setTimeout(function () {
+        $('#newInspectType').hide('fade');
+    }, 5000);
+
+    setTimeout(function () {
+        $('#editInspectType').hide('fade');
+    }, 5000);
+</script>

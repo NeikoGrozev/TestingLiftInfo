@@ -65,20 +65,20 @@
 
         public async Task<ManufacturerDetailViewModel> GetCurrentManufacturer(string id)
         {
-            var city = await this.manufacturerRepository
+            var manufacturer = await this.manufacturerRepository
                 .All()
                 .Where(x => x.Id == id)
                 .To<ManufacturerDetailViewModel>()
                 .FirstOrDefaultAsync();
 
-            return city;
+            return manufacturer;
         }
 
         public async Task<bool> EditManufacturer(string id, string name)
         {
-            var city = this.manufacturerRepository.All().FirstOrDefault(x => x.Id == id);
-            city.Name = name;
-            this.manufacturerRepository.Update(city);
+            var manufacturer = this.manufacturerRepository.All().FirstOrDefault(x => x.Id == id);
+            manufacturer.Name = name;
+            this.manufacturerRepository.Update(manufacturer);
             await this.manufacturerRepository.SaveChangesAsync();
 
             return true;

@@ -8,10 +8,14 @@
 
     public interface IInspectTypesService
     {
-        Task CreateAsync(string name);
+        Task<bool> CreateAsync(string name);
 
         Task<ICollection<InspectType>> GetAllInspectTypes();
 
         Task<ICollection<InspectTypeDetailViewModel>> GetAllInspectTypesForViewModel();
+
+        Task<InspectTypeDetailViewModel> GetCurrentInspectType(string id);
+
+        Task<bool> EditInspectType(string id, string name);
     }
 }

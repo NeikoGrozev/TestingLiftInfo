@@ -64,5 +64,26 @@
 
             return companies;
         }
+
+        public async Task<SupportCompanyDetailsViewModel> GetCurrentSupportCompany(string id)
+        {
+            var company = await this.repository
+                .All()
+                .Where(x => x.Id == id)
+                .To<SupportCompanyDetailsViewModel>()
+                .FirstOrDefaultAsync();
+
+            return company;
+        }
+
+        public async Task<bool> EditSupportCompany(string id, string name)
+        {
+            var company = this.repository.All().FirstOrDefault(x => x.Id == id);
+            company.Name = name;
+            this.repository.Update(company);
+            await this.repository.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

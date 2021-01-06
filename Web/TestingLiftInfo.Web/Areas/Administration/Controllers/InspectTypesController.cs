@@ -3,9 +3,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using TestingLiftInfo.Data.Common.Repositories;
-    using TestingLiftInfo.Data.Models;
+    using TestingLiftInfo.Common;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.InspectTypes;
 
@@ -24,14 +22,22 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateInspectTypeInputModel model)
+        public async Task<IActionResult> Create([FromForm] CreateInspectTypeInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            await this.inspectTypesService.CreateAsync(model.Name);
+            if (GlobalConstants.Editors.Contains(this.User.Identity.Name))
+            {
+                var isCreate = await this.inspectTypesService.CreateAsync(model.Name);
+
+                if (isCreate)
+                {
+                    this.TempData["CreateInspectType"] = $"Типът пеглед {model.Name} е добавен към списъка!";
+                }
+            }
 
             return this.RedirectToAction("All");
         }
@@ -47,6 +53,36 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Detail(string id)
+        {
+            var inspectType = await this.inspectTypesService.GetCurrentInspectType(id);
+
+            var viewModel = new EditInspectTypeViewModel
+            {
+                InspectTypeDetail = inspectType,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromForm] EditInspectTypeViewModel model)
+        {
+            var isCreate = false;
+
+            if (GlobalConstants.Editors.Contains(this.User.Identity.Name))
+            {
+                isCreate = await this.inspectTypesService.EditInspectType(model.Id, model.Name);
+            }
+
+            if (isCreate)
+            {
+                this.TempData["EditInspectType"] = $"Типът преглед {model.Name} е редактиран!";
+            }
+
+            return this.RedirectToAction("All");
         }
     }
 }
