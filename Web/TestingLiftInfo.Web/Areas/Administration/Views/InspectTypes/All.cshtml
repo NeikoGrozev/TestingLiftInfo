@@ -1,4 +1,5 @@
-﻿@model TestingLiftInfo.Web.ViewModels.Administration.InspectTypes.GetAllInspectTypeViewModel
+﻿@using TestingLiftInfo.Common
+@model TestingLiftInfo.Web.ViewModels.Administration.InspectTypes.GetAllInspectTypeViewModel
 
 @{
     this.ViewData["Title"] = "Видове прегледи";
@@ -46,7 +47,14 @@
                 <tr class="text-dark border-light" style="background-color:@color">
                     <td class="e-table-border e-table-td--30 u-text-center">@count</td>
                     <td class="e-table-border u-padding-left--10">
-                        <a class="u-text-dark u-anchor-decoration--none u-anchor-hover--red" href="/Administration/InspectTypes/Detail/@item.Id">@item.Name</a>
+                        @if (GlobalConstants.Editors.Contains(this.User.Identity.Name))
+                        {
+                            <a class="u-text-dark u-anchor-decoration--none u-anchor-hover--red" href="/Administration/InspectTypes/Detail/@item.Id">@item.Name</a>
+                        }
+                        else
+                        {
+                            @item.Name
+                        }
                     </td>
                     <td class="e-table-border u-text-center">@item.Inspects.Count()</td>
 

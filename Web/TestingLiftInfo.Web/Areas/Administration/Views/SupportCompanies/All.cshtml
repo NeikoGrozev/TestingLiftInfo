@@ -1,4 +1,5 @@
-﻿@model TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies.GetAllSupportCompaniesViewModel
+﻿@using TestingLiftInfo.Common
+@model TestingLiftInfo.Web.ViewModels.Administration.SupportCompanies.GetAllSupportCompaniesViewModel
 @{
     this.ViewData["Title"] = "Поддържащи фирми";
 }
@@ -45,7 +46,14 @@
                 <tr style="background-color:@color">
                     <td class="e-table-border e-table-td--30 u-text-center">@count</td>
                     <td class="e-table-border u-padding-left--10" id="supportCompanyName">
-                        <a class="u-text-dark u-anchor-decoration--none u-anchor-hover--red" href="/Administration/SupportCompanies/Detail/@item.Id">@item.Name</a>
+                        @if (GlobalConstants.Editors.Contains(this.User.Identity.Name))
+                        {
+                            <a class="u-text-dark u-anchor-decoration--none u-anchor-hover--red" href="/Administration/SupportCompanies/Detail/@item.Id">@item.Name</a>
+                        }
+                        else
+                        {
+                            @item.Name
+                        }
                     </td>
                     <td class="e-table-border u-text-center">@item.Lifts.Count()</td>
                 </tr>
