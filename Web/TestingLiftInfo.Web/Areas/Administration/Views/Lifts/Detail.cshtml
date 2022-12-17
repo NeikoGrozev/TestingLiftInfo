@@ -24,57 +24,57 @@
             </div>
             <div class="u-margin-bottom--10">
                 <label>Регистриран на: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
             </div>
             @if (Model.DeletedOn != null)
             {
                 <div class="u-margin-bottom--10">
                     <label>Свален от регистрация на: </label>
-                    <a class="u-text-size--18 text-bold--800">@Model.DeletedOn.GetValueOrDefault().ToString("dd.MM.yyyy г.")</a>
+                    <a class="u-text-size--18 u-text-bold--800">@Model.DeletedOn.GetValueOrDefault().ToString("dd.MM.yyyy г.")</a>
                 </div>
             }
             <div class="u-margin-bottom--10">
                 <label>Вид на асансьорът: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.LiftType</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.LiftType</a>
             </div>
             <div class="u-margin-bottom--10">
                 <label>Брой спирки: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.NumberOfStops</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.NumberOfStops</a>
             </div>
             <div class="u-margin-bottom--10">
                 <label>Товароподемност: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.Capacity кг.</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.Capacity кг.</a>
             </div>
             <div class="u-margin-bottom--10">
                 <label>Тип врати: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.DoorType</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.DoorType</a>
             </div>
             <div class="u-margin-bottom--10">
                 <label>Регистриран от: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
             </div>
             <div class="u-margin-bottom--10">
                 <label>Производител: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.ManufacturerName</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.ManufacturerName</a>
             </div>
             <div class="u-margin-bottom--10">
                 <label>Производствен №: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.ProductionNumber</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.ProductionNumber</a>
             </div>
             <div class="u-margin-bottom--10">
                 <label>Адрес: </label>
-                <a class="u-text-size--18 text-bold--800">гр. @Model.CityName, @Model.Address</a>
+                <a class="u-text-size--18 u-text-bold--800" id="address">гр. @Model.CityName, @Model.Address</a>
             </div>
             <div class="u-margin-bottom--20">
                 <label>Поддържаща фирма: </label>
-                <a class="u-text-size--18 text-bold--800">@Model.SupportCompanyName</a>
+                <a class="u-text-size--18 u-text-bold--800">@Model.SupportCompanyName</a>
             </div>
 
             <div class="u-margin-bottom--20">
                 <a class="btn btn-deepskyblue" id="detailBlock" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
                 @if (@Model.IsDeleted == false)
                 {
-                    <a class="btn btn-add"  id="detailBlock" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
+                    <a class="btn btn-add" id="detailBlock" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
                 }
             </div>
             @if (@Model.IsDeleted == false)
@@ -85,6 +85,7 @@
             }
         </div>
         <div>
+            <div id="map"></div>
             <div class="o-inspect-card">
                 <div class="o-inspect-card--header u-text-center">
                     Ревизионни актове
@@ -98,7 +99,7 @@
                     }
                 </ul>
             </div>
-                <p class="u-text-size--16 u-text-bold--500 u-text-danger">Общ брой: @Model.Inspects.Count</p> 
+            <p class="u-text-size--16 u-text-bold--500 u-text-danger">Общ брой: @Model.Inspects.Count</p>
         </div>
     </div>
 </div>
@@ -111,4 +112,14 @@
             return true;
         }
     }
+</script>
+<script src="~/js/openStreetMap.js" defer></script>
+<script>
+    setTimeout(() => {
+        let latLng = [@Model.Latitude, @Model.Longitude];
+        let regNumber = '@Model.RegistrationNumber';
+        let address = 'гр. @Model.CityName, @Model.Address';
+        let id = '@Model.Id';
+        addMarker(latLng, address, regNumber, id);
+    }, 1000)
 </script>

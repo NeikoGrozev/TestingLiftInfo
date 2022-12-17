@@ -435,8 +435,14 @@ namespace TestingLiftInfo.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Latitude")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("LiftType")
                         .HasColumnType("int");
+
+                    b.Property<string>("Longitude")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ManufacturerId")
                         .IsRequired()

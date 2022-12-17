@@ -1,0 +1,124 @@
+﻿.btn, button {
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 100px;
+    border: none;
+    outline: none;
+    padding: 8px 22px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 12px;
+
+    &-orange {
+        background-color: rgb(240, 171, 34);
+        color: white;
+
+        &:hover {
+            color: rgb(0, 191, 255);
+        }
+    }
+
+    &-green {
+        background-color: rgb(0, 205, 0);
+        color: black;
+
+        &:hover {
+            color: rgb(248, 126, 9);
+            cursor: pointer;
+        }
+    }
+
+    &-add {
+        background-color: limegreen;
+        color: black;
+
+        &:hover {
+            cursor: pointer;
+            color: gray;
+        }
+    }
+
+    &-back {
+        background-color: dodgerblue;
+        color: antiquewhite;
+
+        &:hover {
+            cursor: pointer;
+            color: springgreen;
+        }
+    }
+
+    &-deepskyblue {
+        background-color: deepskyblue;
+        color: rgb(26, 25, 25);
+
+        &:hover {
+            cursor: pointer;
+            color: dimgray;
+        }
+    }
+
+    &-red {
+        background-color: red;
+        color: white;
+
+        &:hover {
+            cursor: pointer;
+            color: orange;
+        }
+    }
+
+    &-facebook {
+        background-color: rgb(36, 72, 114);
+        color: white;
+
+        &:hover {
+            cursor: pointer;
+            color: black;
+        }
+    }
+
+    &-google {
+        background-color: rgb(206, 38, 22);
+        color: white;
+
+        &:hover {
+            cursor: pointer;
+            color: black;
+        }
+    }
+
+    &-accept-policy {
+        color: springgreen;
+        background-color: darkorange;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &-manage {
+        font-size: 20px;
+        padding: 10px 20px;
+        list-style: none;
+        border-radius: 5px;
+        background-color: dodgerblue;
+
+        & a:hover {
+            cursor: pointer;
+            color: crimson;
+        }
+    }
+
+    &-edit {
+        color: greenyellow;
+        background-color: darkorange;
+
+        &:hover {
+            cursor: pointer;
+            color: green;
+        }
+    }
+}

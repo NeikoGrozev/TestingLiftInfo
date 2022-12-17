@@ -31,6 +31,10 @@
         [Required]
         public string Address { get; set; }
 
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
+
         [GoogleReCaptchaValidation]
         public string RecaptchaValue { get; set; }
     }

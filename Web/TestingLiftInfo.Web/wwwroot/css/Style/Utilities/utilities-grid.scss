@@ -1,0 +1,11 @@
+﻿.u-grid {
+    display: grid;
+
+    &--col {
+        grid-template-columns: auto auto;
+    }
+
+    &-gap--5 {
+        grid-column-gap: 5em;
+    }
+}

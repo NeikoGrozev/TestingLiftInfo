@@ -12,24 +12,24 @@
             <h3>Асансьор с рег. № @Model.Lift.RegistrationNumber</h3>
         </div>
         <div class="u-margin-bottom--10">
-            <label class="u-text-size--20 text-bold--800 u-text-underline u-text-italic">Техническия преглед е извършен от инспектор:</label>
-            <a class="u-text-size--16 text-bold--700">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
+            <label class="u-text-size--20 u-text-bold--800 u-text-underline u-text-italic">Техническия преглед е извършен от инспектор:</label>
+            <a class="u-text-size--16 u-text-bold--700">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
         </div>
         <div class="u-margin-bottom--10">
-            <label class="u-text-size--20 text-bold--800 u-text-underline u-text-italic">Дата:</label>
-            <a class="u-text-size--16 text-bold--700">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
+            <label class="u-text-size--20 u-text-bold--800 u-text-underline u-text-italic">Дата:</label>
+            <a class="u-text-size--16 u-text-bold--700">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
         </div>
         <div class="u-margin-bottom--10">
-            <label class="u-text-size--20 text-bold--800 u-text-underline u-text-italic">Вид на прегледа:</label>
-            <a class="u-text-size--16 text-bold--700">@Model.InspectType.Name</a>
+            <label class="u-text-size--20 u-text-bold--800 u-text-underline u-text-italic">Вид на прегледа:</label>
+            <a class="u-text-size--16 u-text-bold--700">@Model.InspectType.Name</a>
         </div>
         <div class="u-margin-bottom--10">
-            <label class="u-text-size--20 text-bold--800 u-text-underline u-text-italic">Забележки:</label>
-            <a class="u-text-size--16 text-bold--700">@Html.Raw(@Model.SanitizerNotes)</a>
+            <label class="u-text-size--20 u-text-bold--800 u-text-underline u-text-italic">Забележки:</label>
+            <a class="u-text-size--16 u-text-bold--700">@Html.Raw(@Model.SanitizerNotes)</a>
         </div>
         <div class="u-margin-bottom--10">
-            <label class="u-text-size--20 text-bold--800 u-text-underline u-text-italic">Предписания:</label>
-            <a class="u-text-size--16 text-bold--700">@Html.Raw(@Model.SanitizerPrescriptions)</a>
+            <label class="u-text-size--20 u-text-bold--800 u-text-underline u-text-italic">Предписания:</label>
+            <a class="u-text-size--16 u-text-bold--700">@Html.Raw(@Model.SanitizerPrescriptions)</a>
         </div>
         <div class="u-margin-top--20">
             <a class="btn btn-deepskyblue" asp-area="Administration" asp-controller="Lifts" asp-action="Detail" asp-route-id="@Model.Lift.Id"><i class="fas fa-arrow-circle-left"></i> Назад</a>

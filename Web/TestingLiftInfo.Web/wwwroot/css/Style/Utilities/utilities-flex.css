@@ -1,7 +1,1 @@
-﻿.u-flex{
-    display: flex;
-}
-
-.u-flex-flow {
-    flex-flow: row wrap;
-}
+.u-flex{display:flex}.u-flex-flow{flex-flow:row wrap}

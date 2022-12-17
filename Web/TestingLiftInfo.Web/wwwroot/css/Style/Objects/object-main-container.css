@@ -1,8 +1,1 @@
-﻿.o-main-container {
-    width: 90%;
-    min-height: calc(100vh - 160px);
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    margin-top: 30px;
-}
+.o-main-container{width:90%;min-height:calc(100vh - 160px);display:flex;justify-content:center;align-items:start;margin-top:30px}

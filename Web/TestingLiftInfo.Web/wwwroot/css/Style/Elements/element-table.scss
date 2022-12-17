@@ -1,0 +1,56 @@
+﻿.e-table {
+    border: 2px solid black;
+    border-collapse: collapse;
+
+    &-th--30 {
+        height: 30px;
+    }
+
+    &-th--40 {
+        height: 40px;
+    }
+
+    &-border {
+        border: 2px solid black;
+    }
+
+    &-cell-width--30 {
+        min-width: 30px;
+    }
+
+    &-cell-width--40 {
+        min-width: 40px;
+    }
+
+    &-cell-width--60 {
+        min-width: 60px;
+    }
+
+    &-cell-width--100 {
+        min-width: 100px;
+    }
+
+    &-cell-width--120 {
+        min-width: 120px;
+    }
+
+    &-cell-width--135 {
+        min-width: 135px;
+    }
+
+    &-cell-width--140 {
+        min-width: 140px;
+    }
+
+    &-cell-width--200 {
+        min-width: 200px;
+    }
+
+    &-cell-width--500 {
+        min-width: 500px;
+    }
+
+    &-cell-width--600 {
+        min-width: 600px;
+    }
+}

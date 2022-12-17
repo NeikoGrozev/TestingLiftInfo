@@ -13,23 +13,23 @@
         </div>
         <div>
             <label class="u-text-size--18 ">Инспектор: </label>
-            <a class="u-text-size--18 text-bold--700 u-text-italic">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
+            <a class="u-text-size--18 u-text-bold--700 u-text-italic">@Model.ApplicationUserFirstName @Model.ApplicationUserLastName</a>
         </div>
         <div>
             <label class="u-text-size--18">Прегледа е извършен на дата: </label>
-            <a class="u-text-size--18 text-bold--700 u-text-italic">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
+            <a class="u-text-size--18 u-text-bold--700 u-text-italic">@Model.CreatedOn.ToString("dd.MM.yyyy г.")</a>
         </div>
         <div>
             <label class="u-text-size--18">Вид на прегледа: </label>
-            <a class="u-text-size--18 text-bold--700 u-text-italic">@Model.InspectType.Name</a>
+            <a class="u-text-size--18 u-text-bold--700 u-text-italic">@Model.InspectType.Name</a>
         </div>
         <div>
             <label class="u-text-size--18">Забележки: </label>
-            <a class="u-text-size--18 text-bold--700 u-text-italic">@Html.Raw(Model.Notes)</a>
+            <a class="u-text-size--18 u-text-bold--700 u-text-italic">@Html.Raw(Model.Notes)</a>
         </div>
         <div>
             <label class="u-text-size--18">Предписания: </label>
-            <a class="u-text-size--18 text-bold--700 u-text-italic">@Html.Raw(Model.Prescriptions)</a>
+            <a class="u-text-size--18 u-text-bold--700 u-text-italic">@Html.Raw(Model.Prescriptions)</a>
         </div>
         <div class="u-margin-top--30">
             <a class="btn btn-back" asp-area="" asp-controller="Follows" asp-action="Details" asp-route-id="@Model.Lift.Id"><i class="fas fa-arrow-circle-left"></i> Назад</a>

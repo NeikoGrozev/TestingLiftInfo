@@ -9,7 +9,7 @@
 
     public interface ILiftsService
     {
-        Task<bool> CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address);
+        Task<bool> CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address, string latitude, string longitude);
 
         Task<ICollection<LiftViewModel>> GetAllLifts(int page, int numberOfPrintLifts);
 

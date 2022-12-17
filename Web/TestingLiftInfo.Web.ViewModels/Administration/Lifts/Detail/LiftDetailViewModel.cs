@@ -41,6 +41,10 @@
 
         public string SupportCompanyName { get; set; }
 
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public DateTime CreatedOn { get; set; }

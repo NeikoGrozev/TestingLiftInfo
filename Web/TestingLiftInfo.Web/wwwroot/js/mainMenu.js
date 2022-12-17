@@ -2,7 +2,7 @@
 let navigation = document.querySelector('header nav.o-row-container');
 let navigationMobileElement = document.querySelector('header .o-mobile-nav');
 
-let toggleElement = document.querySelector('#toggle');
+let toggleElement = document.querySelector('#toggleNav');
 
 (function test() {
     if (window.screen.width <= 900) {

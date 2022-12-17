@@ -9,14 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"]  @GlobalConstants.Logo</title>
     <script src="https://kit.fontawesome.com/da4b1de3cd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
 
     <environment names="Development">
-        @*<link href="~/css/bootstrap-cyborg.css" rel="stylesheet" asp-append-version="true" />*@
-        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
-        @*<link href="~/css/bootstrap-cyborg.css" rel="stylesheet" asp-append-version="true" />*@
-        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
     </environment>
 </head>
 <body>
@@ -25,7 +25,7 @@
             <div>
                 <a class="c-header--brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.Logo</a>
             </div>
-            <nav class="o-row-container u-hiden-element">
+            <nav id="navigation" class="o-row-container u-hiden-element">
                 <ul class="o-row-container c-header--ul-container">
                     <li>
                         <partial name="_LoginPartial" />
@@ -33,7 +33,7 @@
                 </ul>
             </nav>
 
-            <div id="toggle" class="u-hiden-element">
+            <div id="toggleNav" class="u-hiden-element">
                 <div class="toggle-one"></div>
                 <div class="toggle-two"></div>
                 <div class="toggle-three"></div>
@@ -79,9 +79,11 @@
             <a class="c-footer--a" asp-area="" asp-controller="Home" asp-action="Privacy">Политика за поверителност</a>
         </div>
     </footer>
- 
+
     <script src="~/js/mainMenu.js"></script>
     <script src="~/js/mobileMenu.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    @*<script src="~/js/openStreetMap.js"></script>*@
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>

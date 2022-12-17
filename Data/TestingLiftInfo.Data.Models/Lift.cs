@@ -56,5 +56,9 @@
         public virtual SupportCompany SupportCompany { get; set; }
 
         public virtual ICollection<Inspect> Inspects { get; set; }
+
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
     }
 }

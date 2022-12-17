@@ -1,4 +1,4 @@
-﻿let toggle = document.querySelector('#toggle');
+﻿let toggle = document.querySelector('#toggleNav');
 
 toggle.addEventListener('click', clickToggle);
 

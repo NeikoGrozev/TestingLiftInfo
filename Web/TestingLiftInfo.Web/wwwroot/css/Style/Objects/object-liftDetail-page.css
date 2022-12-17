@@ -1,5 +1,1 @@
-﻿@media (max-width: 750px) {
-    #detailBlock {
-        display: block;
-    }
-}
+@media (max-width: 1000px){#detailBlock{display:block}#detailBlock #map{width:33rem}}@media (max-width: 1150px){#detailBlock #map{width:25rem}}

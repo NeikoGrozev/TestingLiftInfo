@@ -70,7 +70,9 @@
                  model.CreateLiftInputModel.ManufacturerId,
                  model.CreateLiftInputModel.ProductionNumber,
                  model.CreateLiftInputModel.CityId,
-                 model.CreateLiftInputModel.Address);
+                 model.CreateLiftInputModel.Address,
+                 model.CreateLiftInputModel.Latitude,
+                 model.CreateLiftInputModel.Longitude);
 
             if (isCreate)
             {

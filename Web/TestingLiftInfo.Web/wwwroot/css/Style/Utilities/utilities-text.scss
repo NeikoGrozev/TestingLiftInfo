@@ -1,0 +1,100 @@
+﻿.u-text {
+    &-bold--500 {
+        font-weight: 500 !important;
+    }
+
+    &-bold--700 {
+        font-weight: 700 !important;
+    }
+
+    &-bold--800 {
+        font-weight: 800 !important;
+    }
+
+    &-size--6 {
+        font-size: 6px;
+    }
+
+    &-size--8 {
+        font-size: 8px;
+    }
+
+    &-size--12 {
+        font-size: 12px;
+    }
+
+    &-size--16 {
+        font-size: 16px;
+    }
+
+    &-size--18 {
+        font-size: 18px;
+    }
+
+    &-size--20 {
+        font-size: 20px;
+    }
+
+    &-size--26 {
+        font-size: 26px;
+    }
+
+    &-size--30 {
+        font-size: 30px;
+    }
+
+    &-size--36 {
+        font-size: 36px;
+    }
+
+    &-small {
+        font-size: 10px;
+        font-weight: 300;
+    }
+
+    &-larger {
+        font-size: larger;
+        font-weight: 600;
+    }
+
+    &-danger {
+        color: red;
+    }
+
+    &-dark {
+        color: black;
+    }
+
+    &-greenyellow {
+        color: greenyellow;
+    }
+
+    &-greenyellow {
+        color: greenyellow;
+    }
+
+    &-ok {
+        color: #2ABE01;
+    }
+
+    &-label {
+        display: block;
+        font-weight: 600;
+    }
+
+    &-center {
+        text-align: center;
+    }
+
+    &-underline {
+        text-decoration: underline;
+    }
+
+    &-italic {
+        font-style: italic;
+    }
+
+    &-family-comicSans {
+        font-family: 'Comic Sans MS';
+    }
+}

@@ -5,55 +5,58 @@
 <div class="o-jumbotron s-border u-margin-bottom--20 s-primary-shadow">
     <form asp-area="Administration" asp-controller="Lifts" asp-action="Create" method="post" onsubmit="return submitResult();">
         <h2 class="u-margin-bottom--20">Добави нов асансьор</h2>
-
-        <div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.LiftType" for="type">Вид на асансьорът: </label>
-                <select asp-for="CreateLiftInputModel.LiftType" id="type" class="s-border s-input-shadow" asp-items="Html.GetEnumSelectList<LiftType>()"></select>
+        <div class="u-grid u-grid--col u-grid-gap--5" id="createLiftBlock">
+            <div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.LiftType" for="type">Вид на асансьорът: </label>
+                    <select asp-for="CreateLiftInputModel.LiftType" id="type" class="s-border s-input-shadow" asp-items="Html.GetEnumSelectList<LiftType>()"></select>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.NumberOfStops" for="numberOfStops">Брой спирки: </label>
+                    <input asp-for="CreateLiftInputModel.NumberOfStops" type="number" id="numberOfStops" class="s-input-shadow" min="2" max="100" />
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.Capacity" for="capacity">Товароподемност: </label>
+                    <input asp-for="CreateLiftInputModel.Capacity" type="number" id="capacity" class="s-input-shadow" min="100" max="5000" />
+                    <a>кг.</a>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.DoorType" for="type">Тип врати: </label>
+                    <select asp-for="CreateLiftInputModel.DoorType" id="type" class="s-input-shadow" asp-items="Html.GetEnumSelectList<DoorType>()"></select>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.ManufacturerId" for="manufacturer">Производител: </label>
+                    <select asp-for="CreateLiftInputModel.ManufacturerId" id="manufacturer" class="s-input-shadow">
+                        @foreach (var item in Model.LiftInputDataViewModel.Manufacturers)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.ProductionNumber" for="productionNumber">Производствен №: </label>
+                    <input asp-for="CreateLiftInputModel.ProductionNumber" type="text" id="productionNumber" class="s-input-shadow" />
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.CityId" for="city">Град: </label>
+                    <select asp-for="CreateLiftInputModel.CityId" id="city" class="s-input-shadow">
+                        @foreach (var item in Model.LiftInputDataViewModel.Cities)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="CreateLiftInputModel.Address" for="address">Адрес: </label>
+                    <input asp-for="CreateLiftInputModel.Address" type="text" id="address" class="s-input-shadow" />
+                </div>
             </div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.NumberOfStops" for="numberOfStops">Брой спирки: </label>
-                <input asp-for="CreateLiftInputModel.NumberOfStops" type="number" id="numberOfStops" class="s-input-shadow" min="2" max="100" />
-            </div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.Capacity" for="capacity">Товароподемност: </label>
-                <input asp-for="CreateLiftInputModel.Capacity" type="number" id="capacity" class="s-input-shadow" min="100" max="5000" />
-                <a>кг.</a>
-            </div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.DoorType" for="type">Тип врати: </label>
-                <select asp-for="CreateLiftInputModel.DoorType" id="type" class="s-input-shadow" asp-items="Html.GetEnumSelectList<DoorType>()"></select>
-            </div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.ManufacturerId" for="manufacturer">Производител: </label>
-                <select asp-for="CreateLiftInputModel.ManufacturerId" id="manufacturer" class="s-input-shadow">
-                    @foreach (var item in Model.LiftInputDataViewModel.Manufacturers)
-                    {
-                        <option value="@item.Id">@item.Name</option>
-                    }
-                </select>
-            </div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.ProductionNumber" for="productionNumber">Производствен №: </label>
-                <input asp-for="CreateLiftInputModel.ProductionNumber" type="text" id="productionNumber" class="s-input-shadow" />
-            </div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.CityId" for="city">Град: </label>
-                <select asp-for="CreateLiftInputModel.CityId" id="city" class="s-input-shadow">
-                    @foreach (var item in Model.LiftInputDataViewModel.Cities)
-                    {
-                        <option value="@item.Id">@item.Name</option>
-                    }
-                </select>
-            </div>
-            <div class="u-margin-bottom--20">
-                <label asp-for="CreateLiftInputModel.Address" for="address">Адрес: </label>
-                <input asp-for="CreateLiftInputModel.Address" type="text" id="address" class="s-input-shadow" />
-            </div>
+            <div id="map"></div>
         </div>
-        <input  asp-for="CreateLiftInputModel.RecaptchaValue" type="hidden" id="RecaptchaValue"  />
+        <input asp-for="CreateLiftInputModel.RecaptchaValue" type="hidden" id="RecaptchaValue" />
+        <input asp-for="CreateLiftInputModel.Latitude" type="hidden" id="latitude" />
+        <input asp-for="CreateLiftInputModel.Longitude" type="hidden" id="longitude" />
         <button type="submit" class="btn btn-add">✙ Добави</button>
-
     </form>
 </div>
 
@@ -64,6 +67,7 @@
             if (confirm("Сигурни ли сте, че искате да регистрирате съоръжението?") == false) {
                 return false;
             } else {
+                getLatLog();
                 return true;
             }
         }
@@ -76,5 +80,9 @@
                 document.getElementById("RecaptchaValue").value = token;
             });
         });
+    </script>
+    <script src="~/js/openStreetMap.js"></script>
+    <script>
+        addMarker();
     </script>
 }

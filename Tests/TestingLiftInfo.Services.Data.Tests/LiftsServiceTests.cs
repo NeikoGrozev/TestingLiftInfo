@@ -194,8 +194,10 @@
             string productionNumber = "123";
             string cityId = "C1";
             string address = "A1";
+            string latitude = "42.9494";
+            string longitude = "23.566";
 
-            var isCreated = await liftsService.CreateAsync(userId, liftType, numberOfStops, capacity, doorType, manufacturerId, productionNumber, cityId, address);
+            var isCreated = await liftsService.CreateAsync(userId, liftType, numberOfStops, capacity, doorType, manufacturerId, productionNumber, cityId, address, latitude, longitude);
 
             return isCreated;
         }

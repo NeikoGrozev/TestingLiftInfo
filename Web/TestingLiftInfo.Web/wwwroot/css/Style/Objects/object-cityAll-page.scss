@@ -1,0 +1,19 @@
+﻿/*@import url("../Settings/settings-breakpoints.scss");
+
+@include for-tablet-landscape-up() {
+    #cityName {
+        min-width: 300px !important;
+    }
+}*/
+
+@media (max-width: 900px) {
+    #cityName {
+        min-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    #cityName {
+        min-width: 200px;
+    }
+}

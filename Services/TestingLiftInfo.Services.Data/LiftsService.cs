@@ -21,7 +21,7 @@
             this.liftRepository = liftRepository;
         }
 
-        public async Task<bool> CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address)
+        public async Task<bool> CreateAsync(string userId, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address, string latitude, string longitude)
         {
             var currentLift = this.liftRepository.All().FirstOrDefault(x => x.ProductionNumber == productionNumber);
 
@@ -43,6 +43,8 @@
                     ProductionNumber = productionNumber,
                     CityId = cityId,
                     Address = address,
+                    Latitude = latitude,
+                    Longitude = longitude,
                 };
 
                 await this.liftRepository.AddAsync(lift);

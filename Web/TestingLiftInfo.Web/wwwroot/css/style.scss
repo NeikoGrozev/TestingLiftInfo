@@ -1,4 +1,4 @@
-﻿/*@import url("./Style/Settings/settings-breakpoints.scss");*/
+﻿@import url("./Style/Settings/settings-breakpoints.css");
 @import url("./Style/Settings/settings-border.css");
 @import url("./Style/Settings/settings-shadow.css");
 @import url("./Style/Settings/setings-animation.css");
@@ -14,6 +14,7 @@
 @import url("./Style/Elements/element-input.css");
 @import url("./Style/Elements/element-select.css");
 @import url("./Style/Elements/element-label.css");
+@import url("./Style/Elements/element-map.css");
 
 @import url("./Style/Objects/object-row-container.css");
 @import url("./Style/Objects/object-column-container.css");
@@ -36,6 +37,7 @@
 @import url("./Style/Objects/object-liftAll-and-liftSearch-page.css");
 @import url("./Style/Objects/object-card.css");
 @import url("./Style/Objects/object-mobileMenu.css");
+@import url("./Style/Objects/object-liftCreate-page.css");
 
 @import url("./Style/Components/component-header.css");
 @import url("./Style/Components/component-footer.css");

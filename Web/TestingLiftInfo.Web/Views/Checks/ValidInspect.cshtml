@@ -11,16 +11,16 @@
     else if (Model.Date.GetValueOrDefault().AddYears(1) <= DateTime.UtcNow.AddYears(1) && Model.Date.GetValueOrDefault().AddYears(1) >= DateTime.UtcNow 
         || Model.Date.GetValueOrDefault().AddDays(-1) <= DateTime.UtcNow && Model.Date.GetValueOrDefault().AddDays(-1) >= DateTime.UtcNow.AddDays(-2))
     {
-        <p class="u-text-size--26"><span class="text-bold--700">Статус: </span><span  class="u-text-family-comicSans u-text-italic u-text-ok">Има валиден преглед!</span></p>
-        <p class="u-text-size--26"><span class="text-bold--700">Валиден до: </span><span class="u-text-family-comicSans u-text-italic">@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</span></p>
+        <p class="u-text-size--26"><span class="u-text-bold--700">Статус: </span><span  class="u-text-family-comicSans u-text-italic u-text-ok">Има валиден преглед!</span></p>
+        <p class="u-text-size--26"><span class="u-text-bold--700">Валиден до: </span><span class="u-text-family-comicSans u-text-italic">@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</span></p>
     }
     else
     {
-        <p class="u-text-size--26"><span class="text-bold--700">Статус: </span><font class="u-text-family-comicSans u-text-danger">Няма валиден преглед!</font></p>
+        <p class="u-text-size--26"><span class="u-text-bold--700">Статус: </span><font class="u-text-family-comicSans u-text-danger">Няма валиден преглед!</font></p>
 
         @if (Model.Date.GetValueOrDefault().AddYears(1) >= DateTime.UtcNow.AddYears(-2))
         {
-            <p class="u-text-size--26"><span class="text-bold--700">Валиден до: </span><span  class="u-text-family-comicSans u-text-italic u-text-danger">@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</span></p>
+            <p class="u-text-size--26"><span class="u-text-bold--700">Валиден до: </span><span  class="u-text-family-comicSans u-text-italic u-text-danger">@Model.Date.GetValueOrDefault().AddYears(1).ToString("dd.MM.yyyy г.")</span></p>
         }
     }
 </div>

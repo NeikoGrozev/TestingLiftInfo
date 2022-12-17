@@ -1,0 +1,21 @@
+﻿.u-alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.80rem;
+
+    &-success {
+        color: black;
+        background-color: lightgreen;
+        border-color: forestgreen;
+    }
+
+    &-info {
+        color: #808080;
+        background-color: #00FE9A;
+        border-color: #808080;
+        z-index: 10;
+        top: 55px;
+    }
+}
