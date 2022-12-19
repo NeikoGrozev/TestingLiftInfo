@@ -1,1 +1,1 @@
-@media (max-width: 1150px){#createLiftBlock{display:block}}
+@media (min-width: 1366px){#createLiftBlock #map{width:45rem;height:28rem}}@media (max-width: 1280px){#createLiftBlock #map{width:25rem}}@media (max-width: 1024px){#createLiftBlock{display:block}#createLiftBlock #map{width:33rem !important}}@media (max-width: 768px){#createLiftBlock #map{width:25rem !important;margin:0 auto}}@media (max-width: 480px){#createLiftBlock #map{width:18rem !important}}

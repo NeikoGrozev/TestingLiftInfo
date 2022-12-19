@@ -69,20 +69,17 @@
                 <label>Поддържаща фирма: </label>
                 <a class="u-text-size--18 u-text-bold--800">@Model.SupportCompanyName</a>
             </div>
-
-            <div class="u-margin-bottom--20">
-                <a class="btn btn-deepskyblue" id="detailBlock" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
+            <div class="u-margin-bottom--20" id="buttonBlock">
+                <a class="btn btn-deepskyblue" id="backButton" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
                 @if (@Model.IsDeleted == false)
                 {
-                    <a class="btn btn-add" id="detailBlock" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
+                    <a class="btn btn-add" id="addButton" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
+                }
+                @if (@Model.IsDeleted == false)
+                {
+                    <a class="btn btn-red" id="deleteButton" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id"><i class="far fa-trash-alt"></i> Свали от регистрация</a>
                 }
             </div>
-            @if (@Model.IsDeleted == false)
-            {
-                <div class="u-margin-bottom--20">
-                    <a class="btn btn-red" id="detailBlock" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id"><i class="far fa-trash-alt"></i> Свали от регистрация</a>
-                </div>
-            }
         </div>
         <div>
             <div id="map"></div>
@@ -113,13 +110,21 @@
         }
     }
 </script>
-<script src="~/js/openStreetMap.js" defer></script>
+<script src="~/js/openStreetMap.js"></script>
 <script>
+    var dragging = false;
+    var zoom = 16;
+    var latLng = [@Model.Latitude, @Model.Longitude];
+    var regNumber = '@Model.RegistrationNumber';
+    var address = 'гр. @Model.CityName, @Model.Address';
+    var id = '@Model.Id';
+    var mapOption = {
+        center: latLng,
+        zoom: zoom
+    };
+
     setTimeout(() => {
-        let latLng = [@Model.Latitude, @Model.Longitude];
-        let regNumber = '@Model.RegistrationNumber';
-        let address = 'гр. @Model.CityName, @Model.Address';
-        let id = '@Model.Id';
-        addMarker(latLng, address, regNumber, id);
-    }, 1000)
+        createMap(mapOption);
+        addMarker(latLng, dragging, address, regNumber, id);
+    }, 1000);
 </script>

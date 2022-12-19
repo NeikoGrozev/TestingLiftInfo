@@ -83,6 +83,12 @@
     </script>
     <script src="~/js/openStreetMap.js"></script>
     <script>
-        addMarker();
+        var mapOption = getMapOption();
+        var dragging = true;
+
+        setTimeout(() => {
+            createMap(mapOption);
+            addMarker(mapOption.center, dragging);
+        }, 500);
     </script>
 }

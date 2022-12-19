@@ -1,5 +1,45 @@
-﻿@media (max-width: 1150px) {
+﻿@import '../Settings/settings-breakpoints.scss';
+
+@include xLarge {
+    #createLiftBlock {
+        #map {
+            width: 45rem;
+            height: 28rem;
+        }
+    }
+}
+
+@include exstraLarge {
+    #createLiftBlock {
+        #map {
+            width: 25rem;
+        }
+    }
+}
+
+@include large {
     #createLiftBlock {
         display: block;
+
+        #map {
+            width: 33rem !important;
+        }
+    }
+}
+
+@include medium {
+    #createLiftBlock {
+        #map {
+            width: 25rem !important;
+            margin: 0 auto;
+        }
+    }
+}
+
+@include phablet {
+    #createLiftBlock {
+        #map {
+            width: 18rem !important;
+        }
     }
 }

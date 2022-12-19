@@ -1,4 +1,6 @@
-﻿@mixin for-phone-only {
+﻿@import '../Generics/generic-settings.scss';
+
+@mixin for-phone-only {
     @media (max-width: 550px) {
         @content;
     }
@@ -24,6 +26,39 @@
 
 @mixin for-big-desktop-up {
     @media (min-width: 1800px) {
+        @content;
+    }
+}
+
+
+//new
+
+@mixin phablet{
+    @media (max-width: $phablet) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media (max-width: $medium) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media (max-width: $large) {
+        @content;
+    }
+}
+
+@mixin exstraLarge {
+    @media (max-width: $extraLarge) {
+        @content;
+    }
+}
+
+@mixin xLarge {
+    @media (min-width: $xLarge) {
         @content;
     }
 }

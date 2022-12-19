@@ -1,17 +1,79 @@
-﻿
+﻿@import '../Settings/settings-breakpoints.scss';
 
-@media (max-width: 1000px) {
-    #detailBlock {
-        display: block
+#detailBlock {
+    #map {
+        width: 45rem;
+        height: 28rem;
     }
 
-    #detailBlock #map {
-        width: 33rem
+    #buttonBlock {
+        display: grid;
+        margin-bottom: 0px;
+    }
+
+    .btn {
+        margin-left: 0px;
     }
 }
 
-@media (max-width: 1150px) {
-    #detailBlock #map {
-        width: 25rem
+/*@include xLarge {
+    #detailBlock {
+        #map {
+            width: 45rem;
+            height: 28rem;
+        }
+
+        #buttonBlock {
+            display: grid;
+            margin-bottom: 0px;
+        }
+
+        .btn {
+            margin-left: 0px;
+        }
+    }
+}*/
+
+@include exstraLarge {
+    #detailBlock {
+        #map {
+            width: 30rem;
+        }
+
+        #buttonBlock {
+            display: grid;
+            margin-bottom: 0px;
+        }
+
+        .btn {
+            margin-left: 0px;
+        }
+    }
+}
+
+@include large {
+    #detailBlock {
+        display: block; 
+        
+        #map {
+            margin-top: 20px;
+        }
+    }
+}
+
+@include medium {
+    #detailBlock {
+        #map {
+            width: 25rem;
+            margin: 0 auto;
+        }        
+    }
+}
+
+@include phablet {
+    #detailBlock {
+        #map {
+            width: 18rem;
+        }
     }
 }
