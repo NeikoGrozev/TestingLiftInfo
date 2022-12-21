@@ -1,5 +1,6 @@
 ﻿namespace TestingLiftInfo.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -93,6 +94,23 @@
                 .Where(x => x.Id == id)
                 .To<LiftDetailViewModel>()
                 .FirstOrDefaultAsync();
+
+            return lift;
+        }
+
+        public async Task<LiftEditDataViewModel> GetCurrentLiftForEdit(string id)
+        {
+            var lift = await this.liftRepository
+                .AllWithDeleted()
+                .Where(x => x.Id == id)
+                .To<LiftEditDataViewModel>()
+                .FirstOrDefaultAsync();
+
+            int liftTypeNumber = (int)Enum.Parse(lift.LiftType.GetType(), lift.LiftType.ToString());
+            lift.LiftTypeNumber = liftTypeNumber;
+
+            int doorTypeNumber = (int)Enum.Parse(lift.DoorType.GetType(), lift.DoorType.ToString());
+            lift.DoorTypeNumber = doorTypeNumber;
 
             return lift;
         }
@@ -220,6 +238,27 @@
                 .FirstOrDefault(x => x.RegistrationNumber == regNumber);
 
             return lift;
+        }
+
+        public async Task<bool> EditLift(string userId, string id, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address, string latitude, string longitude)
+        {
+            var lift = this.liftRepository.All().FirstOrDefault(x => x.Id == id);
+            lift.ApplicationUserId = userId;
+            lift.LiftType = liftType;
+            lift.NumberOfStops = numberOfStops;
+            lift.Capacity = capacity;
+            lift.DoorType = doorType;
+            lift.ManufacturerId = manufacturerId;
+            lift.ProductionNumber = productionNumber;
+            lift.CityId = cityId;
+            lift.Address = address;
+            lift.Latitude = latitude;
+            lift.Longitude = longitude;
+
+            this.liftRepository.Update(lift);
+            await this.liftRepository.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task DeleteAsync(string id)

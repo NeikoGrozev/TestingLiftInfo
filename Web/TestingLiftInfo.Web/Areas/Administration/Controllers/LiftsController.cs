@@ -10,6 +10,7 @@
     using TestingLiftInfo.Data.Models;
     using TestingLiftInfo.Services.Data;
     using TestingLiftInfo.Web.ViewModels.Administration.Lifts;
+    using TestingLiftInfo.Web.ViewModels.Administration.Lifts.Edit;
 
     public class LiftsController : AdministrationController
     {
@@ -52,7 +53,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]BigCreateLiftViewModel model)
+        public async Task<IActionResult> Create([FromForm] BigCreateLiftViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -178,6 +179,61 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            var manufacturers = await this.manufacturerService.GetAllManufacturers();
+            var cities = await this.cityService.GetAllCity();
+            var inputModel = new EditManufactureAndCityViewModel
+            {
+                Manufacturers = manufacturers,
+                Cities = cities,
+            };
+
+            var liftEditDataViewModel = await this.liftService.GetCurrentLiftForEdit(id);
+            var editLiftModel = new EditLiftViewModel();
+
+            var viewModel = new BigEditLiftViewModel
+            {
+                EditManufactureAndCityViewModel = inputModel,
+                LiftEditDataViewModel = liftEditDataViewModel,
+                EditLiftViewModel = editLiftModel,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromForm] BigEditLiftViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var userId = this.userManager.GetUserId(this.User);
+
+            var isCreate = await this.liftService.EditLift(
+                userId,
+                model.EditLiftViewModel.Id,
+                model.EditLiftViewModel.LiftType,
+                model.EditLiftViewModel.NumberOfStops,
+                model.EditLiftViewModel.Capacity,
+                model.EditLiftViewModel.DoorType,
+                model.EditLiftViewModel.ManufacturerId,
+                model.EditLiftViewModel.ProductionNumber,
+                model.EditLiftViewModel.CityId,
+                model.EditLiftViewModel.Address,
+                model.EditLiftViewModel.Latitude,
+                model.EditLiftViewModel.Longitude);
+
+            if (isCreate)
+            {
+                this.TempData["CreateLift"] = $"Асансьорът е редактиран!";
+            }
+
+            return this.RedirectToAction("All", "Lifts");
         }
 
         public async Task<IActionResult> Delete(string id)

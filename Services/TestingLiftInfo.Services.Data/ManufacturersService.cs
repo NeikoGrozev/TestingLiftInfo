@@ -62,7 +62,6 @@
             return manufacturers;
         }
 
-
         public async Task<ManufacturerDetailViewModel> GetCurrentManufacturer(string id)
         {
             var manufacturer = await this.manufacturerRepository

@@ -1,5 +1,6 @@
 ﻿var map;
 var layer;
+var marker;
 
 function getMapOption() {
     return mapOption = {
@@ -20,8 +21,6 @@ function createMap(mapOptions) {
 }
 
 function addMarker(lanLng, dragging, address, regNumber, id) {
-    var marker;
-
     if (lanLng && address && regNumber && id) {
         marker = new L.marker(lanLng).addTo(map).bindPopup(`<span class="u-text-bold--800">Рег. № <a href="/Administration/Lifts/Detail/${id}">${regNumber}</a></span><br><p class="u-margin--0"><span class="u-text-bold--800">Адрес: </span>${address}</p>`);
     } else {

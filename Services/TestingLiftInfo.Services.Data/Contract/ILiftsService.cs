@@ -19,6 +19,8 @@
 
         Task<LiftDetailViewModel> GetCurrentLift(string id);
 
+        Task<LiftEditDataViewModel> GetCurrentLiftForEdit(string id);
+
         Task<ICollection<LiftViewModel>> SearchIsDeletedCriteria(bool isDeleted);
 
         Task<ICollection<LiftViewModel>> SearchRegistrationCriteria(string registationNumber, bool isDeleted);
@@ -38,6 +40,8 @@
         Task AddSupportCompany(string liftId, string supportCompanyId);
 
         Lift GetLiftWithRegistrationNumber(string regNumber);
+
+        Task<bool> EditLift(string userId, string id, LiftType liftType, int numberOfStops, int capacity, DoorType doorType, string manufacturerId, string productionNumber, string cityId, string address, string latitude, string longitude);
 
         Task DeleteAsync(string id);
     }

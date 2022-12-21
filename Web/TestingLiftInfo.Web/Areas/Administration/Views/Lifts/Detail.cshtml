@@ -69,12 +69,15 @@
                 <label>Поддържаща фирма: </label>
                 <a class="u-text-size--18 u-text-bold--800">@Model.SupportCompanyName</a>
             </div>
-            <div class="u-margin-bottom--20" id="buttonBlock">
+            <div class="u-margin-bottom--20 " id="buttonBlock">
                 <a class="btn btn-deepskyblue" id="backButton" asp-area="Administration" asp-controller="Lifts" asp-action="All"><i class="fas fa-arrow-circle-left"></i> Назад</a>
                 @if (@Model.IsDeleted == false)
                 {
                     <a class="btn btn-add" id="addButton" asp-area="Administration" asp-controller="Inspects" asp-action="Create" asp-route-id="@Model.Id"><i class="fas fa-folder-plus"></i> Създай ревизионне акт</a>
                 }
+
+                <a class="btn btn-orange" id="editButton" asp-area="Administration" asp-controller="Lifts" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pencil"></i> Редактирай</a>
+
                 @if (@Model.IsDeleted == false)
                 {
                     <a class="btn btn-red" id="deleteButton" onclick="return submitResult();" asp-area="Administration" asp-controller="Lifts" asp-action="Delete" asp-route-id="@Model.Id"><i class="far fa-trash-alt"></i> Свали от регистрация</a>
@@ -82,6 +85,7 @@
             </div>
         </div>
         <div>
+            <p class="u-text-danger u-hidden-element u-text-size--16 u-text-bold--700 u-margin-top-and-bottom--10" id="noPosition">Обекта не е позициониран!!!</p>
             <div id="map"></div>
             <div class="o-inspect-card">
                 <div class="o-inspect-card--header u-text-center">
@@ -122,6 +126,12 @@
         center: latLng,
         zoom: zoom
     };
+
+    if (latLng.length != 2) {
+        mapOption = getMapOption();
+        latLng = mapOption.center;
+        document.querySelector('#noPosition').classList.remove("u-hidden-element");
+    }
 
     setTimeout(() => {
         createMap(mapOption);

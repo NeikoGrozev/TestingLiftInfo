@@ -1,0 +1,131 @@
+﻿@using TestingLiftInfo.Data.Models.Enumerations
+@model TestingLiftInfo.Web.ViewModels.Administration.Lifts.Edit.BigEditLiftViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+<div class="o-jumbotron s-border u-margin-bottom--20 s-primary-shadow">
+    <form asp-area="Administration" asp-controller="Lifts" asp-action="Edit" method="post" onsubmit="return submitResult();">
+        <h2 class="u-margin-bottom--20">Редактиране на асансьор № @Model.LiftEditDataViewModel.RegistrationNumber</h2>
+        <div class="u-grid u-grid--col u-grid-gap--5" id="createLiftBlock">
+            <div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.LiftType" for="typeLift">Вид на асансьорът: </label>
+                    <select asp-for="EditLiftViewModel.LiftType" id="typeLift" class="s-border s-input-shadow" asp-items="Html.GetEnumSelectList<LiftType>()"></select>
+                    <input id="optionLiftTypeNumber" type="hidden" value="@Model.LiftEditDataViewModel.LiftTypeNumber" />
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.NumberOfStops" for="numberOfStops">Брой спирки: </label>
+                    <input asp-for="EditLiftViewModel.NumberOfStops" type="number" id="numberOfStops" class="s-input-shadow" min="2" max="100" value="@Model.LiftEditDataViewModel.NumberOfStops" />
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.Capacity" for="capacity">Товароподемност: </label>
+                    <input asp-for="EditLiftViewModel.Capacity" type="number" id="capacity" class="s-input-shadow" min="100" max="5000" value="@Model.LiftEditDataViewModel.Capacity" />
+                    <a>кг.</a>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.DoorType" for="typeDoor">Тип врати: </label>
+                    <select asp-for="EditLiftViewModel.DoorType" id="typeDoor" class="s-input-shadow" asp-items="Html.GetEnumSelectList<DoorType>()"></select>
+                    <input id="optionDoorTypeNumber" type="hidden" value="@Model.LiftEditDataViewModel.DoorTypeNumber" />
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.ManufacturerId" for="manufacturer">Производител: </label>
+                    <select asp-for="EditLiftViewModel.ManufacturerId" id="manufacturer" class="s-input-shadow">
+                        @foreach (var item in Model.EditManufactureAndCityViewModel.Manufacturers)
+                        {
+                            @if (item.Id == Model.LiftEditDataViewModel.ManufacturerId)
+                            {
+                                <option value="@item.Id" selected>@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.ProductionNumber" for="productionNumber">Производствен №: </label>
+                    <input asp-for="EditLiftViewModel.ProductionNumber" type="text" id="productionNumber" class="s-input-shadow" value="@Model.LiftEditDataViewModel.ProductionNumber" />
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.CityId" for="city">Град: </label>
+                    <select asp-for="EditLiftViewModel.CityId" id="city" class="s-input-shadow">
+                        @foreach (var item in Model.EditManufactureAndCityViewModel.Cities)
+                        {
+                            @if (item.Id == Model.LiftEditDataViewModel.CityId)
+                            {
+                                <option value="@item.Id" selected>@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="u-margin-bottom--20">
+                    <label asp-for="EditLiftViewModel.Address" for="address">Адрес: </label>
+                    <input asp-for="EditLiftViewModel.Address" type="text" id="address" class="s-input-shadow" value="@Model.LiftEditDataViewModel.Address" />
+                </div>
+            </div>
+            <div id="map"></div>
+        </div>
+        <input asp-for="EditLiftViewModel.RecaptchaValue" type="hidden" id="RecaptchaValue" />
+        <input asp-for="EditLiftViewModel.Id" type="hidden" value="@Model.LiftEditDataViewModel.Id" />
+        <input asp-for="EditLiftViewModel.Latitude" type="hidden" id="latitude" />
+        <input asp-for="EditLiftViewModel.Longitude" type="hidden" id="longitude" />
+        <button type="submit" class="btn btn-orange"><i class="fa-regular fa-floppy-disk"></i> Запази промените</button>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script>
+        function submitResult() {
+            if (confirm("Сигурни ли сте, че искате да редактирате съоръжението?") == false) {
+                return false;
+            } else {
+                getLatLog();
+                return true;
+            }
+        }
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'createLift' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+    <script>
+        var liftTypeNumber = document.querySelector('#optionLiftTypeNumber').value;
+        document.querySelector(`#typeLift option[value="${liftTypeNumber}"]`).setAttribute('selected', '');
+
+        var doorTypeNumber = document.querySelector('#optionDoorTypeNumber').value;
+        document.querySelector(`#typeDoor option[value="${doorTypeNumber}"]`).setAttribute('selected', '');
+    </script>
+    <script src="~/js/openStreetMap.js"></script>
+    <script>
+        var dragging = true;
+        var zoom = 16;
+        var latLng = [@Model.LiftEditDataViewModel.Latitude, @Model.LiftEditDataViewModel.Longitude];
+        var regNumber = '@Model.LiftEditDataViewModel.RegistrationNumber';
+        var address = 'гр. @Model.LiftEditDataViewModel.CityName, @Model.LiftEditDataViewModel.Address';
+        var id = '@Model.LiftEditDataViewModel.Id';
+        var mapOption = {
+            center: latLng,
+            zoom: zoom
+        };
+
+        if (latLng.length != 2) {
+            mapOption = getMapOption();
+            latLng = mapOption.center;
+        }
+
+        setTimeout(() => {
+            createMap(mapOption);
+            addMarker(latLng, dragging, address, regNumber, id);
+        }, 1000);
+    </script>
+}

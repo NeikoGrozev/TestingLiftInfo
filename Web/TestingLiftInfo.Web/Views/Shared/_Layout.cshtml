@@ -8,7 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"]  @GlobalConstants.Logo</title>
-    <script src="https://kit.fontawesome.com/da4b1de3cd.js" crossorigin="anonymous"></script>
+    @*<script src="https://kit.fontawesome.com/da4b1de3cd.js" crossorigin="anonymous"></script>*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 
 
@@ -25,7 +26,7 @@
             <div>
                 <a class="c-header--brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.Logo</a>
             </div>
-            <nav id="navigation" class="o-row-container u-hiden-element">
+            <nav id="navigation" class="o-row-container u-hidden-element">
                 <ul class="o-row-container c-header--ul-container">
                     <li>
                         <partial name="_LoginPartial" />
@@ -33,13 +34,13 @@
                 </ul>
             </nav>
 
-            <div id="toggleNav" class="u-hiden-element">
+            <div id="toggleNav" class="u-hidden-element">
                 <div class="toggle-one"></div>
                 <div class="toggle-two"></div>
                 <div class="toggle-three"></div>
             </div>
 
-            <nav class="o-mobile-nav u-hiden-element">
+            <nav class="o-mobile-nav u-hidden-element">
                 <partial name="_LoginPartialMobile" />
             </nav>
         </section>
@@ -89,14 +90,14 @@
         <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+        @*<script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>*@
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+        @*<script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>*@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
